@@ -300,7 +300,8 @@ aside {
 
     .Btn {
         width: 100%;
-        max-width: 200px;
+        min-width: 200px;
+        align-items: center;
     }
 
     .rect-left {
