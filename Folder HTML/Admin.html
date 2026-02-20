@@ -7,21 +7,21 @@
     <title>Administration - Gestion Utilisateurs</title>
 </head>
 <body>
-    <!-- En-tête -->
+    
     <header>
         <img src="../Folder CSS/129.png" alt="Logo de l'administration" width="200">
     </header>
 
-    <!-- Container principal -->
+    
     <div class="admin-container">
         
-        <!-- Formulaire principal -->
-        <form method="post" action="update-users.php">
+
+        <form method="post">
             
-            <!-- Actions en-tête -->
+            
             <div class="table-actions">
                 <div class="action-left">
-                    <button class="delete-btn" type="submit" name="action" value="delete" formaction="delete-users.php">
+                    <button class="delete-btn" type="submit" name="action" value="delete">
                          Supprimer la sélection
                     </button>
                 </div>
@@ -30,7 +30,6 @@
                 </div>
             </div>
 
-            <!-- Tableau des utilisateurs -->
             <div class="table-wrapper">
                 <table>
                     <caption> Liste des Utilisateurs</caption>
@@ -44,7 +43,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Utilisateur 1 -->
+                        
                         <tr>
                             <td class="col-checkbox">
                                 <input type="checkbox" name="user_delete[]" value="15964" id="user1">
@@ -64,7 +63,6 @@
                             <td><span class="date-badge">16/07/2025</span></td>
                         </tr>
 
-                        <!-- Utilisateur 2 -->
                         <tr>
                             <td class="col-checkbox">
                                 <input type="checkbox" name="user_delete[]" value="15965" id="user2">
@@ -84,7 +82,7 @@
                             <td><span class="date-badge">12/07/2025</span></td>
                         </tr>
 
-                        <!-- Utilisateur 3 -->
+                        
                         <tr>
                             <td class="col-checkbox">
                                 <input type="checkbox" name="user_delete[]" value="15966" id="user3">
@@ -104,7 +102,7 @@
                             <td><span class="date-badge">15/07/2025</span></td>
                         </tr>
 
-                        <!-- Utilisateur 4 -->
+                        
                         <tr>
                             <td class="col-checkbox">
                                 <input type="checkbox" name="user_delete[]" value="15967" id="user4">
@@ -124,7 +122,7 @@
                             <td><span class="date-badge">14/07/2025</span></td>
                         </tr>
 
-                        <!-- Utilisateur 5 -->
+                        
                         <tr>
                             <td class="col-checkbox">
                                 <input type="checkbox" name="user_delete[]" value="15968" id="user5">
@@ -147,8 +145,6 @@
                     </tbody>
                 </table>
             </div>
-
-            <!-- Boutons d'action en bas -->
             <div class="action-buttons">
                 <button class="btn-secondary" type="reset">
                      Annuler

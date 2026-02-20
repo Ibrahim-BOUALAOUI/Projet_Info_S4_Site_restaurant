@@ -1,121 +1,395 @@
+/* ========================================
+   VARIABLES DE COULEURS
+======================================== */
 :root {
-  --violet-nuit: #280944;   /* fond principal */
-  --ivoire-chaud: #F5EFE6;  /* cartes / blocs */
-  --aubergine: #2B153F;     /* textes foncés */
-  --doré-doux: #C9A24D;     /* accents */
-  --rose-poudré: #E6D6EB;   /* hover / douceur */
+    --violet-nuit: #280944;
+    --ivoire-chaud: #F5EFE6;
+    --aubergine: #2B153F;
+    --doré-doux: #C9A24D;
+    --rose-poudré: #E6D6EB;
 }
 
 
-
+/* ========================================
+   CORPS DE LA PAGE
+======================================== */
 body {
     background-color: var(--violet-nuit);
     color: var(--ivoire-chaud);
     margin: 0;
+    padding: 0;
     font-family: Georgia, serif;
-
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: 100vh;
 }
 
+
+/* ========================================
+   EN-TÊTE (LOGO)
+======================================== */
 header {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 200px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+header img {
+    max-width: 100%;
+    height: auto;
 }
 
 
+/* ========================================
+   SECTION FORMULAIRE
+======================================== */
 .avis-form {
-  display: flex;
-  justify-content: center;
-  margin: 80px 20px;
-}
-
-.avis-form h2 {
-  text-align: center;
-  margin-bottom: 8px;
-}
-
-.subtitle {
-  text-align: center;
-  font-size: 14px;
-  color: #6b4b84;
-  margin-bottom: 32px;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-label {
-  font-size: 14px;
-  color: #2B153F;
-}
-
-textarea,
-input {
-  padding: 14px;
-  border-radius: 12px;
-  border: 1px solid #C9A24D;
-  font-family: inherit;
-  font-size: 14px;
-}
-
-textarea {
-  resize: none;
-  height: 120px;
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 80px;
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 100%;
 }
 
 
-textarea:focus,
-input:focus {
-  outline: none;
-  border-color: #B88ACF;
-}
-
+/* ========================================
+   CARTE (CONTENEUR DU FORMULAIRE)
+======================================== */
 .card {
     background-color: var(--ivoire-chaud);
     color: var(--aubergine);
     border-radius: 24px;
-    padding: 45px;
+    padding-top: 45px;
+    padding-bottom: 45px;
+    padding-left: 45px;
+    padding-right: 45px;
     max-width: 600px;
-    margin: 40px auto;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    width: 100%;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
 }
 
-.btn {
-    background-color: var(--aubergine);
-    color: var(--ivoire-chaud);
-    border: none;
-    padding: 14px 32px;
-    border-radius: 999px;
-    font-size: 16px;
+
+/* ========================================
+   TITRE ET SOUS-TITRE
+======================================== */
+.card h2 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-size: 2rem;
+    color: var(--aubergine);
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 14px;
+    color: #6b4b84;
+    margin-top: 0;
+    margin-bottom: 32px;
+}
+
+
+/* ========================================
+   FORMULAIRE
+======================================== */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+
+/* ========================================
+   GROUPES DE CHAMPS
+======================================== */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+/* ========================================
+   LABELS (TITRES DES CHAMPS)
+======================================== */
+.label-title {
+    font-size: 15px;
+    font-weight: bold;
+    color: var(--aubergine);
+}
+
+
+/* ========================================
+   CHAMPS DE TEXTE ET TEXTAREA
+======================================== */
+textarea,
+input[type="text"] {
+    padding-top: 14px;
+    padding-bottom: 14px;
+    padding-left: 14px;
+    padding-right: 14px;
+    border-radius: 12px;
+    border: 2px solid var(--doré-doux);
+    font-family: Georgia, serif;
+    font-size: 14px;
+    background-color: white;
+    color: var(--aubergine);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* Focus sur les champs */
+textarea:focus,
+input[type="text"]:focus {
+    outline: none;
+    border-color: #B88ACF;
+    box-shadow: 0 0 0 3px rgba(184, 138, 207, 0.2);
+}
+
+
+/* ========================================
+   SYSTÈME D'ÉTOILES (NOTE GLOBALE)
+======================================== */
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    gap: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/* Cache les inputs radio */
+.rating input[type="radio"] {
+    display: none;
+}
+
+/* Style des labels (étoiles) */
+.rating label {
+    cursor: pointer;
+    font-size: 40px;
+    color: #d0d0d0;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.rating label:before {
+    content: '★';
+}
+
+/* Hover sur les étoiles */
+.rating label:hover,
+.rating label:hover ~ label {
+    color: #ffa723;
+    transform: scale(1.1);
+}
+
+/* Étoiles sélectionnées */
+.rating input[type="radio"]:checked ~ label {
+    color: #ffa723;
+}
+
+/* Animation au hover quand une étoile est sélectionnée */
+.rating input[type="radio"]:checked ~ label:hover,
+.rating input[type="radio"]:checked ~ label:hover ~ label {
+    color: #ff9e0b;
+}
+
+
+/* ========================================
+   NOTE DE LA LIVRAISON (BOUTONS RONDS)
+======================================== */
+.livraison-rating {
+    display: flex;
+    gap: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Cache les inputs radio */
+.livraison-rating input[type="radio"] {
+    display: none;
+}
+
+/* Style des labels (chiffres) */
+.livraison-rating label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 2px solid var(--doré-doux);
+    background-color: white;
+    color: var(--aubergine);
+    font-size: 18px;
+    font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
-.btn:hover {
-  background-color: var(--doré-doux);
-  color: var(--aubergine);
+/* Hover sur les boutons */
+.livraison-rating label:hover {
+    background-color: var(--rose-poudré);
+    border-color: var(--aubergine);
+    transform: scale(1.1);
 }
 
-.rect_mid {
-    width: 300px;
-    height: 200px;
+/* Bouton sélectionné */
+.livraison-rating input[type="radio"]:checked + label {
+    background-color: var(--doré-doux);
+    border-color: var(--doré-doux);
+    color: white;
+    box-shadow: 0 4px 12px rgba(201, 162, 77, 0.4);
+}
 
-    display: flex;
-    justify-content: center;
 
-    background-color: #F5EFE6;
-    border: 2px solid #C9A24D;
-    color: #2B153F;
-    border-radius: 20px;
+/* ========================================
+   BOUTON ENVOYER
+======================================== */
+.btn {
+    background-color: var(--aubergine);
+    color: var(--ivoire-chaud);
+    border: none;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    padding-left: 32px;
+    padding-right: 32px;
+    border-radius: 999px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
 
-    border-radius: 20px;
-    gap: 21px;
-    box-sizing: border-box;
+.btn:hover {
+    background-color: var(--doré-doux);
+    color: var(--aubergine);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(201, 162, 77, 0.4);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+
+/* ========================================
+   RESPONSIVE - TABLETTE
+   Moins de 768px
+======================================== */
+@media screen and (max-width: 768px) {
+    
+    header {
+        min-height: 150px;
+    }
+
+    header img {
+        max-width: 200px;
+    }
+
+    .card {
+        padding-top: 30px;
+        padding-bottom: 30px;
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    .card h2 {
+        font-size: 1.5rem;
+    }
+
+    .rating label {
+        font-size: 35px;
+    }
+
+    .livraison-rating label {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+}
+
+
+/* ========================================
+   RESPONSIVE - MOBILE
+   Moins de 480px
+======================================== */
+@media screen and (max-width: 480px) {
+    
+    .avis-form {
+        margin-top: 20px;
+        margin-bottom: 40px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    header {
+        min-height: 120px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+
+    header img {
+        max-width: 150px;
+    }
+
+    .card {
+        padding-top: 25px;
+        padding-bottom: 25px;
+        padding-left: 20px;
+        padding-right: 20px;
+        border-radius: 16px;
+    }
+
+    .card h2 {
+        font-size: 1.3rem;
+    }
+
+    .subtitle {
+        font-size: 13px;
+    }
+
+    .rating {
+        justify-content: center;
+        gap: 3px;
+    }
+
+    .rating label {
+        font-size: 30px;
+    }
+
+    .livraison-rating {
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .livraison-rating label {
+        width: 38px;
+        height: 38px;
+        font-size: 15px;
+    }
+
+    .btn {
+        width: 100%;
+        padding-top: 14px;
+        padding-bottom: 14px;
+    }
 }
