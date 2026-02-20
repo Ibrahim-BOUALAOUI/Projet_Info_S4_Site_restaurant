@@ -6,6 +6,11 @@
   --aubergine: #2B153F;
   --doré-doux: #C9A24D;
   --rose-poudré: #E6D6EB;
+    --violet-nuit: hsl(272, 77%, 15%);
+    --ivoire-chaud: #F5EFE6;
+    --aubergine: #2B153F;
+    --doré-doux: #C9A24D;
+    --rose-poudré: #E6D6EB;
 }
 
 * {
@@ -54,7 +59,6 @@ header img {
 }
 
 /* LAYOUT PRINCIPAL */
-body > main {
     display: grid;
     grid-template-areas:
         "header header right-top"
@@ -252,7 +256,6 @@ aside {
 
 /* Tablettes */
 @media screen and (max-width: 1024px) {
-    body > main {
         grid-template-columns: minmax(180px, 220px) 1fr;
         gap: 15px;
         padding: 15px;
@@ -270,9 +273,7 @@ aside {
 
 /* Mobile */
 @media screen and (max-width: 768px) {
-    body > main {
         display: grid;
-        grid-template-areas: 
             "header"
             "right-top"
             "left-aside"
@@ -335,7 +336,6 @@ aside {
 
 /* Très petits écrans */
 @media screen and (max-width: 480px) {
-    body > main {
         padding: 10px;
         gap: 15px;
     }
@@ -386,4 +386,3 @@ button:focus {
 /* Scroll smooth */
 html {
     scroll-behavior: smooth;
-}
