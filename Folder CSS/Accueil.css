@@ -208,6 +208,33 @@ body>main {
     text-align: center;
 }
 
+
+.menu-item-special {
+    background: linear-gradient(135deg, rgba(246, 125, 0, 0.15) 0%, rgba(246, 125, 0, 0.05) 100%);
+    border: 3px solid #F67D00;
+    position: relative;
+    overflow: hidden;
+}
+
+.menu-item-special::before {
+    content: '✨';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 2rem;
+    animation: sparkle 2s infinite;
+}
+
+@keyframes sparkle {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.2); }
+}
+
+.menu-item-special:hover {
+    background: linear-gradient(135deg, rgba(246, 125, 0, 0.25) 0%, rgba(246, 125, 0, 0.15) 100%);
+    transform: translateY(-10px) scale(1.02);
+}
+
 /* BOUTON CONNEXION */
 aside {
     grid-area: right-top;
