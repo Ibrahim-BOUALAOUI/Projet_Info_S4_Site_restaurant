@@ -67,7 +67,7 @@ body > main {
     min-height: 100vh;
 }
 
-/* SECTION INCONTOURNABLES - Améliorée */
+/* SECTION INCONTOURNABLES- */
 .rect-left {
     grid-area: left-aside;
     display: flex;
@@ -111,7 +111,7 @@ body > main {
     margin-top: 5px;
 }
 
-/* SECTION MENUS - Améliorée */
+/* SECTION MENUS */
 .rect-menus {
     grid-area: section;
     display: grid;
@@ -189,7 +189,7 @@ body > main {
     text-align: center;
 }
 
-/* BOUTON CONNEXION - Amélioré */
+/* BOUTON CONNEXION */
 aside {
     grid-area: right-top;
     display: flex;
@@ -248,7 +248,9 @@ aside {
     transform: scale(0.95);
 }
 
-/* RESPONSIVE DESIGN - Amélioré */
+
+
+/* RESPONSIVE DESIGN  */
 
 /* Tablettes */
 @media screen and (max-width: 1024px) {
@@ -371,7 +373,7 @@ aside {
     }
 }
 
-/* Amélioration de l'accessibilité */
+
 a {
     text-decoration: none;
     outline: none;
