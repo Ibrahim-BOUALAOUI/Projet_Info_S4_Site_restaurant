@@ -1,11 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Bungee&family=Rufina:wght@400;700&display=swap');
 
 :root {
-  --violet-nuit: hsl(272, 77%, 15%);
-  --ivoire-chaud: #F5EFE6;
-  --aubergine: #2B153F;
-  --doré-doux: #C9A24D;
-  --rose-poudré: #E6D6EB;
     --violet-nuit: hsl(272, 77%, 15%);
     --ivoire-chaud: #F5EFE6;
     --aubergine: #2B153F;
@@ -58,7 +53,27 @@ header img {
     height: auto;
 }
 
+.top_bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.top_bar img {
+    filter: drop-shadow(0 4px 8px rgba(246, 125, 0, 0.3));
+    transition: transform 0.3s ease;
+}
+
+.top_bar img:hover {
+    transform: scale(1.05);
+}
+
 /* LAYOUT PRINCIPAL */
+body>main {
     display: grid;
     grid-template-areas:
         "header header right-top"
@@ -71,7 +86,7 @@ header img {
     min-height: 100vh;
 }
 
-/* SECTION INCONTOURNABLES - Améliorée */
+/* SECTION INCONTOURNABLES- */
 .rect-left {
     grid-area: left-aside;
     display: flex;
@@ -115,7 +130,7 @@ header img {
     margin-top: 5px;
 }
 
-/* SECTION MENUS - Améliorée */
+/* SECTION MENUS */
 .rect-menus {
     grid-area: section;
     display: grid;
@@ -193,7 +208,7 @@ header img {
     text-align: center;
 }
 
-/* BOUTON CONNEXION - Amélioré */
+/* BOUTON CONNEXION */
 aside {
     grid-area: right-top;
     display: flex;
@@ -252,10 +267,13 @@ aside {
     transform: scale(0.95);
 }
 
-/* RESPONSIVE DESIGN - Amélioré */
+
+
+/* RESPONSIVE DESIGN  */
 
 /* Tablettes */
 @media screen and (max-width: 1024px) {
+    body>main {
         grid-template-columns: minmax(180px, 220px) 1fr;
         gap: 15px;
         padding: 15px;
@@ -273,7 +291,9 @@ aside {
 
 /* Mobile */
 @media screen and (max-width: 768px) {
+    body>main {
         display: grid;
+        grid-template-areas:
             "header"
             "right-top"
             "left-aside"
@@ -336,6 +356,7 @@ aside {
 
 /* Très petits écrans */
 @media screen and (max-width: 480px) {
+    body>main {
         padding: 10px;
         gap: 15px;
     }
@@ -371,7 +392,7 @@ aside {
     }
 }
 
-/* Amélioration de l'accessibilité */
+
 a {
     text-decoration: none;
     outline: none;
@@ -386,3 +407,4 @@ button:focus {
 /* Scroll smooth */
 html {
     scroll-behavior: smooth;
+}
