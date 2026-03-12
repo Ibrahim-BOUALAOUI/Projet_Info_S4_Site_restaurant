@@ -1,1 +1,23 @@
-
+[
+    {
+        "id": 101,
+        "id_client": "poline@example.com",
+        "nom_client": "Poline",
+        "articles": [
+            {
+                "nom": "Chicken Rouge",
+                "quantite": 2,
+                "details": "complet"
+            },
+            {
+                "nom": "Oasis Tropical",
+                "quantite": 1
+            }
+        ],
+        "statut": "a_preparer",
+        "adresse": "147 Rue de Macron",
+        "tel": "06 40 80 94 50",
+        "date": "2026-03-13 12:00",
+        "livreur_id": null
+    }
+]
