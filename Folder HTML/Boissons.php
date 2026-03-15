@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <link rel="stylesheet" href="../Folder CSS/Sous_page.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menus</title>
 </head>
+
 <body>
     <header class="top_bar">
-        <a href="Accueil.html"> <img src="../Folder CSS/129.png" alt="Logo" width="200"> </a>
+        <a href="Accueil.php"> <img src="../Folder CSS/129.png" alt="Logo" width="200"> </a>
         <aside>
-            <a href="connection.html"> <button class="Btn"> </button> </a>
+            <a href="connection.php"> <button class="Btn"> </button> </a>
         </aside>
     </header>
 
     <div class="boissons-container">
-        
+
         <div class="boisson-card">
             <div style="position: relative;">
                 <img src="../Folder CSS/Coca.png" alt="Coca" class="boisson-image">
@@ -70,7 +72,7 @@
                 <p class="menu-price">1,50 €</p>
             </div>
         </div>
-    
+
         <div class="boisson-card">
             <div style="position: relative;">
                 <img src="../Folder CSS/Oasis Tropical.jpg" alt="Oasis Tropical" class="boisson-image">
@@ -104,7 +106,7 @@
             </div>
         </div>
 
-         <div class="boisson-card">
+        <div class="boisson-card">
             <div style="position: relative;">
                 <img src="../Folder CSS/Cristalline Fraise.png" alt="Cristalline Fraise" class="boisson-image">
                 <button class="add-button">+</button>
@@ -115,7 +117,7 @@
             </div>
         </div>
 
-         <div class="boisson-card">
+        <div class="boisson-card">
             <div style="position: relative;">
                 <img src="../Folder CSS/Fanta Orange.png" alt="Fanta Orange" class="boisson-image">
                 <button class="add-button">+</button>
@@ -126,5 +128,7 @@
             </div>
         </div>
 
-    </div> </body>
+    </div>
+</body>
+
 </html>

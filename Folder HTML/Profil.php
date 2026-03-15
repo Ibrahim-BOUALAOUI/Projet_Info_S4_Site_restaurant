@@ -11,7 +11,7 @@
 <body>
     <!-- En-tête avec logo -->
     <header>
-        <a href="Accueil.html">
+        <a href="Accueil.php">
             <img src="../Folder CSS/129.png" alt="Logo" width="200">
         </a>
     </header>

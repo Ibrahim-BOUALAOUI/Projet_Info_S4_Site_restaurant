@@ -10,9 +10,9 @@
 
 <body>
     <header class="top_bar">
-        <a href="Accueil.html"> <img src="../Folder CSS/129.png" alt="Logo" width="200"> </a>
+        <a href="Accueil.php"> <img src="../Folder CSS/129.png" alt="Logo" width="200"> </a>
         <aside>
-            <a href="connection.html"> <button class="Btn"> </button> </a>
+            <a href="connection.php"> <button class="Btn"> </button> </a>
         </aside>
     </header>
     <div class="rect-menus">

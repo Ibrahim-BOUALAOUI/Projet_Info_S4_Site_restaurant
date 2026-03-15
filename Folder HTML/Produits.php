@@ -1,40 +1,42 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <link rel="stylesheet" href="../Folder CSS/Produits.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tous nos produits</title>
 </head>
+
 <body>
-    
+
     <header class="top_bar">
-        <a href="Accueil.html">
+        <a href="Accueil.php">
             <img src="../Folder CSS/129.png" alt="Logo" width="200">
         </a>
         <aside>
-            <a href="connection.html">
+            <a href="connection.php">
                 <button class="Btn"></button>
             </a>
         </aside>
     </header>
 
-    
+
     <div class="search-container">
-        <input type="search" 
-               class="search-bar" 
-               placeholder="🔍 Rechercher un plat, une boisson..."
-               aria-label="Rechercher un produit">
+        <input type="search"
+            class="search-bar"
+            placeholder="🔍 Rechercher un plat, une boisson..."
+            aria-label="Rechercher un produit">
     </div>
 
-    
+
     <main class="produits-container">
-        
-        
+
+
         <aside class="filters-sidebar">
             <h2 class="filters-title">🎯 Filtres</h2>
 
-            
+
             <section class="filter-group">
                 <h3 class="filter-title">Type de plat</h3>
                 <label class="filter-option">
@@ -55,7 +57,7 @@
                 </label>
             </section>
 
-            
+
             <section class="filter-group">
                 <h3 class="filter-title">Saveurs</h3>
                 <label class="filter-option">
@@ -76,7 +78,7 @@
                 </label>
             </section>
 
-            
+
             <section class="filter-group">
                 <h3 class="filter-title">Prix</h3>
                 <label class="filter-option">
@@ -93,7 +95,7 @@
                 </label>
             </section>
 
-           
+
             <section class="filter-group">
                 <h3 class="filter-title">Régimes spéciaux</h3>
                 <label class="filter-option">
@@ -111,10 +113,10 @@
             </section>
         </aside>
 
-        
+
         <section class="products-grid">
-            
-            
+
+
             <article class="product-card" data-type="menu" data-saveur="épicé" data-prix="grand">
                 <div class="product-image-container">
                     <img src="../Folder CSS/chiken_tendori.png" alt="Menu Chicken Rouge" class="product-image">
@@ -175,7 +177,7 @@
                 </div>
             </article>
 
-            
+
             <article class="product-card" data-type="sandwich" data-saveur="épicé" data-prix="moyen">
                 <div class="product-image-container">
                     <img src="../Folder CSS/Chiken_Rouge_Seul.png" alt="Chicken Rouge" class="product-image">
@@ -267,7 +269,7 @@
                 </div>
             </article>
 
-            
+
             <article class="product-card" data-type="extra" data-saveur="salé" data-prix="petit">
                 <div class="product-image-container">
                     <img src="../Folder CSS/Cheese_burger.png" alt="Le Cheese" class="product-image">
@@ -373,7 +375,7 @@
                 </div>
             </article>
 
-            
+
             <article class="product-card" data-type="boisson" data-saveur="sucré" data-prix="petit">
                 <div class="product-image-container">
                     <img src="../Folder CSS/Coca.png" alt="Coca" class="product-image">
@@ -527,4 +529,5 @@
         </section>
     </main>
 </body>
+
 </html>

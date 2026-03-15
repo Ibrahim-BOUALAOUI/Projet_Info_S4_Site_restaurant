@@ -1,7 +1,7 @@
 :root {
     --bg-color: hsl(272, 77%, 15%);
     --card-bg: #202020;
-    --accent-color: #f4c542; 
+    --accent-color: #f4c542;
 }
 
 
@@ -16,17 +16,17 @@ body {
 }
 
 .input-group {
-    margin-bottom: 15px; 
-    text-align: left;    
+    margin-bottom: 15px;
+    text-align: left;
 }
 
 
 .input-group label {
-    display: block;      
+    display: block;
     font-size: 12px;
     font-weight: bold;
     color: #ffffff;
-    margin-bottom: 5px; 
+    margin-bottom: 5px;
 }
 
 .login-card {
@@ -36,7 +36,7 @@ body {
     padding: 40px;
     border-radius: 20px;
     text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 
@@ -45,7 +45,7 @@ body {
 }
 
 .site-logo {
-    width: 300px; 
+    width: 300px;
     height: auto;
 }
 
@@ -82,29 +82,31 @@ input:focus {
     margin-bottom: 25px;
 }
 
-.form-helper a { color: white; }
+.form-helper a {
+    color: white;
+}
 
 .main-btn {
     width: 100%;
     padding: 16px;
-    background-color: #410a69; 
-    color: white;              
+    background-color: #37105e;
+    color: white;
     border: none;
     font-weight: bold;
     border-radius: 4px;
     cursor: pointer;
     text-transform: uppercase;
-    transition: background 0.3s; 
+    transition: background 0.3s;
 }
 
 
 input[type="date"] {
-    color-scheme: dark; 
+    color-scheme: dark;
 }
 
 
 .main-btn:hover {
-    background-color: #8a2be2; 
+    background-color: #8a2be2;
 }
 
 .toggle-text {
@@ -124,14 +126,14 @@ input[type="date"] {
 input[type="date"] {
     appearance: none;
     -webkit-appearance: none;
-    color-scheme: dark; 
+    color-scheme: dark;
 }
 
 
 
 .form-title {
     font-size: 24px;
-    font-weight: 800; 
+    font-weight: 800;
     letter-spacing: 1px;
     color: #ffffff;
     margin-bottom: 10px;
@@ -140,7 +142,7 @@ input[type="date"] {
 
 .subtitle {
     font-size: 14px;
-    color: #aaaaaa; 
+    color: #aaaaaa;
     margin-bottom: 25px;
     line-height: 1.4;
 }
@@ -148,7 +150,7 @@ input[type="date"] {
 
 .terms-group {
     margin: 20px 0;
-    text-align: left; 
+    text-align: left;
 }
 
 .terms-group .checkbox-label {
@@ -162,8 +164,15 @@ input[type="date"] {
 
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 
@@ -174,27 +183,21 @@ input[type="date"] {
 
 @media (max-width: 480px) {
     .login-card {
-        width: 90%;          
-        padding: 20px;       
-        border-radius: 10px; 
+        width: 90%;
+        padding: 20px;
+        border-radius: 10px;
     }
 
     .site-logo {
-        width: 200px;        
+        width: 200px;
     }
 
-    h2, .form-title {
-        font-size: 20px;     
+    h2,
+    .form-title {
+        font-size: 20px;
     }
 
     .main-btn {
-        padding: 12px;      
+        padding: 12px;
     }
 }
-
-
-
-
-
-
-
