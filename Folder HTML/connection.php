@@ -9,6 +9,36 @@
     <link rel="stylesheet" href="../folder CSS/connection.css">
 </head>
 
+<?php
+
+if (isset($_POST['email']) && isset($_POST['password'])) {
+    $file = '../Folder_Data/utilisateur.json';
+    if (file_exists($file)) {
+        $json = file_get_contents($file);
+        $users = json_decode($json, true);
+
+        $userFound = false;
+
+        foreach ($users as $user) {
+            if ($user["email"] == $_POST["email"]) {
+                $userFound = true;
+
+                if (password_verify($_POST["password"], $user["password"])) {
+                    echo "Connexion réussie !";
+                } else {
+                    echo "Mot de passe incorrect";
+                }
+                break;
+            }
+        }
+
+        if (!$userFound) {
+            echo "Email incorrect";
+        }
+    }
+}
+?>
+
 <body>
 
     <div class="login-wrapper">
@@ -46,29 +76,6 @@
     </div>
 </body>
 
-<?php
-
-if (isset($_POST['email']) && isset($_POST['password'])) {
-    $file = '../Folder_Data/utilisateur.json';
-    if (file_exists($file)) {
-        $json = file_get_contents($file);
-        $users = json_decode($json, true);
-
-        if ($users != NULL) {
-            foreach ($users as $users) {
-                if ($users["email"] == $_POST["email"]) {
-                    if (password_verify($_POST["password"], $users["password"])) {
-                        echo "Connexion réussi !";
-                        break;
-                    } else {
-                        echo "Mot de passe ou email incorrect ";
-                    }
-                }
-            }
-        }
-    }
-}
-?>
 
 
 

@@ -7,6 +7,40 @@
     <link rel="stylesheet" href="../folder CSS/connection.css">
 </head>
 
+<?php
+if (isset($_POST['birthdate']) && isset($_POST['name']) && isset($_POST['last_name']) && isset($_POST['email']) && isset($_POST['password'])) {
+
+    $passwordHash = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+    $newTask = [
+        "birthdate" => $_POST['birthdate'],
+        "name" => $_POST['name'],
+        "last_name" => $_POST['last_name'],
+        "email" => $_POST['email'],
+        "password" => $passwordHash,
+        "type" => 'client',
+    ];
+    $tasks = [];
+
+    $file = "../Folder_Data/utilisateur.json";
+    if (file_exists($file)) {
+        $json = file_get_contents($file);
+        $tasks = json_decode($json, true);
+
+        if ($tasks === null) {
+            $tasks = [];
+        }
+    }
+    $tasks[] = $newTask;
+
+    file_put_contents($file, json_encode($tasks, JSON_PRETTY_PRINT));
+
+    header("Location: connection.php");
+    exit();
+}
+
+?>
+
 <body>
     <div class="login-wrapper">
         <div class="login-card">
@@ -49,38 +83,5 @@
         </div>
 </body>
 
-<?php
-if (isset($_POST['birthdate']) && isset($_POST['name']) && isset($_POST['last_name']) && isset($_POST['email']) && isset($_POST['password'])) {
-
-    $passwordHash = password_hash($_POST['password'], PASSWORD_DEFAULT);
-
-    $newTask = [
-        "birthdate" => $_POST['birthdate'],
-        "name" => $_POST['name'],
-        "last_name" => $_POST['last_name'],
-        "email" => $_POST['email'],
-        "password" => $passwordHash,
-        "type" => 'client',
-    ];
-    $tasks = [];
-
-    $file = "../Folder_Data/utilisateur.json";
-    if (file_exists($file)) {
-        $json = file_get_contents($file);
-        $tasks = json_decode($json, true);
-
-        if ($tasks === null) {
-            $tasks = [];
-        }
-    }
-    $tasks[] = $newTask;
-
-    file_put_contents($file, json_encode($tasks, JSON_PRETTY_PRINT));
-
-    header("Location: connection.php");
-    exit();
-}
-
-?>
 
 </html>
