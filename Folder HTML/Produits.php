@@ -1,13 +1,32 @@
+<?php
+$json = file_get_contents("../Folder_Data/Menus.json");
+$data = json_decode($json, true);
+$plat = $data['plats'];
+
+$filtreType   = isset($_GET["type"])   ? $_GET["type"]   : null;
+$filtreSaveur = isset($_GET["saveur"]) ? $_GET["saveur"] : null;
+$filtreRegime = isset($_GET["regime"]) ? $_GET["regime"] : null;
+$filtrePrix   = isset($_GET["prix"])   ? $_GET["prix"]   : null;
+
+$plat = array_filter($plat, function($plat) use ($filtreType, $filtreSaveur, $filtreRegime, $filtrePrix) {
+    if ($filtreType && $plat["type"] !== $filtreType) return false;
+    if ($filtreSaveur && strtolower($plat["saveur"]) !== strtolower($filtreSaveur)) return false;
+    if ($filtreRegime && !in_array($filtreRegime, $plat["regime"])) return false;
+    if ($filtrePrix === "petit"  && $plat["prix"] >= 5)  return false;
+    if ($filtrePrix === "moyen"  && ($plat["prix"] < 5  || $plat["prix"] > 10)) return false;
+    if ($filtrePrix === "grand"  && $plat["prix"] <= 10) return false;
+    return true;
+});
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <link rel="stylesheet" href="../Folder CSS/Produits.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tous nos produits</title>
 </head>
-
 <body>
 
     <header class="top_bar">
@@ -21,513 +40,143 @@
         </aside>
     </header>
 
-
     <div class="search-container">
-        <input type="search"
-            class="search-bar"
+        <input type="search" class="search-bar"
             placeholder="🔍 Rechercher un plat, une boisson..."
             aria-label="Rechercher un produit">
     </div>
 
-
     <main class="produits-container">
 
-
+        <!-- ASIDE : contient le form ET toutes les sections -->
         <aside class="filters-sidebar">
             <h2 class="filters-title">🎯 Filtres</h2>
 
+            <form method="GET" action="Produits.php">
+                <div class="filter-buttons">
+        <button type="submit" class="btn-filtrer">Filtrer</button>
+        <a href="Produits.php" class="btn-reinitialiser"></a>
+    </div>
 
-            <section class="filter-group">
-                <h3 class="filter-title">Type de plat</h3>
-                <label class="filter-option">
-                    <input type="checkbox" name="type" value="menu">
-                    <span>Menus complets</span>
-                </label>
-                <label class="filter-option">
-                    <input type="checkbox" name="type" value="sandwich">
-                    <span>Sandwichs</span>
-                </label>
-                <label class="filter-option">
-                    <input type="checkbox" name="type" value="extra">
-                    <span>Extras</span>
-                </label>
-                <label class="filter-option">
-                    <input type="checkbox" name="type" value="boisson">
-                    <span>Boissons</span>
-                </label>
-            </section>
+                <section class="filter-group">
+                    <h3 class="filter-title">Type de plat</h3>
+                    <label class="filter-option">
+                        <input type="checkbox" name="type" value="Menus"
+                            <?= isset($_GET["type"]) && $_GET["type"] === "Menus" ? "checked" : "" ?>>
+                        <span>Menus Complet</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox" name="type" value="sandwich"
+                            <?= isset($_GET["type"]) && $_GET["type"] === "sandwich" ? "checked" : "" ?>>
+                        <span>Sandwichs</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox" name="type" value="extra"
+                            <?= isset($_GET["type"]) && $_GET["type"] === "extra" ? "checked" : "" ?>>
+                        <span>Extras</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox" name="type" value="boisson"
+                            <?= isset($_GET["type"]) && $_GET["type"] === "boisson" ? "checked" : "" ?>>
+                        <span>Boissons</span>
+                    </label>
+                </section>
 
+                <section class="filter-group">
+                    <h3 class="filter-title">Saveurs</h3>
+                    <label class="filter-option">
+                        <input type="checkbox" name="saveur" value="épicé"
+                            <?= isset($_GET["saveur"]) && $_GET["saveur"] === "épicé" ? "checked" : "" ?>>
+                        <span>Épicé</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox" name="saveur" value="doux"
+                            <?= isset($_GET["saveur"]) && $_GET["saveur"] === "doux" ? "checked" : "" ?>>
+                        <span>Doux</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox" name="saveur" value="salé"
+                            <?= isset($_GET["saveur"]) && $_GET["saveur"] === "salé" ? "checked" : "" ?>>
+                        <span>Salé</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox" name="saveur" value="sucré"
+                            <?= isset($_GET["saveur"]) && $_GET["saveur"] === "sucré" ? "checked" : "" ?>>
+                        <span>Sucré</span>
+                    </label>
+                </section>
 
-            <section class="filter-group">
-                <h3 class="filter-title">Saveurs</h3>
-                <label class="filter-option">
-                    <input type="checkbox" name="saveur" value="épicé">
-                    <span> Épicé</span>
-                </label>
-                <label class="filter-option">
-                    <input type="checkbox" name="saveur" value="doux">
-                    <span> Doux</span>
-                </label>
-                <label class="filter-option">
-                    <input type="checkbox" name="saveur" value="salé">
-                    <span> Salé</span>
-                </label>
-                <label class="filter-option">
-                    <input type="checkbox" name="saveur" value="sucré">
-                    <span> Sucré</span>
-                </label>
-            </section>
+                <section class="filter-group">
+                    <h3 class="filter-title">Prix</h3>
+                    <label class="filter-option">
+                        <input type="checkbox" name="prix" value="petit"
+                            <?= isset($_GET["prix"]) && $_GET["prix"] === "petit" ? "checked" : "" ?>>
+                        <span>€ (moins de 5€)</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox" name="prix" value="moyen"
+                            <?= isset($_GET["prix"]) && $_GET["prix"] === "moyen" ? "checked" : "" ?>>
+                        <span>€€ (5€ - 10€)</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox" name="prix" value="grand"
+                            <?= isset($_GET["prix"]) && $_GET["prix"] === "grand" ? "checked" : "" ?>>
+                        <span>€€€ (plus de 10€)</span>
+                    </label>
+                </section>
 
+                <section class="filter-group">
+                    <h3 class="filter-title">Régimes spéciaux</h3>
+                    <label class="filter-option">
+                        <input type="checkbox" name="regime" value="sans-gluten"
+                            <?= isset($_GET["regime"]) && $_GET["regime"] === "sans-gluten" ? "checked" : "" ?>>
+                        <span>🌾 Sans gluten</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox" name="regime" value="sans-lactose"
+                            <?= isset($_GET["regime"]) && $_GET["regime"] === "sans-lactose" ? "checked" : "" ?>>
+                        <span>🥛 Sans lactose</span>
+                    </label>
+                </section>
 
-            <section class="filter-group">
-                <h3 class="filter-title">Prix</h3>
-                <label class="filter-option">
-                    <input type="checkbox" name="prix" value="petit">
-                    <span>€ (moins de 5€)</span>
-                </label>
-                <label class="filter-option">
-                    <input type="checkbox" name="prix" value="moyen">
-                    <span>€€ (5€ - 10€)</span>
-                </label>
-                <label class="filter-option">
-                    <input type="checkbox" name="prix" value="grand">
-                    <span>€€€ (plus de 10€)</span>
-                </label>
-            </section>
+            </form> 
 
+        </aside> 
 
-            <section class="filter-group">
-                <h3 class="filter-title">Régimes spéciaux</h3>
-                <label class="filter-option">
-                    <input type="checkbox" name="regime" value="vegetarien">
-                    <span>🥗 Végétarien</span>
-                </label>
-                <label class="filter-option">
-                    <input type="checkbox" name="regime" value="sans-gluten">
-                    <span>🌾 Sans gluten</span>
-                </label>
-                <label class="filter-option">
-                    <input type="checkbox" name="regime" value="sans-lactose">
-                    <span>🥛 Sans lactose</span>
-                </label>
-            </section>
-        </aside>
-
-
+        
         <section class="products-grid">
-
-
-            <article class="product-card" data-type="menu" data-saveur="épicé" data-prix="grand">
-                <div class="product-image-container">
-                    <img src="../Folder CSS/chiken_tendori.png" alt="Menu Chicken Rouge" class="product-image">
-                    <button class="add-button">+</button>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Menu Chicken Rouge</h3>
-                    <p class="product-description">Filet de poulet mariné au tandoori, crudités et sauce. Avec frites et boisson.</p>
-                    <div class="product-tags">
-                        <span class="tag menu">Menu</span>
-                    </div>
-                    <p class="product-price">13,50 €</p>
-                </div>
-            </article>
-
-            <article class="product-card" data-type="menu" data-saveur="doux" data-prix="grand">
-                <div class="product-image-container">
-                    <img src="../Folder CSS/special.png" alt="Menu Spécial" class="product-image">
-                    <button class="add-button">+</button>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Menu Le Spécial</h3>
-                    <p class="product-description">Haut de cuisse mariné au paprika, poivrons, crudités. Avec frites et boisson.</p>
-                    <div class="product-tags">
-                        <span class="tag menu">Menu</span>
-                    </div>
-                    <p class="product-price">13,50 €</p>
-                </div>
-            </article>
-
-            <article class="product-card" data-type="menu" data-saveur="doux" data-prix="grand">
-                <div class="product-image-container">
-                    <img src="../Folder CSS/escalope.png" alt="Menu Escalope" class="product-image">
-                    <button class="add-button">+</button>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Menu L'Escalope</h3>
-                    <p class="product-description">Escalope de poulet frais, crudités et sauce. Avec frites et boisson.</p>
-                    <div class="product-tags">
-                        <span class="tag menu">Menu</span>
-                    </div>
-                    <p class="product-price">13,50 €</p>
-                </div>
-            </article>
-
-            <article class="product-card" data-type="menu" data-saveur="salé" data-prix="grand">
-                <div class="product-image-container">
-                    <img src="../Folder CSS/supreme.png" alt="Menu Suprême" class="product-image">
-                    <button class="add-button">+</button>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Menu Le Suprême</h3>
-                    <p class="product-description">Escalope, bacon de dinde, œuf, crudités. Avec frites et boisson.</p>
-                    <div class="product-tags">
-                        <span class="tag menu">Menu</span>
-                    </div>
-                    <p class="product-price">13,70 €</p>
-                </div>
-            </article>
-
-
-            <article class="product-card" data-type="sandwich" data-saveur="épicé" data-prix="moyen">
-                <div class="product-image-container">
-                    <img src="../Folder CSS/Chiken_Rouge_Seul.png" alt="Chicken Rouge" class="product-image">
-                    <button class="add-button">+</button>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Le Chicken Rouge</h3>
-                    <p class="product-description">Filet de poulet mariné au tandoori, crudités. Avec frites.</p>
-                    <div class="product-tags">
-                        <span class="tag épicé">🌶️ Épicé</span>
-                        <span class="tag sandwich">Sandwich</span>
-                    </div>
-                    <p class="product-price">9,99 €</p>
-                </div>
-            </article>
-
-            <article class="product-card" data-type="sandwich" data-saveur="doux" data-prix="moyen">
-                <div class="product-image-container">
-                    <img src="../Folder CSS/special.png" alt="Le Spécial" class="product-image">
-                    <button class="add-button">+</button>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Le Spécial</h3>
-                    <p class="product-description">Haut de cuisse mariné au paprika, poivrons. Avec frites.</p>
-                    <div class="product-tags">
-                        <span class="tag sandwich">Sandwich</span>
-                    </div>
-                    <p class="product-price">9,99 €</p>
-                </div>
-            </article>
-
-            <article class="product-card" data-type="sandwich" data-saveur="doux" data-prix="grand">
-                <div class="product-image-container">
-                    <img src="../Folder CSS/Escalope_Seul.png" alt="L'Escalope" class="product-image">
-                    <button class="add-button">+</button>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">L'Escalope</h3>
-                    <p class="product-description">Escalope de poulet frais, crudités. Avec frites.</p>
-                    <div class="product-tags">
-                        <span class="tag sandwich">Sandwich</span>
-                    </div>
-                    <p class="product-price">10,40 €</p>
-                </div>
-            </article>
-
-            <article class="product-card" data-type="sandwich" data-saveur="salé" data-prix="grand">
-                <div class="product-image-container">
-                    <img src="../Folder CSS/Supreme_seul.png" alt="Le Suprême" class="product-image">
-                    <button class="add-button">+</button>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Le Suprême</h3>
-                    <p class="product-description">Escalope, bacon de dinde, œuf, crudités. Avec frites.</p>
-                    <div class="product-tags">
-                        <span class="tag sandwich">Sandwich</span>
-                    </div>
-                    <p class="product-price">11,50 €</p>
-                </div>
-            </article>
-
-            <article class="product-card" data-type="sandwich" data-saveur="salé" data-prix="moyen">
-                <div class="product-image-container">
-                    <img src="../Folder CSS/Steak_Seul.png" alt="Le Steak" class="product-image">
-                    <button class="add-button">+</button>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Le Steak</h3>
-                    <p class="product-description">Steak de bœuf, fromage, crudités. Avec frites.</p>
-                    <div class="product-tags">
-                        <span class="tag sandwich">Sandwich</span>
-                    </div>
-                    <p class="product-price">9,80 €</p>
-                </div>
-            </article>
-
-            <article class="product-card" data-type="sandwich" data-saveur="salé" data-prix="grand">
-                <div class="product-image-container">
-                    <img src="../Folder CSS/Le_Tremblay_Seul.png" alt="Le Tremblay" class="product-image">
-                    <button class="add-button">+</button>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Le Tremblay</h3>
-                    <p class="product-description">3 steaks, escalope, bacon, œuf, fromage. Avec frites.</p>
-                    <div class="product-tags">
-                        <span class="tag sandwich">Sandwich</span>
-                    </div>
-                    <p class="product-price">10,40 €</p>
-                </div>
-            </article>
-
-
-            <article class="product-card" data-type="extra" data-saveur="salé" data-prix="petit">
-                <div class="product-image-container">
-                    <img src="../Folder CSS/Cheese_burger.png" alt="Le Cheese" class="product-image">
-                    <button class="add-button">+</button>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Le Cheese</h3>
-                    <p class="product-description">Pain bun's, steak de bœuf, fromage, crudités.</p>
-                    <div class="product-tags">
-                        <span class="tag extra">Extra</span>
-                    </div>
-                    <p class="product-price">4,00 €</p>
-                </div>
-            </article>
-
-            <article class="product-card" data-type="extra" data-saveur="salé" data-prix="moyen">
-                <div class="product-image-container">
-                    <img src="../Folder CSS/Double_Cheese_Burger.png" alt="Le Double Cheese" class="product-image">
-                    <button class="add-button">+</button>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Le Double Cheese</h3>
-                    <p class="product-description">Pain bun's, 2 steaks de bœuf, fromage, crudités.</p>
-                    <div class="product-tags">
-                        <span class="tag extra">Extra</span>
-                    </div>
-                    <p class="product-price">7,00 €</p>
-                </div>
-            </article>
-
-            <article class="product-card" data-type="extra" data-saveur="salé" data-prix="moyen">
-                <div class="product-image-container">
-                    <img src="../Folder CSS/Le_Complet.png" alt="Le Complet" class="product-image">
-                    <button class="add-button">+</button>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Le Complet</h3>
-                    <p class="product-description">2 steaks, bacon de dinde, œuf, fromage, crudités.</p>
-                    <div class="product-tags">
-                        <span class="tag extra">Extra</span>
-                    </div>
-                    <p class="product-price">8,00 €</p>
-                </div>
-            </article>
-
-            <article class="product-card" data-type="extra" data-saveur="doux" data-prix="moyen">
-                <div class="product-image-container">
-                    <img src="../Folder CSS/Pané_Burger.png" alt="Le Pané Burger" class="product-image">
-                    <button class="add-button">+</button>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Le Pané Burger</h3>
-                    <p class="product-description">Filet de poulet frais pané, fromage, crudités.</p>
-                    <div class="product-tags">
-                        <span class="tag extra">Extra</span>
-                    </div>
-                    <p class="product-price">8,00 €</p>
-                </div>
-            </article>
-
-            <article class="product-card" data-type="extra" data-saveur="salé" data-prix="moyen">
-                <div class="product-image-container">
-                    <img src="../Folder CSS/Toast_beef.png" alt="Le Toast Beef" class="product-image">
-                    <button class="add-button">+</button>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Le Toast Beef</h3>
-                    <p class="product-description">Pain toasté, steak de bœuf, fromage, crudités.</p>
-                    <div class="product-tags">
-                        <span class="tag extra">Extra</span>
-                    </div>
-                    <p class="product-price">6,40 €</p>
-                </div>
-            </article>
-
-            <article class="product-card" data-type="extra" data-saveur="doux" data-prix="moyen">
-                <div class="product-image-container">
-                    <img src="../Folder CSS/Toast_beef.png" alt="Le Toast Chicken" class="product-image">
-                    <button class="add-button">+</button>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Le Toast Chicken</h3>
-                    <p class="product-description">Pain toasté, escalope de poulet, fromage, crudités.</p>
-                    <div class="product-tags">
-                        <span class="tag extra">Extra</span>
-                    </div>
-                    <p class="product-price">6,40 €</p>
-                </div>
-            </article>
-
-            <article class="product-card" data-type="extra" data-saveur="doux" data-prix="moyen">
-                <div class="product-image-container">
-                    <img src="../Folder CSS/Croq_Monsieur.png" alt="Le Croq Mr" class="product-image">
-                    <button class="add-button">+</button>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Le Croq Mr</h3>
-                    <p class="product-description">Pain toasté et gratiné, poulet fumé, fromage, crudités.</p>
-                    <div class="product-tags">
-                        <span class="tag extra">Extra</span>
-                    </div>
-                    <p class="product-price">5,40 €</p>
-                </div>
-            </article>
-
-
-            <article class="product-card" data-type="boisson" data-saveur="sucré" data-prix="petit">
-                <div class="product-image-container">
-                    <img src="../Folder CSS/Coca.png" alt="Coca" class="product-image">
-                    <button class="add-button">+</button>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Coca-Cola</h3>
-                    <p class="product-description">La boisson classique</p>
-                    <div class="product-tags">
-                        <span class="tag boisson">Boisson</span>
-                    </div>
-                    <p class="product-price">1,50 €</p>
-                </div>
-            </article>
-
-            <article class="product-card" data-type="boisson" data-saveur="sucré" data-prix="petit">
-                <div class="product-image-container">
-                    <img src="../Folder CSS/Coca Cherry.png" alt="Coca Cherry" class="product-image">
-                    <button class="add-button">+</button>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Coca Cherry</h3>
-                    <p class="product-description">Coca avec une touche de cerise</p>
-                    <div class="product-tags">
-                        <span class="tag boisson">Boisson</span>
-                    </div>
-                    <p class="product-price">1,50 €</p>
-                </div>
-            </article>
-
-            <article class="product-card" data-type="boisson" data-saveur="doux" data-prix="petit">
-                <div class="product-image-container">
-                    <img src="../Folder CSS/Coca Zéro.png" alt="Coca Zéro" class="product-image">
-                    <button class="add-button">+</button>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Coca Zéro</h3>
-                    <p class="product-description">Sans sucre</p>
-                    <div class="product-tags">
-                        <span class="tag boisson">Boisson</span>
-                    </div>
-                    <p class="product-price">1,50 €</p>
-                </div>
-            </article>
-
-            <article class="product-card" data-type="boisson" data-saveur="sucré" data-prix="petit">
-                <div class="product-image-container">
-                    <img src="../Folder CSS/Ice Tea.png" alt="Ice Tea" class="product-image">
-                    <button class="add-button">+</button>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Ice Tea</h3>
-                    <p class="product-description">Thé glacé rafraîchissant</p>
-                    <div class="product-tags">
-                        <span class="tag boisson">Boisson</span>
-                    </div>
-                    <p class="product-price">1,50 €</p>
-                </div>
-            </article>
-
-            <article class="product-card" data-type="boisson" data-saveur="doux" data-prix="petit">
-                <div class="product-image-container">
-                    <img src="../Folder CSS/Perrier.png" alt="Perrier" class="product-image">
-                    <button class="add-button">+</button>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Perrier Citron Vert</h3>
-                    <p class="product-description">Eau pétillante aromatisée</p>
-                    <div class="product-tags">
-                        <span class="tag boisson">Boisson</span>
-                    </div>
-                    <p class="product-price">1,50 €</p>
-                </div>
-            </article>
-
-            <article class="product-card" data-type="boisson" data-saveur="sucré" data-prix="petit">
-                <div class="product-image-container">
-                    <img src="../Folder CSS/Oasis Tropical.jpg" alt="Oasis Tropical" class="product-image">
-                    <button class="add-button">+</button>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Oasis Tropical</h3>
-                    <p class="product-description">Saveurs exotiques</p>
-                    <div class="product-tags">
-                        <span class="tag boisson">Boisson</span>
-                    </div>
-                    <p class="product-price">1,50 €</p>
-                </div>
-            </article>
-
-            <article class="product-card" data-type="boisson" data-saveur="sucré" data-prix="petit">
-                <div class="product-image-container">
-                    <img src="../Folder CSS/Oasis Pomme Cassis.png" alt="Oasis Pomme Cassis" class="product-image">
-                    <button class="add-button">+</button>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Oasis Pomme Cassis</h3>
-                    <p class="product-description">Douceur fruitée</p>
-                    <div class="product-tags">
-                        <span class="tag boisson">Boisson</span>
-                    </div>
-                    <p class="product-price">1,50 €</p>
-                </div>
-            </article>
-
-            <article class="product-card" data-type="boisson" data-saveur="doux" data-prix="petit">
-                <div class="product-image-container">
-                    <img src="../Folder CSS/eau.jpg" alt="Eau" class="product-image">
-                    <button class="add-button">+</button>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Eau</h3>
-                    <p class="product-description">Eau plate</p>
-                    <div class="product-tags">
-                        <span class="tag boisson">Boisson</span>
-                    </div>
-                    <p class="product-price">1,50 €</p>
-                </div>
-            </article>
-
-            <article class="product-card" data-type="boisson" data-saveur="sucré" data-prix="petit">
-                <div class="product-image-container">
-                    <img src="../Folder CSS/Cristalline Fraise.png" alt="Cristalline Fraise" class="product-image">
-                    <button class="add-button">+</button>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Cristalline Fraise</h3>
-                    <p class="product-description">Eau aromatisée fraise</p>
-                    <div class="product-tags">
-                        <span class="tag boisson">Boisson</span>
-                    </div>
-                    <p class="product-price">1,50 €</p>
-                </div>
-            </article>
-
-            <article class="product-card" data-type="boisson" data-saveur="sucré" data-prix="petit">
-                <div class="product-image-container">
-                    <img src="../Folder CSS/Fanta Orange.png" alt="Fanta Orange" class="product-image">
-                    <button class="add-button">+</button>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Fanta Orange</h3>
-                    <p class="product-description">Pétillant à l'orange</p>
-                    <div class="product-tags">
-                        <span class="tag boisson">Boisson</span>
-                    </div>
-                    <p class="product-price">1,50 €</p>
-                </div>
-            </article>
-
+            <?php if (empty($plat)): ?>
+                <p class="no-result">Aucun produit ne correspond à vos critères.</p>
+            <?php else: ?>
+                <?php foreach ($plat as $p): ?>
+                    <article class="product-card"
+                            data-type="<?= htmlspecialchars($p['type']) ?>"
+                            data-saveur="<?= htmlspecialchars($p['saveur']) ?>"
+                            data-prix="<?= $p['prix'] <= 5 ? 'petit' : ($p['prix'] <= 10 ? 'moyen' : 'grand') ?>">
+                        <div class="product-image-container">
+                            <img src="<?= htmlspecialchars($p['image']) ?>"
+                                 alt="<?= htmlspecialchars($p['nom']) ?>"
+                                 class="product-image">
+                            <button class="add-button">+</button>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name"><?= htmlspecialchars($p['nom']) ?></h3>
+                            <p class="product-description"><?= htmlspecialchars($p['description']) ?></p>
+                            <div class="product-tags">
+                                <span class="tag <?= htmlspecialchars($p['type']) ?>">
+                                    <?= htmlspecialchars(ucfirst($p['type'])) ?>
+                                </span>
+                                <?php if (strtolower($p['saveur']) === 'épicé'): ?>
+                                    <span class="tag épicé">🌶️ Épicé</span>
+                                <?php endif; ?>
+                            </div>
+                            <p class="product-price"><?= number_format($p['prix'], 2, ',', ' ') ?> €</p>
+                        </div>
+                    </article>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </section>
+
     </main>
 </body>
-
 </html>

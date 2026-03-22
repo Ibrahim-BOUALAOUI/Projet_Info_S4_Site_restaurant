@@ -204,6 +204,84 @@ body {
 
 
 /* ========================================
+   BOUTONS FILTRER / RÉINITIALISER
+======================================== */
+.filter-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid rgba(246, 125, 0, 0.3);
+}
+
+.btn-filtrer,
+.btn-reinitialiser {
+    flex: 1;
+    height: 42px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(to right, #6b2d8f, #8b3daf, #ff6b35, #ff8c42, #ffa500);
+    background-size: 250%;
+    background-position: left;
+    color: #ffd700;
+    font-family: 'Bungee', cursive;
+    font-size: 0.8rem;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s ease;
+    box-shadow: 0 0 15px rgba(255, 107, 53, 0.5);
+    text-decoration: none;
+    overflow: hidden;
+}
+
+.btn-filtrer::before {
+    position: absolute;
+    content: "FILTRER";
+    color: #ffd277;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 97%;
+    height: 90%;
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.842);
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: all 0.4s ease;
+}
+
+.btn-reinitialiser::before {
+    position: absolute;
+    content: "RESET";
+    color: #ffd277;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 97%;
+    height: 90%;
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.842);
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: all 0.4s ease;
+}
+
+.btn-filtrer:hover,
+.btn-reinitialiser:hover {
+    background-position: right;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(255, 107, 53, 0.7);
+}
+
+.btn-filtrer:active,
+.btn-reinitialiser:active {
+    transform: scale(0.95);
+}
+
+/* ========================================
    OPTIONS DE FILTRE (CHECKBOXES)
 ======================================== */
 .filter-option {

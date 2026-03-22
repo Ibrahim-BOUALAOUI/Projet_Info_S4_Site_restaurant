@@ -1,0 +1,248 @@
+{
+    "plats" :[
+        {
+            "id" : 1,
+            "nom": "Menu Chicken Rouge",
+            "description" : "Filet de poulet mariné au tandoori, crudités et sauce. Avec frites et boisson.",
+            "prix" : 13.50,
+            "type" : "Menus",
+            "saveur" : "Doux",
+            "regime" : [],
+            "image" : "../Folder CSS/chiken_tendori.png"
+        },
+        {
+            "nom": "Menu Le Spécial",
+            "description": "Haut de cuisse mariné au paprika, poivrons, crudités. Avec frites et boisson.",
+            "prix": 13.50,
+            "type": "Menus",
+            "saveur": "doux",
+            "regime": [],
+            "image": "../Folder CSS/special.png"
+        },
+        {
+            "nom": "Menu L'Escalope",
+            "description": "Escalope de poulet frais, crudités et sauce. Avec frites et boisson.",
+            "prix": 13.50,
+            "type": "Menus",
+            "saveur": "doux",
+            "regime": [],
+            "image": "../Folder CSS/escalope.png"
+        },
+        {
+            "nom": "Menu Le Suprême",
+            "description": "Escalope, bacon de dinde, œuf, crudités. Avec frites et boisson.",
+            "prix": 13.70,
+            "type": "Menus",
+            "saveur": "salé",
+            "regime": [],
+            "image": "../Folder CSS/supreme.png"
+        },
+        {
+            "nom": "Le Chicken Rouge",
+            "description": "Filet de poulet mariné au tandoori, crudités. Avec frites.",
+            "prix": 9.99,
+            "type": "sandwich",
+            "saveur": "épicé",
+            "regime": [],
+            "image": "../Folder CSS/Chiken_Rouge_Seul.png"
+        },
+        {
+            "nom": "Le Spécial",
+            "description": "Haut de cuisse mariné au paprika, poivrons. Avec frites.",
+            "prix": 9.99,
+            "type": "sandwich",
+            "saveur": "doux",
+            "regime": ["sans gluten"],
+            "image": "../Folder CSS/special.png"
+        },
+        {
+            "nom": "L'Escalope",
+            "description": "Escalope de poulet frais, crudités. Avec frites.",
+            "prix": 10.40,
+            "type": "sandwich",
+            "saveur": "doux",
+            "regime": ["Sans lactose"],
+            "image": "../Folder CSS/Escalope_Seul.png"
+        },
+        {
+            "nom": "Le Suprême",
+            "description": "Escalope, bacon de dinde, œuf, crudités. Avec frites.",
+            "prix": 11.50,
+            "type": "sandwich",
+            "saveur": "salé",
+            "regime": [],
+            "image": "../Folder CSS/Supreme_seul.png"
+        },
+        {
+            "nom": "Le Steak",
+            "description": "Steak de bœuf, fromage, crudités. Avec frites.",
+            "prix": 9.80,
+            "type": "sandwich",
+            "saveur": "salé",
+            "regime": [],
+            "image": "../Folder CSS/Steak_Seul.png"
+        },
+        {
+            "nom": "Le Tremblay",
+            "description": "3 steaks, escalope, bacon, œuf, fromage. Avec frites.",
+            "prix": 10.40,
+            "type": "sandwich",
+            "saveur": "salé",
+            "regime": [],
+            "image": "../Folder CSS/Le_Tremblay_Seul.png"
+        },
+        {
+            "nom": "Le Cheese",
+            "description": "Pain bun's, steak de bœuf, fromage, crudités.",
+            "prix": 4.00,
+            "type": "extra",
+            "saveur": "salé",
+            "regime": [],
+            "image": "../Folder CSS/Cheese_burger.png"
+        },
+        {
+            "nom": "Le Double Cheese",
+            "description": "Pain bun's, 2 steaks de bœuf, fromage, crudités.",
+            "prix": 7.00,
+            "type": "extra",
+            "saveur": "salé",
+            "regime": [],
+            "image": "../Folder CSS/Double_Cheese_Burger.png"
+        },
+        {
+            "nom": "Le Complet",
+            "description": "2 steaks, bacon de dinde, œuf, fromage, crudités.",
+            "prix": 8.00,
+            "type": "extra",
+            "saveur": "salé",
+            "regime": [],
+            "image": "../Folder CSS/Le_Complet.png"
+        },
+        {
+            "nom": "Le Pané Burger",
+            "description": "Filet de poulet frais pané, fromage, crudités.",
+            "prix": 8.00,
+            "type": "extra",
+            "saveur": "doux",
+            "regime": [],
+            "image": "../Folder CSS/Pané_Burger.png"
+        },
+        {
+            "nom": "Le Toast Beef",
+            "description": "Pain toasté, steak de bœuf, fromage, crudités.",
+            "prix": 6.40,
+            "type": "extra",
+            "saveur": "salé",
+            "regime": [],
+            "image": "../Folder CSS/Toast_beef.png"
+        },
+        {
+            "nom": "Le Toast Chicken",
+            "description": "Pain toasté, escalope de poulet, fromage, crudités.",
+            "prix": 6.40,
+            "type": "extra",
+            "saveur": "doux",
+            "regime": [],
+            "image": "../Folder CSS/Toast_beef.png"
+        },
+        {
+            "nom": "Le Croq Mr",
+            "description": "Pain toasté et gratiné, poulet fumé, fromage, crudités.",
+            "prix": 5.40,
+            "type": "extra",
+            "saveur": "doux",
+            "regime": [],
+            "image": "../Folder CSS/Croq_Monsieur.png"
+        },
+        {
+            "nom": "Coca-Cola",
+            "description": "La boisson classique",
+            "prix": 1.50,
+            "type": "boisson",
+            "saveur": "sucré",
+            "regime": ["sans lactose", "sans gluten"],
+            "image": "../Folder CSS/Coca.png"
+        },
+        {
+            "nom": "Coca Cherry",
+            "description": "Coca avec une touche de cerise",
+            "prix": 1.50,
+            "type": "boisson",
+            "saveur": "sucré",
+            "regime": ["sans lactose", "sans gluten"],
+            "image": "../Folder CSS/Coca Cherry.png"
+        },
+        {
+            "nom": "Coca Zéro",
+            "description": "Sans sucre",
+            "prix": 1.50,
+            "type": "boisson",
+            "saveur": "doux",
+            "regime": ["sans lactose", "sans gluten"],
+            "image": "../Folder CSS/Coca Zéro.png"
+        },
+        {
+            "nom": "Ice Tea",
+            "description": "Thé glacé rafraîchissant",
+            "prix": 1.50,
+            "type": "boisson",
+            "saveur": "sucré",
+            "regime": ["sans lactose", "sans gluten"],
+            "image": "../Folder CSS/Ice Tea.png"
+        },
+        {
+            "nom": "Perrier Citron Vert",
+            "description": "Eau pétillante aromatisée",
+            "prix": 1.50,
+            "type": "boisson",
+            "saveur": "doux",
+            "regime": ["sans lactose", "sans gluten"],
+            "image": "../Folder CSS/Perrier.png"
+        },
+        {
+            "nom": "Oasis Tropical",
+            "description": "Saveurs exotiques",
+            "prix": 1.50,
+            "type": "boisson",
+            "saveur": "sucré",
+            "regime": ["sans lactose", "sans gluten"],
+            "image": "../Folder CSS/Oasis Tropical.jpg"
+        },
+        {
+            "nom": "Oasis Pomme Cassis",
+            "description": "Douceur fruitée",
+            "prix": 1.50,
+            "type": "boisson",
+            "saveur": "sucré",
+            "regime": ["sans lactose", "sans gluten"],
+            "image": "../Folder CSS/Oasis Pomme Cassis.png"
+        },
+        {
+            "nom": "Eau",
+            "description": "Eau plate",
+            "prix": 1.50,
+            "type": "boisson",
+            "saveur": "doux",
+            "regime": ["sans lactose", "sans gluten"],
+            "image": "../Folder CSS/eau.jpg"
+        },
+        {
+            "nom": "Cristalline Fraise",
+            "description": "Eau aromatisée fraise",
+            "prix": 1.50,
+            "type": "boisson",
+            "saveur": "sucré",
+            "regime": ["sans lactose", "sans gluten"],
+            "image": "../Folder CSS/Cristalline Fraise.png"
+        },
+        {
+            "nom": "Fanta Orange",
+            "description": "Pétillant à l'orange",
+            "prix": 1.50,
+            "type": "boisson",
+            "saveur": "sucré",
+            "regime": ["sans lactose", "sans gluten"],
+            "image": "../Folder CSS/Fanta Orange.png"
+        }
+    ]
+}
