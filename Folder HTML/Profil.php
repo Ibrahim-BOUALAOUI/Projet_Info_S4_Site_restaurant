@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+// Redirige vers l'accueil si pas connecté
+if (!isset($_SESSION['connecte'])) {
+    header("Location: index.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -13,6 +22,7 @@
         <a href="index.php">
             <img src="../Folder img/129.png" alt="Logo" width="200">
         </a>
+        <a href="deconnexion.php" class="btn-profil">🚪 Se déconnecter</a>
     </header>
 
     <main class="rect-mid">
@@ -24,7 +34,7 @@
             <div class="info-content">
                 <div class="info-item">
                     <span class="info-label">Prénom :</span>
-                    <span class="info-value">Poline</span>
+                    <span class="info-value"><?= htmlspecialchars($_SESSION['nom']) ?></span>
                 </div>
 
                 <div class="info-item">
@@ -39,7 +49,7 @@
 
                 <div class="info-item">
                     <span class="info-label">Email :</span>
-                    <span class="info-value">poline@example.com</span>
+                    <span class="info-value"><?= htmlspecialchars($_SESSION['email']) ?></span>
                 </div>
             </div>
 
