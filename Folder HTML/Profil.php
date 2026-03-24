@@ -11,7 +11,7 @@
 <body>
     <header>
         <a href="index.php">
-            <img src="../Folder CSS/129.png" alt="Logo" width="200">
+            <img src="../Folder img/129.png" alt="Logo" width="200">
         </a>
     </header>
 
@@ -54,7 +54,7 @@
                 <!-- Commande 1 -->
                 <article class="commande-card">
                     <div class="commande-image">
-                        <img src="../Folder CSS/Chiken_tendori_logo.png" alt="Menu Chicken Tandoori">
+                        <img src="../Folder img/Chiken_tendori_logo.png" alt="Menu Chicken Tandoori">
                     </div>
                     <div class="commande-info">
                         <h3 class="commande-nom">Menu Chicken Tandoori</h3>
@@ -68,7 +68,7 @@
                 <!-- Commande 2 -->
                 <article class="commande-card">
                     <div class="commande-image">
-                        <img src="../Folder CSS/special.png" alt="Menu Spécial">
+                        <img src="../Folder img/special.png" alt="Menu Spécial">
                     </div>
                     <div class="commande-info">
                         <h3 class="commande-nom">Menu Spécial</h3>
@@ -82,7 +82,7 @@
                 <!-- Commande 3 -->
                 <article class="commande-card">
                     <div class="commande-image">
-                        <img src="../Folder CSS/steak.png" alt="Menu Steak">
+                        <img src="../Folder img/steak.png" alt="Menu Steak">
                     </div>
                     <div class="commande-info">
                         <h3 class="commande-nom">Menu Steak</h3>

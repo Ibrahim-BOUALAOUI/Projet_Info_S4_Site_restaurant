@@ -46,7 +46,7 @@ if (isset($_POST['birthdate']) && isset($_POST['name']) && isset($_POST['last_na
     <div class="login-wrapper">
         <div class="login-card">
             <div class="logo-box">
-                <img src="../folder CSS/129.png" alt="Logo Le 129" class="site-logo">
+                <img src="../Folder img/129.png" alt="Logo Le 129" class="site-logo">
 
                 <form method="POST">
                     <h2 class="form-title">VOS INFORMATIONS</h2>

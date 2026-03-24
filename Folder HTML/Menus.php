@@ -17,10 +17,23 @@ $connecte = isset($_SESSION['email']);
 
 <body>
     <header class="top_bar">
-        <a href="index.php"> <img src="../Folder CSS/129.png" alt="Logo" width="200"> </a>
-        <aside>
-            <a href="connection.php"> <button class="Btn"> </button> </a>
-        </aside>
+        <a href="index.php"> <img src="../Folder img/129.png" alt="Logo" width="200"> </a>
+         <aside>
+                    <?php if ($connecte){ ?>
+                        <a href="Profil.php" class="btn-profil" aria-label="Accéder à mon profil"> 
+                            <span class="profil-icon">👤</span>
+                            <span class="profil-text">Mon profil</span>
+                        </a>
+
+                    <?php } else{ ?>
+
+                        <a href="connection.php" aria-label="Se connecter">
+                            <button class="Btn" aria-label="Connexion">Connexion</button>
+                        </a>
+
+                    <?php } ?>
+                    </aside>
+
     </header>
     <div class="rect-menus">
         <div class="menu-item">
@@ -30,7 +43,7 @@ $connecte = isset($_SESSION['email']);
                 <p class="menu-description">Pain maison, filet de poulet frais mariné au tandoori, crudités et sauce au choix. Servi avec frites et boisson au choix.</p>
             </div>
             <div style="position: relative;">
-                <img src="../Folder CSS/chiken_tendori.png" alt="Chicken Rouge" class="menu-image">
+                <img src="../Folder img/chiken_tendori.png" alt="Chicken Rouge" class="menu-image">
                 <button class="add-button">+</button>
             </div>
         </div>
@@ -42,7 +55,7 @@ $connecte = isset($_SESSION['email']);
                 <p class="menu-description">Pain maison, haut de cuisse de poulet frais mariné au paprika, poivrons, crudités et sauce au choix. Servi avec frites et boisson au choix.</p>
             </div>
             <div style="position: relative;">
-                <img src="../Folder CSS/special.png" alt="Spécial" class="menu-image">
+                <img src="../Folder img/special.png" alt="Spécial" class="menu-image">
                 <button class="add-button">+</button>
             </div>
         </div>
@@ -54,7 +67,7 @@ $connecte = isset($_SESSION['email']);
                 <p class="menu-description">Pain maison, escalope de poulet frais, crudités et sauce au choix. Servi avec frites et boisson au choix.</p>
             </div>
             <div style="position: relative;">
-                <img src="../Folder CSS/escalope.png" alt="Escalope" class="menu-image">
+                <img src="../Folder img/escalope.png" alt="Escalope" class="menu-image">
                 <button class="add-button">+</button>
             </div>
         </div>
@@ -66,7 +79,7 @@ $connecte = isset($_SESSION['email']);
                 <p class="menu-description">Pain maison, escalope de poulet frais, bacon de dinde, œuf, crudités et sauce au choix. Servi avec frites et boisson au choix.</p>
             </div>
             <div style="position: relative;">
-                <img src="../Folder CSS/supreme.png" alt="Suprême" class="menu-image">
+                <img src="../Folder img/supreme.png" alt="Suprême" class="menu-image">
                 <button class="add-button">+</button>
             </div>
         </div>

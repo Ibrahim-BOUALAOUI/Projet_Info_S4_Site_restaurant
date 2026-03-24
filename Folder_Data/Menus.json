@@ -8,7 +8,7 @@
             "type" : "Menus",
             "saveur" : "Doux",
             "regime" : [],
-            "image" : "../Folder CSS/chiken_tendori.png"
+            "image" : "../Folder img/chiken_tendori.png"
         },
         {
             "nom": "Menu Le Spécial",
@@ -17,7 +17,7 @@
             "type": "Menus",
             "saveur": "doux",
             "regime": [],
-            "image": "../Folder CSS/special.png"
+            "image": "../Folder img/special.png"
         },
         {
             "nom": "Menu L'Escalope",
@@ -26,7 +26,7 @@
             "type": "Menus",
             "saveur": "doux",
             "regime": [],
-            "image": "../Folder CSS/escalope.png"
+            "image": "../Folder img/escalope.png"
         },
         {
             "nom": "Menu Le Suprême",
@@ -35,7 +35,7 @@
             "type": "Menus",
             "saveur": "salé",
             "regime": [],
-            "image": "../Folder CSS/supreme.png"
+            "image": "../Folder img/supreme.png"
         },
         {
             "nom": "Le Chicken Rouge",
@@ -44,7 +44,7 @@
             "type": "sandwich",
             "saveur": "épicé",
             "regime": [],
-            "image": "../Folder CSS/Chiken_Rouge_Seul.png"
+            "image": "../Folder img/Chiken_Rouge_Seul.png"
         },
         {
             "nom": "Le Spécial",
@@ -53,7 +53,7 @@
             "type": "sandwich",
             "saveur": "doux",
             "regime": ["sans gluten"],
-            "image": "../Folder CSS/special.png"
+            "image": "../Folder img/special.png"
         },
         {
             "nom": "L'Escalope",
@@ -62,7 +62,7 @@
             "type": "sandwich",
             "saveur": "doux",
             "regime": ["Sans lactose"],
-            "image": "../Folder CSS/Escalope_Seul.png"
+            "image": "../Folder img/Escalope_Seul.png"
         },
         {
             "nom": "Le Suprême",
@@ -71,7 +71,7 @@
             "type": "sandwich",
             "saveur": "salé",
             "regime": [],
-            "image": "../Folder CSS/Supreme_seul.png"
+            "image": "../Folder img/Supreme_seul.png"
         },
         {
             "nom": "Le Steak",
@@ -80,7 +80,7 @@
             "type": "sandwich",
             "saveur": "salé",
             "regime": [],
-            "image": "../Folder CSS/Steak_Seul.png"
+            "image": "../Folder img/Steak_Seul.png"
         },
         {
             "nom": "Le Tremblay",
@@ -89,7 +89,7 @@
             "type": "sandwich",
             "saveur": "salé",
             "regime": [],
-            "image": "../Folder CSS/Le_Tremblay_Seul.png"
+            "image": "../Folder img/Le_Tremblay_Seul.png"
         },
         {
             "nom": "Le Cheese",
@@ -98,7 +98,7 @@
             "type": "extra",
             "saveur": "salé",
             "regime": [],
-            "image": "../Folder CSS/Cheese_burger.png"
+            "image": "../Folder img/Cheese_burger.png"
         },
         {
             "nom": "Le Double Cheese",
@@ -107,7 +107,7 @@
             "type": "extra",
             "saveur": "salé",
             "regime": [],
-            "image": "../Folder CSS/Double_Cheese_Burger.png"
+            "image": "../Folder img/Double_Cheese_Burger.png"
         },
         {
             "nom": "Le Complet",
@@ -116,7 +116,7 @@
             "type": "extra",
             "saveur": "salé",
             "regime": [],
-            "image": "../Folder CSS/Le_Complet.png"
+            "image": "../Folder img/Le_Complet.png"
         },
         {
             "nom": "Le Pané Burger",
@@ -125,7 +125,7 @@
             "type": "extra",
             "saveur": "doux",
             "regime": [],
-            "image": "../Folder CSS/Pané_Burger.png"
+            "image": "../Folder img/Pané_Burger.png"
         },
         {
             "nom": "Le Toast Beef",
@@ -134,7 +134,7 @@
             "type": "extra",
             "saveur": "salé",
             "regime": [],
-            "image": "../Folder CSS/Toast_beef.png"
+            "image": "../Folder img/Toast_beef.png"
         },
         {
             "nom": "Le Toast Chicken",
@@ -143,7 +143,7 @@
             "type": "extra",
             "saveur": "doux",
             "regime": [],
-            "image": "../Folder CSS/Toast_beef.png"
+            "image": "../Folder img/Toast_beef.png"
         },
         {
             "nom": "Le Croq Mr",
@@ -152,7 +152,7 @@
             "type": "extra",
             "saveur": "doux",
             "regime": [],
-            "image": "../Folder CSS/Croq_Monsieur.png"
+            "image": "../Folder img/Croq_Monsieur.png"
         },
         {
             "nom": "Coca-Cola",
@@ -161,7 +161,7 @@
             "type": "boisson",
             "saveur": "sucré",
             "regime": ["sans lactose", "sans gluten"],
-            "image": "../Folder CSS/Coca.png"
+            "image": "../Folder img/Coca.png"
         },
         {
             "nom": "Coca Cherry",
@@ -170,7 +170,7 @@
             "type": "boisson",
             "saveur": "sucré",
             "regime": ["sans lactose", "sans gluten"],
-            "image": "../Folder CSS/Coca Cherry.png"
+            "image": "../Folder img/Coca Cherry.png"
         },
         {
             "nom": "Coca Zéro",
@@ -179,7 +179,7 @@
             "type": "boisson",
             "saveur": "doux",
             "regime": ["sans lactose", "sans gluten"],
-            "image": "../Folder CSS/Coca Zéro.png"
+            "image": "../Folder img/Coca Zéro.png"
         },
         {
             "nom": "Ice Tea",
@@ -188,7 +188,7 @@
             "type": "boisson",
             "saveur": "sucré",
             "regime": ["sans lactose", "sans gluten"],
-            "image": "../Folder CSS/Ice Tea.png"
+            "image": "../Folder img/Ice Tea.png"
         },
         {
             "nom": "Perrier Citron Vert",
@@ -197,7 +197,7 @@
             "type": "boisson",
             "saveur": "doux",
             "regime": ["sans lactose", "sans gluten"],
-            "image": "../Folder CSS/Perrier.png"
+            "image": "../Folder img/Perrier.png"
         },
         {
             "nom": "Oasis Tropical",
@@ -206,7 +206,7 @@
             "type": "boisson",
             "saveur": "sucré",
             "regime": ["sans lactose", "sans gluten"],
-            "image": "../Folder CSS/Oasis Tropical.jpg"
+            "image": "../Folder img/Oasis Tropical.jpg"
         },
         {
             "nom": "Oasis Pomme Cassis",
@@ -215,7 +215,7 @@
             "type": "boisson",
             "saveur": "sucré",
             "regime": ["sans lactose", "sans gluten"],
-            "image": "../Folder CSS/Oasis Pomme Cassis.png"
+            "image": "../Folder img/Oasis Pomme Cassis.png"
         },
         {
             "nom": "Eau",
@@ -224,7 +224,7 @@
             "type": "boisson",
             "saveur": "doux",
             "regime": ["sans lactose", "sans gluten"],
-            "image": "../Folder CSS/eau.jpg"
+            "image": "../Folder img/eau.jpg"
         },
         {
             "nom": "Cristalline Fraise",
@@ -233,7 +233,7 @@
             "type": "boisson",
             "saveur": "sucré",
             "regime": ["sans lactose", "sans gluten"],
-            "image": "../Folder CSS/Cristalline Fraise.png"
+            "image": "../Folder img/Cristalline Fraise.png"
         },
         {
             "nom": "Fanta Orange",
@@ -242,7 +242,7 @@
             "type": "boisson",
             "saveur": "sucré",
             "regime": ["sans lactose", "sans gluten"],
-            "image": "../Folder CSS/Fanta Orange.png"
+            "image": "../Folder img/Fanta Orange.png"
         }
     ]
 }

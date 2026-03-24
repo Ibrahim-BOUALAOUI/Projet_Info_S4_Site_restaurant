@@ -17,7 +17,7 @@ $connecte = isset($_SESSION['email']);
 
 <body>
     <header class="top_bar">
-        <a href="index.php"> <img src="../Folder CSS/129.png" alt="Logo" width="200"> </a>
+        <a href="index.php"> <img src="../Folder img/129.png" alt="Logo" width="200"> </a>
         <aside>
                     <?php if ($connecte){ ?>
                         <a href="Profil.php" class="btn-profil" aria-label="Accéder à mon profil"> 
@@ -43,7 +43,7 @@ $connecte = isset($_SESSION['email']);
                     (sans frites et boisson).</p>
             </div>
             <div style="position: relative;">
-                <img src="../Folder CSS/Cheese_burger.png" alt="Chesse Burger" class="menu-image">
+                <img src="../Folder img/Cheese_burger.png" alt="Chesse Burger" class="menu-image">
                 <button class="add-button">+</button>
             </div>
         </div>
@@ -57,7 +57,7 @@ $connecte = isset($_SESSION['email']);
                 </p>
             </div>
             <div style="position: relative;">
-                <img src="../Folder CSS/Double_Cheese_Burger.png" alt="Double Cheese" class="menu-image">
+                <img src="../Folder img/Double_Cheese_Burger.png" alt="Double Cheese" class="menu-image">
                 <button class="add-button">+</button>
             </div>
         </div>
@@ -71,7 +71,7 @@ $connecte = isset($_SESSION['email']);
                 </p>
             </div>
             <div style="position: relative;">
-                <img src="../Folder CSS/Le_Complet.png" alt="Le complet" class="menu-image">
+                <img src="../Folder img/Le_Complet.png" alt="Le complet" class="menu-image">
                 <button class="add-button">+</button>
             </div>
         </div>
@@ -84,7 +84,7 @@ $connecte = isset($_SESSION['email']);
                     Servi seul (sans frites et boisson).</p>
             </div>
             <div style="position: relative;">
-                <img src="../Folder CSS/Pané_Burger.png" alt="Pané Burger" class="menu-image">
+                <img src="../Folder img/Pané_Burger.png" alt="Pané Burger" class="menu-image">
                 <button class="add-button">+</button>
             </div>
         </div>
@@ -98,7 +98,7 @@ $connecte = isset($_SESSION['email']);
                 </p>
             </div>
             <div style="position: relative;">
-                <img src="../Folder CSS/Toast_beef.png" alt="Toast beef" class="menu-image">
+                <img src="../Folder img/Toast_beef.png" alt="Toast beef" class="menu-image">
                 <button class="add-button">+</button>
             </div>
         </div>
@@ -111,7 +111,7 @@ $connecte = isset($_SESSION['email']);
                     Servi seul (sans frites et boisson).</p>
             </div>
             <div style="position: relative;">
-                <img src="../Folder CSS/Toast_beef.png" alt="Toast Chiken" class="menu-image">
+                <img src="../Folder img/Toast_beef.png" alt="Toast Chiken" class="menu-image">
                 <button class="add-button">+</button>
             </div>
         </div>
@@ -124,7 +124,7 @@ $connecte = isset($_SESSION['email']);
                     frites et boisson).</p>
             </div>
             <div style="position: relative;">
-                <img src="../Folder CSS/Croq_Monsieur.png" alt="Croq Monsieur" class="menu-image">
+                <img src="../Folder img/Croq_Monsieur.png" alt="Croq Monsieur" class="menu-image">
                 <button class="add-button">+</button>
             </div>
         </div>

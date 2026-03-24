@@ -10,10 +10,23 @@
 
 <body>
     <header class="top_bar">
-        <a href="index.php"> <img src="../Folder CSS/129.png" alt="Logo" width="200"> </a>
-        <aside>
-            <a href="connection.php"> <button class="Btn"> </button> </a>
+        <a href="index.php"> <img src="../Folder img/129.png" alt="Logo" width="200"> </a>
+         <aside>
+                    <?php if ($connecte){ ?>
+                        <a href="Profil.php" class="btn-profil" aria-label="Accéder à mon profil"> 
+                            <span class="profil-icon">👤</span>
+                            <span class="profil-text">Mon profil</span>
+                        </a>
+
+                    <?php } else{ ?>
+
+                        <a href="connection.php" aria-label="Se connecter">
+                            <button class="Btn" aria-label="Connexion">Connexion</button>
+                        </a>
+
+                    <?php } ?>
         </aside>
+
     </header>
     <div class="rect-menus">
         <div class="menu-item">
@@ -24,7 +37,7 @@
                     choix. Servi avec des frites.</p>
             </div>
             <div style="position: relative;">
-                <img src="../Folder CSS/Chiken_Rouge_Seul.png" alt="Chicken Rouge solo" class="menu-image">
+                <img src="../Folder img/Chiken_Rouge_Seul.png" alt="Chicken Rouge solo" class="menu-image">
                 <button class="add-button">+</button>
             </div>
         </div>
@@ -38,7 +51,7 @@
                 </p>
             </div>
             <div style="position: relative;">
-                <img src="../Folder CSS/special.png" alt="Spécial solo" class="menu-image">
+                <img src="../Folder img/special.png" alt="Spécial solo" class="menu-image">
                 <button class="add-button">+</button>
             </div>
         </div>
@@ -52,7 +65,7 @@
                 </p>
             </div>
             <div style="position: relative;">
-                <img src="../Folder CSS/Escalope_Seul.png" alt="Escalope Solo" class="menu-image">
+                <img src="../Folder img/Escalope_Seul.png" alt="Escalope Solo" class="menu-image">
                 <button class="add-button">+</button>
             </div>
         </div>
@@ -65,7 +78,7 @@
                     sauce au choix. Servi avec des frites.</p>
             </div>
             <div style="position: relative;">
-                <img src="../Folder CSS/Supreme_seul.png" alt="Suprême solo" class="menu-image">
+                <img src="../Folder img/Supreme_seul.png" alt="Suprême solo" class="menu-image">
                 <button class="add-button">+</button>
             </div>
         </div>
@@ -79,7 +92,7 @@
                 </p>
             </div>
             <div style="position: relative;">
-                <img src="../Folder CSS/Steak_Seul.png" alt="steak solo" class="menu-image">
+                <img src="../Folder img/Steak_Seul.png" alt="steak solo" class="menu-image">
                 <button class="add-button">+</button>
             </div>
         </div>
@@ -93,7 +106,7 @@
                 </p>
             </div>
             <div style="position: relative;">
-                <img src="../Folder CSS/Le_Tremblay_Seul.png" alt="Tremblay" class="menu-image">
+                <img src="../Folder img/Le_Tremblay_Seul.png" alt="Tremblay" class="menu-image">
                 <button class="add-button">+</button>
             </div>
         </div>

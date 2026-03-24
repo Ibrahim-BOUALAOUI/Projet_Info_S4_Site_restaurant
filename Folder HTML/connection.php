@@ -50,7 +50,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
         <div class="login-card">
 
             <div class="logo-box">
-                <img src="../folder CSS/129.png" alt="Logo Le 129" class="site-logo">
+                <img src="../Folder img/129.png" alt="Logo Le 129" class="site-logo">
             </div>
 
             <form method="POST">

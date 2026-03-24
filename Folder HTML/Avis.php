@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-        <img src="../Folder CSS/129.png" alt="Logo" width="250">
+        <img src="../Folder img/129.png" alt="Logo" width="250">
     </header>
 
 
@@ -73,7 +73,7 @@
                     <input type="text" id="prenom" placeholder="Claire">
                 </div>
 
-                <button class="btn" type="submit">Envoyer mon avis</button>
+                <button class="btn" type="submit">Envoyer mon avis</button> 
             </form>
         </div>
     </section>

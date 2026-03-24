@@ -1,4 +1,7 @@
 <?php
+session_start();
+$connecte = isset($_SESSION['email']);
+
 $json = file_get_contents("../Folder_Data/Menus.json");
 $data = json_decode($json, true);
 $plat = $data['plats'];
@@ -19,8 +22,7 @@ $plat = array_filter($plat, function($plat) use ($filtreType, $filtreSaveur, $fi
 });
 
 
-session_start();
-$connecte = isset($_SESSION['email']);
+
 ?>
 
 
@@ -36,13 +38,23 @@ $connecte = isset($_SESSION['email']);
 
     <header class="top_bar">
         <a href="index.php">
-            <img src="../Folder CSS/129.png" alt="Logo" width="200">
+            <img src="../Folder img/129.png" alt="Logo" width="200">
         </a>
         <aside>
-            <a href="connection.php">
-                <button class="Btn"></button>
-            </a>
-        </aside>
+                    <?php if ($connecte){ ?>
+                        <a href="Profil.php" class="btn-profil" aria-label="Accéder à mon profil"> 
+                            <span class="profil-icon">👤</span>
+                            <span class="profil-text">Mon profil</span>
+                        </a>
+
+                    <?php } else{ ?>
+
+                        <a href="connection.php" aria-label="Se connecter">
+                            <button class="Btn" aria-label="Connexion">Connexion</button>
+                        </a>
+
+                    <?php } ?>
+                    </aside>
     </header>
 
     <div class="search-container">

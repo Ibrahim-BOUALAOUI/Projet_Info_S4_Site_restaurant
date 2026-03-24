@@ -19,7 +19,7 @@ $connecte = isset($_SESSION['email']);
 <body>
         <main>
             <header class="top_bar">
-                <img src="../Folder CSS/129.png" alt="Logo du restaurant" width="200" height="auto">
+                <img src="../Folder img/129.png" alt="Logo du restaurant" width="200" height="auto">
             </header>
                 <aside>
                     <?php if ($connecte){ ?>
@@ -45,7 +45,7 @@ $connecte = isset($_SESSION['email']);
 
                 <a href="Menus.php">
                     <article class="item-incontournable">
-                        <img src="../Folder CSS/chiken_tendori.png"
+                        <img src="../Folder img/chiken_tendori.png"
                             alt="Sandwich Chicken Tandoori"
                             class="img-resize"
                             loading="lazy">
@@ -55,7 +55,7 @@ $connecte = isset($_SESSION['email']);
 
                 <a href="Menus.php">
                     <article class="item-incontournable">
-                        <img src="../Folder CSS/steak.png"
+                        <img src="../Folder img/steak.png"
                             alt="Sandwich Le Steak"
                             class="img-resize"
                             loading="lazy">
@@ -65,7 +65,7 @@ $connecte = isset($_SESSION['email']);
 
                 <a href="Menus.php">
                     <article class="item-incontournable">
-                        <img src="../Folder CSS/special.png"
+                        <img src="../Folder img/special.png"
                             alt="Sandwich Le Spécial"
                             class="img-resize"
                             loading="lazy">
@@ -82,7 +82,7 @@ $connecte = isset($_SESSION['email']);
                     <div class="menu-info">
                         <h3 class="menu-title">🛒 Tous nos produits</h3>
                         <a href="Produits.php" class="menu-link">
-                            <img src="../Folder CSS/Chiken_tendori_logo.png" alt="Voir tous les produits">
+                            <img src="../Folder img/Chiken_tendori_logo.png" alt="Voir tous les produits">
                         </a>
                     </div>
                 </article>
@@ -91,7 +91,7 @@ $connecte = isset($_SESSION['email']);
                     <div class="menu-info">
                         <h3 class="menu-title">Nos menus</h3>
                         <a href="Menus.php" aria-label="Voir nos menus complets">
-                            <img src="../Folder CSS/Chiken_tendori_logo.png"
+                            <img src="../Folder img/Chiken_tendori_logo.png"
                                 alt="Illustration menu complet"
                                 loading="lazy">
                         </a>
@@ -102,7 +102,7 @@ $connecte = isset($_SESSION['email']);
                     <div class="menu-info">
                         <h3 class="menu-title">Les extras</h3>
                         <a href="Extras.php" aria-label="Voir nos menus complets">
-                            <img src="../Folder CSS/menus_steak.png"
+                            <img src="../Folder img/menus_steak.png"
                                 alt="Illustration extras"
                                 loading="lazy">
                         </a>
@@ -116,7 +116,7 @@ $connecte = isset($_SESSION['email']);
                     <div class="menu-info">
                         <h3 class="menu-title">Sandwich Seul</h3>
                         <a href="Sandwich_Seul.php" aria-label="Commander un sandwich seul">
-                            <img src="../Folder CSS/Supreme_seul.png"
+                            <img src="../Folder img/Supreme_seul.png"
                                 alt="Illustration sandwich seul"
                                 loading="lazy">
                         </a>
@@ -127,7 +127,7 @@ $connecte = isset($_SESSION['email']);
                     <div class="menu-info">
                         <h3 class="menu-title">Nos boissons</h3>
                         <a href="Boissons.php" aria-label="Voir nos menus complets">
-                            <img src="../Folder CSS/Canette.png"
+                            <img src="../Folder img/Canette.png"
                                 alt="Illustration boissons"
                                 loading="lazy">
                         </a>

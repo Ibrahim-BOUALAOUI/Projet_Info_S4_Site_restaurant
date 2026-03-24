@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-        <img src="../FOLDER CSS/129.png" alt="Logo" class="logo-admin" width="200">
+        <img src="../Folder img/129.png" alt="Logo" class="logo-admin" width="200">
     </header>
 
     

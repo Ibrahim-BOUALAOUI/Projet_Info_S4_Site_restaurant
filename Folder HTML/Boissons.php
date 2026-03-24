@@ -17,7 +17,7 @@ $connecte = isset($_SESSION['email']);
 
 <body>
     <header class="top_bar">
-        <a href="index.php"> <img src="../Folder CSS/129.png" alt="Logo" width="200"> </a>
+        <a href="index.php"> <img src="../Folder img/129.png" alt="Logo" width="200"> </a>
         <aside>
                     <?php if ($connecte){ ?>
                         <a href="Profil.php" class="btn-profil" aria-label="Accéder à mon profil"> 
@@ -39,7 +39,7 @@ $connecte = isset($_SESSION['email']);
 
         <div class="boisson-card">
             <div style="position: relative;">
-                <img src="../Folder CSS/Coca.png" alt="Coca" class="boisson-image">
+                <img src="../Folder img/Coca.png" alt="Coca" class="boisson-image">
                 <button class="add-button">+</button>
             </div>
             <div class="boisson-info">
@@ -50,7 +50,7 @@ $connecte = isset($_SESSION['email']);
 
         <div class="boisson-card">
             <div style="position: relative;">
-                <img src="../Folder CSS/Coca Cherry.png" alt="Coca Cherry" class="boisson-image">
+                <img src="../Folder img/Coca Cherry.png" alt="Coca Cherry" class="boisson-image">
                 <button class="add-button">+</button>
             </div>
             <div class="boisson-info">
@@ -61,7 +61,7 @@ $connecte = isset($_SESSION['email']);
 
         <div class="boisson-card">
             <div style="position: relative;">
-                <img src="../Folder CSS/Coca Zéro.png" alt="Coca Zéro" class="boisson-image">
+                <img src="../Folder img/Coca Zéro.png" alt="Coca Zéro" class="boisson-image">
                 <button class="add-button">+</button>
             </div>
             <div class="boisson-info">
@@ -72,7 +72,7 @@ $connecte = isset($_SESSION['email']);
 
         <div class="boisson-card">
             <div style="position: relative;">
-                <img src="../Folder CSS/Ice Tea.png" alt="Ice Tea" class="boisson-image">
+                <img src="../Folder img/Ice Tea.png" alt="Ice Tea" class="boisson-image">
                 <button class="add-button">+</button>
             </div>
             <div class="boisson-info">
@@ -83,7 +83,7 @@ $connecte = isset($_SESSION['email']);
 
         <div class="boisson-card">
             <div style="position: relative;">
-                <img src="../Folder CSS/Perrier.png" alt="Perrier" class="boisson-image">
+                <img src="../Folder img/Perrier.png" alt="Perrier" class="boisson-image">
                 <button class="add-button">+</button>
             </div>
             <div class="boisson-info">
@@ -94,7 +94,7 @@ $connecte = isset($_SESSION['email']);
 
         <div class="boisson-card">
             <div style="position: relative;">
-                <img src="../Folder CSS/Oasis Tropical.jpg" alt="Oasis Tropical" class="boisson-image">
+                <img src="../Folder img/Oasis Tropical.jpg" alt="Oasis Tropical" class="boisson-image">
                 <button class="add-button">+</button>
             </div>
             <div class="boisson-info">
@@ -105,7 +105,7 @@ $connecte = isset($_SESSION['email']);
 
         <div class="boisson-card">
             <div style="position: relative;">
-                <img src="../Folder CSS/Oasis Pomme Cassis.png" alt="Oasis Pomme Cassis" class="boisson-image">
+                <img src="../Folder img/Oasis Pomme Cassis.png" alt="Oasis Pomme Cassis" class="boisson-image">
                 <button class="add-button">+</button>
             </div>
             <div class="boisson-info">
@@ -116,7 +116,7 @@ $connecte = isset($_SESSION['email']);
 
         <div class="boisson-card">
             <div style="position: relative;">
-                <img src="../Folder CSS/eau.jpg" alt="Eau" class="boisson-image">
+                <img src="../Folder img/eau.jpg" alt="Eau" class="boisson-image">
                 <button class="add-button">+</button>
             </div>
             <div class="boisson-info">
@@ -127,7 +127,7 @@ $connecte = isset($_SESSION['email']);
 
         <div class="boisson-card">
             <div style="position: relative;">
-                <img src="../Folder CSS/Cristalline Fraise.png" alt="Cristalline Fraise" class="boisson-image">
+                <img src="../Folder img/Cristalline Fraise.png" alt="Cristalline Fraise" class="boisson-image">
                 <button class="add-button">+</button>
             </div>
             <div class="boisson-info">
@@ -138,7 +138,7 @@ $connecte = isset($_SESSION['email']);
 
         <div class="boisson-card">
             <div style="position: relative;">
-                <img src="../Folder CSS/Fanta Orange.png" alt="Fanta Orange" class="boisson-image">
+                <img src="../Folder img/Fanta Orange.png" alt="Fanta Orange" class="boisson-image">
                 <button class="add-button">+</button>
             </div>
             <div class="boisson-info">

@@ -10,7 +10,7 @@
 
 <body>
     <header class="top_bar">
-        <img src="../FOLDER CSS/129.png" alt="logo" class="logo-admin" width="200">
+        <img src="../Folder img/129.png" alt="logo" class="logo-admin" width="200">
     </header>
 
     <section class="delivery-card">
