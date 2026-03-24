@@ -19,6 +19,7 @@ if (isset($_POST['birthdate']) && isset($_POST['name']) && isset($_POST['last_na
         "email" => $_POST['email'],
         "password" => $passwordHash,
         "type" => 'client',
+        "connected" => true,
     ];
     $tasks = [];
 
