@@ -10,7 +10,7 @@
 
 <body>
     <header>
-        <a href="Accueil.php">
+        <a href="index.php">
             <img src="../Folder CSS/129.png" alt="Logo" width="200">
         </a>
     </header>

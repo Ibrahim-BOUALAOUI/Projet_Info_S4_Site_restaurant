@@ -1,3 +1,10 @@
+<?php 
+
+session_start();
+$connecte = isset($_SESSION['email']);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +17,7 @@
 
 <body>
     <header class="top_bar">
-        <a href="Accueil.php"> <img src="../Folder CSS/129.png" alt="Logo" width="200"> </a>
+        <a href="index.php"> <img src="../Folder CSS/129.png" alt="Logo" width="200"> </a>
         <aside>
             <a href="connection.php"> <button class="Btn"> </button> </a>
         </aside>

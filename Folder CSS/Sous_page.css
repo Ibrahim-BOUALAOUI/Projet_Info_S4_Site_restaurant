@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Rufina:wght@400;700&display=swap');
+
 /* ========================================
    COULEURS DE BASE
 ======================================== */
@@ -71,6 +73,58 @@ header {
     padding-bottom: 20px;
     padding-left: 40px;
     padding-right: 40px;
+}
+
+/* ========================================
+   BOUTON PROFIL (remplace connexion)
+======================================== */
+aside {
+    grid-area: right-top;
+    display: flex;
+    gap: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    align-items: flex-start;
+    justify-content: flex-end;
+}
+
+.btn-profil {
+    width: 150px;
+    height: 50px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #F67D00 0%, #ff8c42 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(246, 125, 0, 0.4);
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.profil-icon {
+    font-size: 1.5rem;
+}
+
+.profil-text {
+    font-family: 'Bungee', cursive;
+    font-size: 0.9rem;
+}
+
+.btn-profil:hover {
+    background: linear-gradient(135deg, #ff8c42 0%, #ffa500 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(246, 125, 0, 0.6);
+}
+
+.btn-profil:active {
+    transform: translateY(0);
 }
 
 

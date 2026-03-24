@@ -1,15 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Le 129 | Connexion</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../folder CSS/connection.css">
-</head>
-
 <?php
+session_start();
 
 if (isset($_POST['email']) && isset($_POST['password'])) {
     $file = '../Folder_Data/utilisateur.json';
@@ -24,7 +14,10 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
                 $userFound = true;
 
                 if (password_verify($_POST["password"], $user["password"])) {
-                    header("Location: Accueil.php");
+                    $_SESSION['connecte'] = true;      
+                    $_SESSION['nom'] = $user["name"];
+                    $_SESSION['email'] = $user["email"]; 
+                    header("Location: index.php");
                     exit();
                 } else {
                     echo "Mot de passe incorrect";
@@ -39,6 +32,17 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     }
 }
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le 129 | Connexion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../folder CSS/connection.css">
+</head>
 
 <body>
 

@@ -17,7 +17,12 @@ $plat = array_filter($plat, function($plat) use ($filtreType, $filtreSaveur, $fi
     if ($filtrePrix === "grand"  && $plat["prix"] <= 10) return false;
     return true;
 });
+
+
+session_start();
+$connecte = isset($_SESSION['email']);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -30,7 +35,7 @@ $plat = array_filter($plat, function($plat) use ($filtreType, $filtreSaveur, $fi
 <body>
 
     <header class="top_bar">
-        <a href="Accueil.php">
+        <a href="index.php">
             <img src="../Folder CSS/129.png" alt="Logo" width="200">
         </a>
         <aside>

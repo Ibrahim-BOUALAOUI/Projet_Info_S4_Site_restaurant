@@ -21,7 +21,7 @@
 
             <form>
                 <div class="form-group">
-                    <label class="label-title">Votre note globale</label>
+                    <label class="label-title">Votre note du plat</label>
                     <div class="rating">
                         <input value="5" name="rate" id="star5" type="radio">
                         <label title="5 étoiles" for="star5"></label>
