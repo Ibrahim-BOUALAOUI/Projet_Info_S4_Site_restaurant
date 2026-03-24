@@ -17,56 +17,73 @@ body {
     line-height: 1.6;
 }
 
-/* ========================================
-   BOUTON PROFIL (remplace connexion)
-======================================== */
-aside {
-    grid-area: right-top;
-    display: flex;
-    gap: 10px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
-    align-items: flex-start;
-    justify-content: flex-end;
-}
-
-.btn-profil {
-    width: 150px;
-    height: 50px;
-    border: none;
-    border-radius: 25px;
-    background: linear-gradient(135deg, #F67D00 0%, #ff8c42 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(246, 125, 0, 0.4);
+/* Bouton déconnexion */
+.btn-deconnexion {
+    background-color: transparent;
+    border: 2px solid #f44336;
+    color: #f44336;
+    padding: 10px 20px;
+    border-radius: 10px;
     text-decoration: none;
-    color: white;
-    font-weight: bold;
-}
-
-.profil-icon {
-    font-size: 1.5rem;
-}
-
-.profil-text {
     font-family: 'Bungee', cursive;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
 }
 
-.btn-profil:hover {
-    background: linear-gradient(135deg, #ff8c42 0%, #ffa500 100%);
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(246, 125, 0, 0.6);
+.btn-deconnexion:hover {
+    background-color: #f44336;
+    color: white;
 }
 
-.btn-profil:active {
-    transform: translateY(0);
+/* Champs de modification */
+.input-modifier {
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 2px solid rgba(246, 125, 0, 0.4);
+    background-color: #2a1040;
+    color: rgb(184, 179, 171);
+    font-family: 'Rufina', serif;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.input-modifier:focus {
+    outline: none;
+    border-color: #F67D00;
+}
+
+/* Actions du formulaire */
+.form-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.btn-annuler {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 2px solid rgba(184, 179, 171, 0.4);
+    color: rgb(184, 179, 171);
+    text-decoration: none;
+    font-family: 'Bungee', cursive;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+.btn-annuler:hover {
+    border-color: rgb(184, 179, 171);
+    background-color: rgba(184, 179, 171, 0.1);
+}
+
+/* Message de succès */
+.message-succes {
+    background-color: rgba(76, 175, 80, 0.2);
+    border: 1px solid #4caf50;
+    color: #4caf50;
+    padding: 12px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
 }
 
 /* ========================================

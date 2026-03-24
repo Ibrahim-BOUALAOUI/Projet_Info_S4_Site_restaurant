@@ -6,6 +6,18 @@ if (!isset($_SESSION['connecte'])) {
     header("Location: index.php");
     exit();
 }
+
+// Recupere les info depuis le json
+$users = json_decode(file_get_contents('../Folder_Data/utilisateur.json'), true);
+$userActuel = null;
+
+foreach ($users as $user) {
+    if ($user['email'] === $_SESSION['email']) {
+        $userActuel = $user;
+        break;
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -22,7 +34,7 @@ if (!isset($_SESSION['connecte'])) {
         <a href="index.php">
             <img src="../Folder img/129.png" alt="Logo" width="200">
         </a>
-        <a href="deconnexion.php" class="btn-profil">🚪 Se déconnecter</a>
+        <a href="deconnection.php" class="btn-deconnexion">🚪 Se déconnecter</a>
     </header>
 
     <main class="rect-mid">
@@ -39,7 +51,7 @@ if (!isset($_SESSION['connecte'])) {
 
                 <div class="info-item">
                     <span class="info-label">Adresse :</span>
-                    <span class="info-value">147 Rue de Macron</span>
+                    <span class="info-value"><?= htmlspecialchars($userActuel['last_name']) ?></span>
                 </div>
 
                 <div class="info-item">
@@ -51,9 +63,16 @@ if (!isset($_SESSION['connecte'])) {
                     <span class="info-label">Email :</span>
                     <span class="info-value"><?= htmlspecialchars($_SESSION['email']) ?></span>
                 </div>
+                
+                <div class="info-item">
+                    <span class="info-label">Date de naissance :</span>
+                    <span class="info-value"><?= htmlspecialchars($userActuel['birthdate']) ?></span>
+                </div>
             </div>
 
-            <button class="btn-modifier">✏️ Modifier mes informations</button>
+            <a href="modifier-profil.php">
+                <button class="btn-modifier">✏️ Modifier mes informations</button>
+            </a>
         </section>
 
         <!-- Section Dernières Commandes -->
