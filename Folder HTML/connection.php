@@ -24,7 +24,8 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
                 $userFound = true;
 
                 if (password_verify($_POST["password"], $user["password"])) {
-                    echo "Connexion réussie !";
+                    header("Location: Accueil.php");
+                    exit();
                 } else {
                     echo "Mot de passe incorrect";
                 }
