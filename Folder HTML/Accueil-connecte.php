@@ -11,14 +11,14 @@
     <main>
         
         <header>
-            <a href="Accueil-connecte.html">
+            <a href="Accueil-connecte.php">
                 <img src="../Folder CSS/129.png" alt="Logo du restaurant" width="200" height="auto">
             </a>
         </header>
 
         
         <aside>
-            <a href="Profil.html" class="btn-profil" aria-label="Accéder à mon profil"> 
+            <a href="Profil.php" class="btn-profil" aria-label="Accéder à mon profil"> 
                 <span class="profil-icon">👤</span>
                 <span class="profil-text">Mon profil</span>
             </a>
@@ -61,7 +61,7 @@
             <article class="menu-item menu-item-special">
                 <div class="menu-info">
                     <h3 class="menu-title">🛒 Tous nos produits</h3>
-                    <a href="Produits.html" class="menu-link"> 
+                    <a href="Produits.php" class="menu-link"> 
                         <img src="../Folder CSS/Chiken_tendori_logo.png" alt="Voir tous les produits">
                     </a>
                 </div>
@@ -71,7 +71,7 @@
             <article class="menu-item">
                 <div class="menu-info">
                     <h3 class="menu-title">Nos menus</h3>
-                    <a href="Menus.html" class="menu-link"> 
+                    <a href="Menus.php" class="menu-link"> 
                         <img src="../Folder CSS/Chiken_tendori_logo.png" alt="Illustration menu complet">
                     </a>
                 </div>
@@ -81,7 +81,7 @@
             <article class="menu-item">
                 <div class="menu-info">
                     <h3 class="menu-title">Les extras</h3>
-                    <a href="Extras.html" class="menu-link"> 
+                    <a href="Extras.php" class="menu-link"> 
                         <img src="../Folder CSS/menus_steak.png" alt="Illustration extras">
                     </a>
                 </div>
@@ -91,7 +91,7 @@
             <article class="menu-item">
                 <div class="menu-info">
                     <h3 class="menu-title">Sandwich Seul</h3>
-                    <a href="Sandwich_Seul.html" class="menu-link"> 
+                    <a href="Sandwich_Seul.php" class="menu-link"> 
                         <img src="../Folder CSS/Supreme_seul.png" alt="Illustration sandwich seul">
                     </a>
                 </div>
@@ -101,7 +101,7 @@
             <article class="menu-item">
                 <div class="menu-info">
                     <h3 class="menu-title">Nos boissons</h3>
-                    <a href="Boissons.html" class="menu-link"> 
+                    <a href="Boissons.php" class="menu-link"> 
                         <img src="../Folder CSS/Canette.png" alt="Illustration boissons">
                     </a>
                 </div>

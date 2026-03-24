@@ -9,7 +9,6 @@
 </head>
 
 <body>
-    <!-- En-tête avec logo -->
     <header>
         <a href="Accueil.php">
             <img src="../Folder CSS/129.png" alt="Logo" width="200">
@@ -63,7 +62,7 @@
                         <p class="commande-prix">15,90 €</p>
                         <span class="commande-statut livré">Livré</span>
                     </div>
-                    <a href="Menus.html"> <button class="btn-recommander"> Recommander</button> </a>
+                    <a href="Menus.php"> <button class="btn-recommander"> Recommander</button> </a>
                 </article>
 
                 <!-- Commande 2 -->
@@ -77,7 +76,7 @@
                         <p class="commande-prix">17,50 €</p>
                         <span class="commande-statut livré">Livré</span>
                     </div>
-                    <a href="Menus.html"> <button class="btn-recommander"> Recommander</button> </a>
+                    <a href="Menus.php"> <button class="btn-recommander"> Recommander</button> </a>
                 </article>
 
                 <!-- Commande 3 -->
@@ -91,7 +90,7 @@
                         <p class="commande-prix">16,90 €</p>
                         <span class="commande-statut livré">Livré</span>
                     </div>
-                    <a href="Menus.html"> <button class="btn-recommander"> Recommander</button> </a>
+                    <a href="Menus.php"> <button class="btn-recommander"> Recommander</button> </a>
                 </article>
             </div>
         </section>
@@ -101,12 +100,12 @@
             <h2 class="section-title">⚡ Actions rapides</h2>
 
             <div class="actions-grid">
-                <a href="Menus.html" class="action-card">
+                <a href="Menus.php" class="action-card">
                     <span class="action-icon">🍔</span>
                     <span class="action-text">Commander</span>
                 </a>
 
-                <a href="Avis.html" class="action-card">
+                <a href="Avis.php" class="action-card">
                     <span class="action-icon">⭐</span>
                     <span class="action-text">Donner un avis</span>
                 </a>
