@@ -3,12 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Le 129 | Inscription - Étape 2</title>
     <link rel="stylesheet" href="../folder CSS/connection.css">
 </head>
 
 <?php
-if (isset($_POST['birthdate']) && isset($_POST['name']) && isset($_POST['last_name']) && isset($_POST['email']) && isset($_POST['password'])) {
+if (isset($_POST['birthdate']) && isset($_POST['name']) && isset($_POST['last_name']) && isset($_POST['email'])  && isset($_POST['phone']) && isset($_POST['address']) && isset($_POST['password'])) {
 
     $passwordHash = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
@@ -17,6 +16,8 @@ if (isset($_POST['birthdate']) && isset($_POST['name']) && isset($_POST['last_na
         "name" => $_POST['name'],
         "last_name" => $_POST['last_name'],
         "email" => $_POST['email'],
+        "phone" => $_POST['phone'],
+        "address" => $_POST['address'],
         "password" => $passwordHash,
         "type" => 'client',
         "connected" => true,
@@ -46,7 +47,7 @@ if (isset($_POST['birthdate']) && isset($_POST['name']) && isset($_POST['last_na
     <div class="login-wrapper">
         <div class="login-card">
             <div class="logo-box">
-                <img src="../Folder img/129.png" alt="Logo Le 129" class="site-logo">
+                <img src="../folder CSS/129.png" alt="Logo Le 129" class="site-logo">
 
                 <form method="POST">
                     <h2 class="form-title">VOS INFORMATIONS</h2>
@@ -68,8 +69,18 @@ if (isset($_POST['birthdate']) && isset($_POST['name']) && isset($_POST['last_na
                     </div>
 
                     <div class="input-group">
-                        <label for="email">ADRESSE E-MAIL</label>
+                        <label for="email">Adresse email</label>
                         <input type="email" id="email" name="email" placeholder="nom@exemple.com" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="numéro">Numéro de téléphone</label>
+                        <input type="phone" id="phone" name="phone" placeholder="votre numéro" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="adresse">Adresse</label>
+                        <input type="address" id="address" name="address" placeholder="Votre adresse" required>
                     </div>
 
                     <div class="input-group">
