@@ -6,7 +6,7 @@ if (!isset($_SESSION['connecte'])) {
     exit();
 }
 
-$message = "";
+$message =  "";
 
 // Traitement du formulaire quand il est soumis
 if (isset($_POST['nom'])) {
@@ -17,9 +17,11 @@ if (isset($_POST['nom'])) {
         if ($user['email'] === $_SESSION['email']) {
             // Met à jour les champs modifiés
             
-            $user['name']      = $_POST['nom'];
+            $user['name'] = $_POST['nom'];
             $user['last_name'] = $_POST['prenom'];
-            $user['email']     = $_POST['email'];
+            $user['email'] = $_POST['email'];
+            $user['adress'] = $_POST['adress'];
+            $user['birthdate'] = $_POST['birthdate']
 
             
             if (!empty($_POST['password'])) {
@@ -64,7 +66,6 @@ foreach ($users as $user) {
         <a href="index.php">
             <img src="../Folder img/129.png" alt="Logo" width="200">
         </a>
-        <a href="deconnexion.php" class="btn-deconnexion">🚪 Se déconnecter</a>
     </header>
 
     <main class="rect-mid">
@@ -87,6 +88,12 @@ foreach ($users as $user) {
                     <label class="info-label">Prénom :</label>
                     <input type="text" name="prenom" class="input-modifier"
                         value="<?= htmlspecialchars($userActuel['last_name']) ?>" required>
+                </div>
+
+                <div class="info-item">
+                    <label class="info-label"> Adresse : </label>
+                    <input type="text" name="adress" class="input-modifier"
+                    value="<?= htmlspecialchars($userActuel['adress'])?>" required>
                 </div>
 
                 <div class="info-item">

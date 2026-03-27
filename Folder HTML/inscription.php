@@ -7,7 +7,7 @@
 </head>
 
 <?php
-if (isset($_POST['birthdate']) && isset($_POST['name']) && isset($_POST['last_name']) && isset($_POST['email'])  && isset($_POST['phone']) && isset($_POST['address']) && isset($_POST['password'])) {
+if (isset($_POST['birthdate']) && isset($_POST['name']) && isset($_POST['last_name']) && isset($_POST['email'])  && isset($_POST['phone']) && isset($_POST['adress']) && isset($_POST['password'])) {
 
     $passwordHash = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
@@ -17,7 +17,7 @@ if (isset($_POST['birthdate']) && isset($_POST['name']) && isset($_POST['last_na
         "last_name" => $_POST['last_name'],
         "email" => $_POST['email'],
         "phone" => $_POST['phone'],
-        "address" => $_POST['address'],
+        "adress" => $_POST['adress'],
         "password" => $passwordHash,
         "type" => 'client',
         "connected" => true,
@@ -80,7 +80,7 @@ if (isset($_POST['birthdate']) && isset($_POST['name']) && isset($_POST['last_na
 
                     <div class="input-group">
                         <label for="adresse">Adresse</label>
-                        <input type="address" id="address" name="address" placeholder="Votre adresse" required>
+                        <input type="adress" id="adress" name="adress" placeholder="Votre adresse" required>
                     </div>
 
                     <div class="input-group">

@@ -1,1 +1,13 @@
-[]
+[
+    {
+        "birthdate": "0001-01-01",
+        "name": "Evina",
+        "last_name": "Nathan",
+        "email": "client1@gmail.com",
+        "phone": "06 41 95 82 31",
+        "adress": "chez ta mere",
+        "password": "$2y$10$llbi9HD6wzWKBqnJcnLnxeqCykkzsZBpKMAzZKDsKRGkxnQb9w02y",
+        "type": "client",
+        "connected": true
+    }
+]

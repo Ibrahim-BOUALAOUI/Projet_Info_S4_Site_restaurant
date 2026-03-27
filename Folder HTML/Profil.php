@@ -51,7 +51,7 @@ foreach ($users as $user) {
 
                 <div class="info-item">
                     <span class="info-label">Adresse :</span>
-                    <span class="info-value"><?= htmlspecialchars($userActuel['last_name']) ?></span>
+                    <span class="info-value"><?= htmlspecialchars($userActuel['adress']) ?></span>
                 </div>
 
                 <div class="info-item">
@@ -70,7 +70,7 @@ foreach ($users as $user) {
                 </div>
             </div>
 
-            <a href="modifier-profil.php">
+            <a href="modifier_profil.php">
                 <button class="btn-modifier">✏️ Modifier mes informations</button>
             </a>
         </section>
