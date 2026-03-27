@@ -17,6 +17,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
                     $_SESSION['connecte'] = true;      
                     $_SESSION['nom'] = $user["name"];
                     $_SESSION['email'] = $user["email"]; 
+                    $_SESSION['type'] = $user["type"];
                     header("Location: index.php");
                     exit();
                 } else {

@@ -2,7 +2,7 @@
 
 session_start();
 $connecte = isset($_SESSION['email']);
-
+$role = $_SESSION['role'] ?? null; // ✅ récupère le rôle
 ?>
 
 <!DOCTYPE html>
@@ -27,13 +27,27 @@ $connecte = isset($_SESSION['email']);
                             <span class="profil-icon">👤</span>
                             <span class="profil-text">Mon profil</span>
                         </a>
-
+                            <?php if ($role === 'admin'): ?>
+                    <a href="admin.php" class="btn-role btn-admin">
+                        <span class="role-icon">⚙️</span>
+                        <span class="role-text">Administration</span>
+                    </a>
+                <?php elseif ($role === 'preparateur'): ?>
+                    <a href="commandes.php" class="btn-role btn-preparateur">
+                        <span class="role-icon">👨‍🍳</span>
+                        <span class="role-text">Commandes</span>
+                    </a>
+                <?php elseif ($role === 'livreur'): ?>
+                    <a href="livreur.php" class="btn-role btn-livreur">
+                        <span class="role-icon">🛵</span>
+                        <span class="role-text">Livraisons</span>
+                    </a>
+                <?php endif; ?>
                     <?php } else{ ?>
 
                         <a href="connection.php" aria-label="Se connecter">
                             <button class="Btn" aria-label="Connexion">Connexion</button>
                         </a>
-
                     <?php } ?>
                     </aside>
 

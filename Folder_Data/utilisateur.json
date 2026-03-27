@@ -9,5 +9,16 @@
         "password": "$2y$10$llbi9HD6wzWKBqnJcnLnxeqCykkzsZBpKMAzZKDsKRGkxnQb9w02y",
         "type": "client",
         "connected": true
+    },
+    {
+        "birthdate": "2006-08-15",
+        "name": "admin",
+        "last_name": "Bou",
+        "email": "admin@gmail.com",
+        "phone": "00 00 00 00",
+        "adress": "a la maison",
+        "password": "$2y$10$Coc5fv93RwC5Ckvg820ree49MS2gD\/CUiPx8QDj8JOylsgEGPe\/Xe",
+        "type": "admin",
+        "connected": true
     }
 ]

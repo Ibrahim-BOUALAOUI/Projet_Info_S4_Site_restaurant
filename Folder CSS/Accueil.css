@@ -287,6 +287,70 @@ aside {
     transform: translateY(0);
 }
 
+/* ========================================
+   BOUTON RÔLE (admin / préparateur / livreur)
+======================================== */
+.btn-role {
+    width: 160px;
+    height: 50px;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+    font-family: 'Bungee', cursive;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+/* Admin — rouge/violet */
+.btn-admin {
+    background: linear-gradient(135deg, #6b2d8f, #9c27b0);
+    color: white;
+    box-shadow: 0 4px 15px rgba(156, 39, 176, 0.4);
+}
+
+.btn-admin:hover {
+    background: linear-gradient(135deg, #9c27b0, #ba68c8);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(156, 39, 176, 0.6);
+}
+
+/* Préparateur — orange */
+.btn-preparateur {
+    background: linear-gradient(135deg, #F67D00, #ffa500);
+    color: white;
+    box-shadow: 0 4px 15px rgba(246, 125, 0, 0.4);
+}
+
+.btn-preparateur:hover {
+    background: linear-gradient(135deg, #ffa500, #ffb833);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(246, 125, 0, 0.6);
+}
+
+/* Livreur — bleu */
+.btn-livreur {
+    background: linear-gradient(135deg, #1565c0, #2196f3);
+    color: white;
+    box-shadow: 0 4px 15px rgba(33, 150, 243, 0.4);
+}
+
+.btn-livreur:hover {
+    background: linear-gradient(135deg, #2196f3, #64b5f6);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(33, 150, 243, 0.6);
+}
+
+.role-icon {
+    font-size: 1.3rem;
+}
+
+.role-text {
+    font-size: 0.8rem;
+}
 /* BOUTON CONNEXION */
 aside {
     grid-area: right-top;
