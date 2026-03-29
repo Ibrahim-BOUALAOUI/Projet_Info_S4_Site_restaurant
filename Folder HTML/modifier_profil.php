@@ -21,7 +21,7 @@ if (isset($_POST['nom'])) {
             $user['last_name'] = $_POST['prenom'];
             $user['email'] = $_POST['email'];
             $user['adress'] = $_POST['adress'];
-            $user['birthdate'] = $_POST['birthdate']
+            $user['birthdate'] = $_POST['birthdate'];
 
             
             if (!empty($_POST['password'])) {

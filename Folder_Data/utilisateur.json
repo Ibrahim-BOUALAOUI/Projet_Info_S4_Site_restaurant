@@ -11,13 +11,13 @@
         "connected": true
     },
     {
-        "birthdate": "2006-08-15",
+        "birthdate": null,
         "name": "admin",
         "last_name": "Bou",
         "email": "admin@gmail.com",
         "phone": "00 00 00 00",
-        "adress": "a la maison",
-        "password": "$2y$10$Coc5fv93RwC5Ckvg820ree49MS2gD\/CUiPx8QDj8JOylsgEGPe\/Xe",
+        "adress": "Chez moi",
+        "password": "$2y$12$S\/hzLFr9F.X2utgdlHSbtOg9lF7AwfEh5yCdbArAWAfXlkEw\/shRC",
         "type": "admin",
         "connected": true
     }
