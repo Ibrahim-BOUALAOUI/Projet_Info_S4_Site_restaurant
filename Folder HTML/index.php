@@ -1,8 +1,8 @@
 <?php 
 
-session_start();
+session_start(); 
 $connecte = isset($_SESSION['email']);
-$role = $_SESSION['role'] ?? null; // ✅ récupère le rôle
+$role = $_SESSION['type'] ?? null; // ✅ récupère le rôle
 ?>
 
 <!DOCTYPE html>
