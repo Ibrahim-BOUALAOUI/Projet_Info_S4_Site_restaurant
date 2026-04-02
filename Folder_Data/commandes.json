@@ -1,1 +1,50 @@
-[]
+[
+    {
+        "id": 1775163032,
+        "client": "sayfsbai122@gmail.com",
+        "articles": [
+            {
+                "nom": "Coca Zero",
+                "prix": "1.50"
+            },
+            {
+                "nom": "Coca-Cola",
+                "prix": "1.50"
+            },
+            {
+                "nom": "Coca Cherry",
+                "prix": "1.50"
+            },
+            {
+                "nom": "Fanta Orange",
+                "prix": "1.50"
+            }
+        ],
+        "statut": "\u00e0 pr\u00e9parer",
+        "date": "2026-04-02 20:50:32"
+    },
+    {
+        "id": 1775163054,
+        "client": "sayfsbai122@gmail.com",
+        "articles": [
+            {
+                "nom": "Coca Cherry",
+                "prix": "1.50"
+            }
+        ],
+        "statut": "\u00e0 pr\u00e9parer",
+        "date": "2026-04-02 20:50:54"
+    },
+    {
+        "id": 1775163064,
+        "client": "sayfsbai122@gmail.com",
+        "articles": [
+            {
+                "nom": "Eau",
+                "prix": "1.50"
+            }
+        ],
+        "statut": "\u00e0 pr\u00e9parer",
+        "date": "2026-04-02 20:51:04"
+    }
+]

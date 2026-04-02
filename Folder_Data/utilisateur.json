@@ -20,5 +20,16 @@
         "password": "$2y$12$S\/hzLFr9F.X2utgdlHSbtOg9lF7AwfEh5yCdbArAWAfXlkEw\/shRC",
         "type": "admin",
         "connected": true
+    },
+    {
+        "birthdate": "2005-02-12",
+        "name": "Sayf",
+        "last_name": "Sbai",
+        "email": "sayfsbai122@gmail.com",
+        "phone": "0652393535",
+        "adress": "MotherBase",
+        "password": "$2y$10$uRAAppRI4biXFsXzg6nRWej7pw4Xzv2wIkmnIxkVe9CxK9dr32bOC",
+        "type": "client",
+        "connected": true
     }
 ]
