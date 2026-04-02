@@ -16,18 +16,6 @@ $total = 0;
 <body>
     <h1>🛒 Votre commande</h1>
 
-
-    <?php if ($connecte): ?>
-        <form action="valider_commande.php" method="POST">
-            <button type="submit" class="Btn" style="background-color:green;">CONFIRMER LA COMMANDE</button>
-        </form>
-    <?php else: ?>
-        <div style="background: #ffcccc; padding: 10px; border-radius: 5px; text-align: center;">
-            <p>⚠️ Vous devez être connecté pour valider votre commande.</p>
-            <a href="connection.php" class="Btn">Se connecter maintenant</a>
-        </div>
-    <?php endif; ?>
-
     <?php if (empty($panier)): ?>
         <p>Votre panier est vide. <a href="index.php">Retour au menu</a></p>
     <?php else: ?>
