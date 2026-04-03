@@ -19,20 +19,26 @@ if (isset($_POST['birthdate']) && isset($_POST['name']) && isset($_POST['last_na
     $adress = $_POST['adress'];
     $password = $passwordHash;
 
+    $Year = date('Y', strtotime($birthdate));
+    if ($Year < 1900 || $Year > 2026) {
+        $errors[] = "Date de naissance incorrect";
+    }
+
     if (strpos($email, '@') === false) {
-        $errors[] = "L'email doit contenir un @.";
+        $errors[] = "L'email doit contenir un @";
     }
 
     if (preg_match('/[0-9]/', $name) || preg_match('/[0-9]/', $last_name)) {
         $errors[] = "Le nom et le prénom ne doivent pas contenir de chiffres.";
     }
 
+
     if (!ctype_digit($phone) || strlen($phone) !== 10) {
-        $errors[] = "Le numéro doit faire 10 chiffres (uniquement des chiffres).";
+        $errors[] = "Le numéro doit faire 10 chiffres ";
     }
 
     if (strlen($adress) < 5) {
-        $errors[] = "L'adresse est trop courte.";
+        $errors[] = "L'adresse est trop courte";
     }
 
     $file = "../Folder_Data/utilisateur.json";
