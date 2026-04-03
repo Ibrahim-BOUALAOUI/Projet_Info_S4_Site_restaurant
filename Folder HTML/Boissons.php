@@ -11,7 +11,7 @@ $nb_articles = isset($_SESSION['panier']) ? count($_SESSION['panier']) : 0;
 
 <head>
     <link rel="stylesheet" href="../Folder CSS/Sous_page.css">
-    <link rel="stylesheet" href="../Folder CSS/Panier.css">
+    <link rel="stylesheet" href="../Folder CSS/Commander_Article.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
