@@ -11,36 +11,63 @@ if (isset($_POST['birthdate']) && isset($_POST['name']) && isset($_POST['last_na
 
     $passwordHash = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-    $newTask = [
-        "birthdate" => $_POST['birthdate'],
-        "name" => $_POST['name'],
-        "last_name" => $_POST['last_name'],
-        "email" => $_POST['email'],
-        "phone" => $_POST['phone'],
-        "adress" => $_POST['adress'],
-        "password" => $passwordHash,
-        "type" => 'client',
-        "connected" => true,
-    ];
-    $tasks = [];
+    $birthdate = $_POST['birthdate'];
+    $name = $_POST['name'];
+    $last_name = $_POST['last_name'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $adress = $_POST['adress'];
+    $password = $passwordHash;
+
+    if (strpos($email, '@') === false) {
+        $errors[] = "L'email doit contenir un @.";
+    }
+
+    if (preg_match('/[0-9]/', $name) || preg_match('/[0-9]/', $last_name)) {
+        $errors[] = "Le nom et le prénom ne doivent pas contenir de chiffres.";
+    }
+
+    if (!ctype_digit($phone) || strlen($phone) !== 10) {
+        $errors[] = "Le numéro doit faire 10 chiffres (uniquement des chiffres).";
+    }
+
+    if (strlen($adress) < 5) {
+        $errors[] = "L'adresse est trop courte.";
+    }
 
     $file = "../Folder_Data/utilisateur.json";
+    $users = [];
+
     if (file_exists($file)) {
         $json = file_get_contents($file);
-        $tasks = json_decode($json, true);
-
-        if ($tasks === null) {
-            $tasks = [];
+        $users = json_decode($json, true);
+        if ($users === null) {
+            $users = [];
         }
     }
-    $tasks[] = $newTask;
 
-    file_put_contents($file, json_encode($tasks, JSON_PRETTY_PRINT));
+    if (empty($errors)) {
+        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
-    header("Location: connection.php");
-    exit();
+        $newUser = [
+            "birthdate" => $birthdate,
+            "name" => $name,
+            "last_name" => $last_name,
+            "email" => $email,
+            "phone" => $phone,
+            "adress" => $adress,
+            "password" => $passwordHash,
+            "type" => 'client',
+            "connected" => true,
+        ];
+
+        $users[] = $newUser;
+        file_put_contents($file, json_encode($users, JSON_PRETTY_PRINT));
+
+        header("Location: connection.php");
+        exit();
+    }
 }
-
 ?>
 
 <body>
