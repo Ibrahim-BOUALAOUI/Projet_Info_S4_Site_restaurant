@@ -31,7 +31,7 @@ $total = 0;
 
         <h3>Total : <?php echo number_format($total, 2); ?> €</h3>
 
-        <!-- LE BOUTON CRUCIAL -->
+        
         <form action="valider_commande.php" method="POST">
             <button type="submit" class="Btn" style="background-color:green; color:white; padding:15px;">
                 CONFIRMER ET ENVOYER LA COMMANDE
