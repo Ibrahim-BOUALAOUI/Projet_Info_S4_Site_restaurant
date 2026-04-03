@@ -6,38 +6,75 @@ $total = 0;
 
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
-    <title>Mon Panier</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Panier | Sandwicherie</title>
+    <!-- Liens vers tes fichiers CSS -->
     <link rel="stylesheet" href="../Folder CSS/Sous_page.css">
+    <link rel="stylesheet" href="../Folder CSS/Panier.css">
 </head>
-
 <body>
-    <h1>🛒 Votre commande</h1>
 
-    <?php if (empty($panier)): ?>
-        <p>Votre panier est vide. <a href="index.php">Retour au menu</a></p>
-    <?php else: ?>
-        <ul>
-            <?php foreach ($panier as $index => $item): ?>
-                <li>
-                    <?php echo $item['nom']; ?> - <?php echo $item['prix']; ?> €
-                    <a href="supprimer_item.php?index=<?php echo $index; ?>" style="color:red;">[Supprimer]</a>
-                </li>
-                <?php $total += $item['prix']; ?>
-            <?php endforeach; ?>
-        </ul>
-
-        <h3>Total : <?php echo number_format($total, 2); ?> €</h3>
-
+    <div class="cart-container">
         
-        <form action="valider_commande.php" method="POST">
-            <button type="submit" class="Btn" style="background-color:green; color:white; padding:15px;">
-                CONFIRMER ET ENVOYER LA COMMANDE
-            </button>
-        </form>
-    <?php endif; ?>
-</body>
+        <!-- SECTION GAUCHE : ARTICLES -->
+        <div class="cart-items">
+            <h1 class="cart-title">🛒 Votre commande</h1>
 
+            <?php if (empty($panier)): ?>
+                <div class="cart-card">
+                    <p>Votre panier est vide. <a href="index.php" style="color: var(--orange-theme);">Retour au menu</a></p>
+                </div>
+            <?php else: ?>
+                <?php foreach ($panier as $index => $item): ?>
+                    <div class="cart-card">
+                        <div class="item-info">
+                            <h3><?php echo htmlspecialchars($item['nom']); ?></h3>
+                            <p>Prix unitaire : <?php echo number_format($item['prix'], 2); ?> €</p>
+                        </div>
+                        <div style="text-align: right;">
+                            <p style="font-weight: bold; margin-bottom: 10px; font-size: 1.2em;">
+                                <?php echo number_format($item['prix'], 2); ?> €
+                            </p>
+                            <a href="supprimer_item.php?index=<?php echo $index; ?>" class="delete-link">Supprimer</a>
+                        </div>
+                    </div>
+                    <?php $total += $item['prix']; ?>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </div>
+
+        <!-- SECTION DROITE : RÉSUMÉ -->
+        <?php if (!empty($panier)): ?>
+        <div class="cart-summary">
+            <h2 class="summary-title">Résumé</h2>
+            <div style="display: flex; justify-content: space-between;">
+                <span>Articles (<?php echo count($panier); ?>)</span>
+                <span><?php echo number_format($total, 2); ?> €</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-top: 10px;">
+                <span>Livraison</span>
+                <span style="color: var(--vert-succes);">Gratuite</span>
+            </div>
+            
+            <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 20px 0;">
+            
+            <span class="total-amount">Total : <?php echo number_format($total, 2); ?> €</span>
+            
+            <form action="valider_commande.php" method="POST">
+                <button type="submit" class="btn-confirm">
+                    CONFIRMER LA COMMANDE
+                </button>
+            </form>
+            
+            <a href="index.php" class="back-link">
+                ← Continuer mes achats
+            </a>
+        </div>
+        <?php endif; ?>
+
+    </div>
+
+</body>
 </html>
