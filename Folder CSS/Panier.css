@@ -1,0 +1,37 @@
+.panier-notif {
+    background: #28a745;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    font-family: Arial, sans-serif;
+}
+
+.panier-notif a {
+    color: yellow;
+    font-weight: bold;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+
+.add-button-link {
+    text-decoration: none;
+    background-color: #ff0000;
+
+    color: white;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
