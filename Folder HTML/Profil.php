@@ -1,151 +1,121 @@
 <?php
 session_start();
 
-
-if (!isset($_SESSION['connecte'])) {
+if (!isset($_SESSION['email'])) {
     header("Location: index.php");
     exit();
 }
 
-// Recupere les info depuis le json
-$users = json_decode(file_get_contents('../Folder_Data/utilisateur.json'), true);
+$users = json_decode(file_get_contents('../Folder_Data/utilisateur.json'), true) ?? [];
 $userActuel = null;
-
-foreach ($users as $user) {
-    if ($user['email'] === $_SESSION['email']) {
-        $userActuel = $user;
+for ($i = 0; $i < count($users); $i++) {
+    if ($users[$i]['email'] === $_SESSION['email']) {
+        $userActuel = $users[$i];
         break;
     }
 }
 
+
+$commandesData = json_decode(file_get_contents('../Folder_Data/commandes.json'), true) ?? [];
+$mesCommandes = [];
+for ($i = 0; $i < count($commandesData); $i++) {
+    if ($commandesData[$i]['client'] === $_SESSION['email']) {
+        $mesCommandes[] = $commandesData[$i];
+    }
+}
+
+$mesCommandes = array_reverse($mesCommandes);
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
     <link rel="stylesheet" href="../Folder CSS/Profil.css">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon Profil</title>
 </head>
 
 <body>
     <header>
-        <a href="index.php">
-            <img src="../Folder img/129.png" alt="Logo" width="200">
-        </a>
+        <a href="index.php"><img src="../Folder img/129.png" alt="Logo" width="200"></a>
         <a href="deconnection.php" class="btn-deconnexion">🚪 Se déconnecter</a>
     </header>
 
     <main class="rect-mid">
-
-
         <section class="informations">
             <h2 class="section-title"> Vos informations</h2>
-
             <div class="info-content">
                 <div class="info-item">
                     <span class="info-label">Prénom :</span>
-                    <span class="info-value"><?= htmlspecialchars($_SESSION['nom']) ?></span>
+                    <span class="info-value"><?= htmlspecialchars($userActuel['name'] ?? 'Non renseigné') ?></span>
                 </div>
-
                 <div class="info-item">
                     <span class="info-label">Adresse :</span>
-                    <span class="info-value"><?= htmlspecialchars($userActuel['adress']) ?></span>
+                    <span class="info-value"><?= htmlspecialchars($userActuel['adress'] ?? 'Non renseignée') ?></span>
                 </div>
-
                 <div class="info-item">
                     <span class="info-label">Téléphone :</span>
-                    <span class="info-value"><?= htmlspecialchars($userActuel['phone']) ?></span>
+                    <span class="info-value"><?= htmlspecialchars($userActuel['phone'] ?? 'Non renseigné') ?></span>
                 </div>
-
                 <div class="info-item">
                     <span class="info-label">Email :</span>
                     <span class="info-value"><?= htmlspecialchars($_SESSION['email']) ?></span>
                 </div>
-
-                <div class="info-item">
-                    <span class="info-label">Date de naissance :</span>
-                    <span class="info-value"><?= htmlspecialchars($userActuel['birthdate']) ?></span>
-                </div>
             </div>
-
-            <a href="modifier_profil.php">
-                <button class="btn-modifier">✏️ Modifier mes informations</button>
-            </a>
+            <a href="modifier_profil.php"><button class="btn-modifier">✏️ Modifier</button></a>
         </section>
-
 
         <section class="commandes-section">
             <h2 class="section-title">🛍️ Vos dernières commandes</h2>
-
             <div class="commandes-grid">
 
-                <article class="commande-card">
-                    <div class="commande-image">
-                        <img src="../Folder img/Chiken_tendori_logo.png" alt="Menu Chicken Tandoori">
-                    </div>
-                    <div class="commande-info">
-                        <h3 class="commande-nom">Menu Chicken Tandoori</h3>
-                        <p class="commande-date"> 12 Février 2026</p>
-                        <p class="commande-prix">15,90 €</p>
-                        <span class="commande-statut livré">Livré</span>
-                    </div>
-                    <a href="Menus.php"> <button class="btn-recommander"> Recommander</button> </a>
-                </article>
+                <?php
+                if (count($mesCommandes) === 0) {
+                    echo "<p style='color:white;'>Vous n'avez pas encore passé de commande.</p>";
+                }
 
+                for ($i = 0; $i < count($mesCommandes); $i++) {
+                    $cmd = $mesCommandes[$i];
 
-                <article class="commande-card">
-                    <div class="commande-image">
-                        <img src="../Folder img/special.png" alt="Menu Spécial">
-                    </div>
-                    <div class="commande-info">
-                        <h3 class="commande-nom">Menu Spécial</h3>
-                        <p class="commande-date"> 8 Février 2026</p>
-                        <p class="commande-prix">17,50 €</p>
-                        <span class="commande-statut livré">Livré</span>
-                    </div>
-                    <a href="Menus.php"> <button class="btn-recommander"> Recommander</button> </a>
-                </article>
+                    $totalPrix = 0;
+                    for ($j = 0; $j < count($cmd['articles']); $j++) {
+                        $totalPrix += $cmd['articles'][$j]['prix'];
+                    }
+                ?>
+                    <article class="commande-card">
+                        <div class="commande-image">
+                            <img src="../Folder img/129.png" alt="Commande">
+                        </div>
+                        <div class="commande-info">
+                            <h3 class="commande-nom">
+                                <?php
+                                echo htmlspecialchars($cmd['articles'][0]['nom']);
+                                if (count($cmd['articles']) > 1) echo " (+" . (count($cmd['articles']) - 1) . ")";
+                                ?>
+                            </h3>
+                            <p class="commande-date"><?= $cmd['date'] ?></p>
+                            <p class="commande-prix"><?= number_format($totalPrix, 2) ?> €</p>
+                            <span class="commande-statut livré"><?= htmlspecialchars($cmd['statut']) ?></span>
+                        </div>
+                        <a href="Menus.php"><button class="btn-recommander">Recommander</button></a>
+                    </article>
+                <?php } ?>
 
-
-                <article class="commande-card">
-                    <div class="commande-image">
-                        <img src="../Folder img/steak.png" alt="Menu Steak">
-                    </div>
-                    <div class="commande-info">
-                        <h3 class="commande-nom">Menu Steak</h3>
-                        <p class="commande-date"> 5 Février 2026</p>
-                        <p class="commande-prix">16,90 €</p>
-                        <span class="commande-statut livré">Livré</span>
-                    </div>
-                    <a href="Menus.php"> <button class="btn-recommander"> Recommander</button> </a>
-                </article>
             </div>
         </section>
-
 
         <section class="actions-section">
             <h2 class="section-title">⚡ Actions rapides</h2>
-
             <div class="actions-grid">
                 <a href="Menus.php" class="action-card">
-                    <span class="action-icon">🍔</span>
-                    <span class="action-text">Commander</span>
+                    <span class="action-icon">🍔</span><span class="action-text">Commander</span>
                 </a>
-
                 <a href="Avis.php" class="action-card">
-                    <span class="action-icon">⭐</span>
-                    <span class="action-text">Donner un avis</span>
-                </a>
-
-                <a href="#" class="action-card">
-                    <span class="action-icon">🎁</span>
-                    <span class="action-text">Récompenses</span>
+                    <span class="action-icon">⭐</span><span class="action-text">Avis</span>
                 </a>
             </div>
         </section>
-
     </main>
 </body>
 
