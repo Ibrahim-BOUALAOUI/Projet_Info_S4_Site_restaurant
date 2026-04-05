@@ -11,6 +11,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $phone = $_POST['phone'];
     $adress = $_POST['adress'];
+    $id = bin2hex(random_bytes(16));
+    $date_actuelle = date("d/m/Y à H:i");
 
     $file = "../Folder_Data/utilisateur.json";
     $users = [];
@@ -51,6 +53,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
         $newUser = [
+            "id" => $id,
+            "last_connection" => $date_actuelle,
             "birthdate" => $birthdate,
             "name" => $name,
             "last_name" => $last_name,

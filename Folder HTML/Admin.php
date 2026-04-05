@@ -3,6 +3,9 @@ session_start();
 $json = file_get_contents("../Folder_Data/utilisateur.json");
 $users = json_decode($json,true);
 
+if (isset($_COOKIE['last_connection'])){
+    $last_connection = $_COOKIE['last_connection'];
+}
 if (isset($_POST['action'])) {
     
     if ($_POST['action'] == 'delete' && isset($_POST['user_delete'])) {
@@ -22,7 +25,7 @@ if (isset($_POST['action'])) {
     }
 
     file_put_contents("../Folder_Data/utilisateur.json", 
-                       json_encode(array_values($users), JSON_PRETTY_PRINT));
+        json_encode(array_values($users), JSON_PRETTY_PRINT));
 }
 
 ?>
@@ -97,7 +100,7 @@ if (isset($_POST['action'])) {
                                     <?php endforeach; ?>
                                 </select>
                             </td>
-                            <td><span class="date-badge"><?= $user['last_connection'] ?></span></td>
+                            <td><span class="date-badge"><?= $last_connection ?></span></td>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>

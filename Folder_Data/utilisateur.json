@@ -5,7 +5,7 @@
         "last_name": "Mbappe",
         "email": "Mbappe@gmail.com",
         "phone": "0701020304",
-        "adress": "Av. de Concha Espina, 1, Chamart\u00edn, 28036 Madrid, Espagne",
+        "adress": "Av. de Concha Espina, 1, Chamarten, 28036 Madrid, Espagne",
         "password": "$2y$10$4CLoKoIe1kH2kK.Xz4D4QuHrMBCsa826B4xjfrXJxqnPTM2w5429u",
         "type": "client",
         "connected": true
@@ -16,7 +16,7 @@
         "last_name": "Macron",
         "email": "Macron@gmail.com",
         "phone": "0601020304",
-        "adress": "55 Rue du Faubourg Saint-Honor\u00e9, 75008 Paris",
+        "adress": "55 Rue du Faubourg Saint-Honore, 75008 Paris",
         "password": "$2y$10$4CLoKoIe1kH2kK.Xz4D4QuHrMBCsa826B4xjfrXJxqnPTM2w5429u",
         "type": "client",
         "connected": true

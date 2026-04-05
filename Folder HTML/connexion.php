@@ -20,6 +20,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $_SESSION['email'] = $users[$i]['email'];
                         $_SESSION['type'] = $users[$i]['type'];
                         $_SESSION['adress'] = $users[$i]['adress'];
+
+                        $userId = $users[$i]['id'];
+                        $lastConn = $users[$i]['last_connection'];
+                        setcookie("user_id", $userId, time() + (3600 * 24 * 365), "/");
+                        setcookie("last_visit", $lastConn, time() + (3600 * 24 * 365), "/");
                         header("Location: index.php");
                         exit();
                     } else {
