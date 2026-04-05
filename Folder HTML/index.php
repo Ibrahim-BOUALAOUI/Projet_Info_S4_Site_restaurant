@@ -2,7 +2,7 @@
 
 session_start();
 $connecte = isset($_SESSION['email']);
-$role = $_SESSION['type'] ?? null;
+$role = $_SESSION['permission'] ?? null;
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +37,7 @@ $role = $_SESSION['type'] ?? null;
                         <span class="role-icon">👨‍🍳</span>
                         <span class="role-text">Commandes</span>
                     </a>
-                <?php elseif ($role === 'livreur'): ?>
+                <?php elseif ($role === 'Livreur'): ?>
                     <a href="livreur.php" class="btn-role btn-livreur">
                         <span class="role-icon">🛵</span>
                         <span class="role-text">Livraisons</span>

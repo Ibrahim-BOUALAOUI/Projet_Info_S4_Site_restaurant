@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $phone = $_POST['phone'];
     $adress = $_POST['adress'];
     $id = bin2hex(random_bytes(16));
-    $date_actuelle = date("d/m/Y à H:i");
+    $date_actuelle = date("d/m/Y  H:i");
 
     $file = "../Folder_Data/utilisateur.json";
     $users = [];
