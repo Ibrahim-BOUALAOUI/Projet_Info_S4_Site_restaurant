@@ -1,18 +1,18 @@
 <?php
 session_start();
 
-// 1. On récupère le "status" au lieu de "resultat"
+
 $status = isset($_GET['status']) ? $_GET['status'] : 'error';
 $id_trans = isset($_GET['transaction']) ? $_GET['transaction'] : 'Inconnu';
 
-// 2. On vérifie si le status est "accepted"
+
 if ($status == 'accepted') {
-    // LE PAIEMENT EST RÉUSSI
-    $_SESSION['panier'] = array(); // On vide le panier
+   
+    $_SESSION['panier'] = array(); 
     $message = "✅ Merci ! Votre paiement a été accepté (Commande : $id_trans).";
     $css_class = "success";
 } else {
-    // LE PAIEMENT A ÉCHOUÉ OU ÉTÉ ANNULÉ
+   
     $message = "❌ Le paiement a été refusé ou annulé (Status : $status).";
     $css_class = "error";
 }

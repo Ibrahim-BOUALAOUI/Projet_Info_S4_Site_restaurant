@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Redirige vers l'accueil si pas connecté
+
 if (!isset($_SESSION['connecte'])) {
     header("Location: index.php");
     exit();

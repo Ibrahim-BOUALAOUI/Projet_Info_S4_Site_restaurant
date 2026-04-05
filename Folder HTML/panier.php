@@ -2,24 +2,24 @@
 session_start();
 require('getapikey.php');
 
-// 1. Récupération du panier
+
 $panier = isset($_SESSION['panier']) ? $_SESSION['panier'] : array();
 
-// 2. Configuration CY BANK
-$vendeur = "MI-1_A"; // <--- Vérifie que c'est bien ton groupe
+
+$vendeur = "MI-1_A"; 
 $api_key = getAPIKey($vendeur);
 $transaction = "TX" . time();
-// Remplace l'URL ci-dessous par le lien vers ton fichier retour_paiement.php
+
 $url_retour = "http://localhost:8888/Folder HTML/retour_paiement.php"; 
 
-// 3. Calcul du total (Simple : somme des prix)
+
 $total_general = 0;
 foreach ($panier as $item) {
     $total_general += $item['prix'];
 }
 $montant_formatte = number_format($total_general, 2, '.', '');
 
-// 4. Calcul du code de sécurité (Control)
+
 $phrase = $api_key . "#" . $transaction . "#" . $montant_formatte . "#" . $vendeur . "#" . $url_retour . "#";
 $control = md5($phrase);
 ?>
@@ -37,7 +37,7 @@ $control = md5($phrase);
 
     <div class="cart-container">
         
-        <!-- SECTION GAUCHE : ARTICLES -->
+      
         <div class="cart-items">
             <h1 class="cart-title">🛒 Votre commande</h1>
 
@@ -53,7 +53,7 @@ $control = md5($phrase);
                             <p>Prix : <?php echo number_format($item['prix'], 2); ?> €</p>
                         </div>
 
-                        <!-- Les contrôles de quantité ont été supprimés ici -->
+               
 
                         <div style="text-align: right; min-width: 100px;">
                             <p class="item-total-price">
@@ -66,7 +66,7 @@ $control = md5($phrase);
             <?php endif; ?>
         </div>
 
-        <!-- SECTION DROITE : RÉSUMÉ POUR CY BANK -->
+  
         <?php if (!empty($panier)) : ?>
         <div class="cart-summary">
             <h2 class="summary-title">Résumé</h2>
@@ -88,7 +88,7 @@ $control = md5($phrase);
                 <span class="total-amount"><?php echo $montant_formatte; ?> €</span>
             </div>
             
-            <!-- FORMULAIRE D'ENVOI VERS CY BANK -->
+           
             <form action='https://www.plateforme-smc.fr/cybank/index.php' method='POST' style="margin-top: 25px;">
                 <input type='hidden' name='transaction' value='<?php echo $transaction; ?>'>
                 <input type='hidden' name='montant' value='<?php echo $montant_formatte; ?>'>
