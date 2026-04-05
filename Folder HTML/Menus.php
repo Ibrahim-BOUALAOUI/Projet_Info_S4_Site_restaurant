@@ -85,4 +85,8 @@ $nb_articles = isset($_SESSION['panier']) ? count($_SESSION['panier']) : 0;
             </div>
             <div style="position: relative;">
                 <img src="../Folder img/supreme.png" alt="Suprême" class="menu-image">
-                <a href="
+                 <a href="ajouter_panier.php?nom=Menu%20L%27Escalope&prix=13.50" class="add-button-link">+</a>
+                </div>
+        </div>
+    </div>
+    </body>
