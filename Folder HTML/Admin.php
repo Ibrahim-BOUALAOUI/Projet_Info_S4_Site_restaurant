@@ -63,8 +63,8 @@ $ca_total = array_sum(array_map(function($c) {
 }, $commandes));
 $en_cours = count(array_filter($commandes, fn($c) => $c['statut'] !== 'livree'));
 
-
-function statut_class( $s):  {
+/* ── Couleurs statuts ── */
+function statut_class(string $s): string {
     return match($s) {
         'livree'                 => 'statut-livre',
         'en cours de livraison'  => 'statut-livraison',
@@ -72,7 +72,7 @@ function statut_class( $s):  {
         default                  => 'statut-autre',
     };
 }
-function statut_label( $s): {
+function statut_label(string $s): string {
     return match($s) {
         'livree'                => '✅ Livrée',
         'en cours de livraison' => '🛵 En livraison',

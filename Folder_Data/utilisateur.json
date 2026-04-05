@@ -11,7 +11,7 @@
         "password": "$2y$12$d7F37MDbTcXqEd7P8Bbd4u\/EJQSd1LzwZaOa.mAKFh7N2LqOTOn\/i",
         "type": "admin",
         "connected": true,
-        "permission": "Admin"
+        "permission": "admin"
     },
     {
         "id": "0c69facce10cc89117f858de3a39e354",
@@ -39,7 +39,7 @@
         "password": "$2y$12$xOHGLB.ibCJWVSgtBUhBu.Fj9h8Myh876hDamFBDEq525ehClZqK6",
         "type": "client",
         "connected": true,
-        "permission": "Livreur"
+        "permission": "livreur"
     },
     {
         "id": "462a06d779b4202b7deb7ef29885611c",
@@ -53,7 +53,7 @@
         "password": "$2y$12$RG1omRo651eQGjQqC7hncuakD5Bw6IUKJAOgfh9kz.I320xj8Ezyu",
         "type": "client",
         "connected": true,
-        "permission": "Admin"
+        "permission": "preparateur"
     },
     {
         "id": "0e2f748e4bd9acd614328a530bf35953",
