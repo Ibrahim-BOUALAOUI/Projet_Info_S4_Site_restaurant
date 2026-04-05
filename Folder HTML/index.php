@@ -27,7 +27,7 @@ $role = $_SESSION['permission'] ?? null;
                     <span class="profil-icon">👤</span>
                     <span class="profil-text">Mon profil</span>
                 </a>
-                <?php if ($role === 'admin'): ?>
+                <?php if ($role === 'Admin'): ?>
                     <a href="admin.php" class="btn-role btn-admin">
                         <span class="role-icon">⚙️</span>
                         <span class="role-text">Administration</span>
