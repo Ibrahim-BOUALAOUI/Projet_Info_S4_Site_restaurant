@@ -37,9 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (preg_match('/[0-9]/', $name) || preg_match('/[0-9]/', $last_name)) {
         $errors[] = "Le nom/prénom ne doit pas contenir de chiffres.";
     }
-    if (!ctype_digit($phone) || strlen($phone) !== 10) {
-        $errors[] = "Le numéro doit faire 10 chiffres.";
-    }
     if (strlen($adress) < 5) {
         $errors[] = "L'adresse est trop courte.";
     }

@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-
 $fichier = '../Folder_Data/commandes.json';
 $commandes = [];
 if (file_exists($fichier)) {
@@ -9,19 +8,24 @@ if (file_exists($fichier)) {
     $commandes = json_decode($json, true) ?? [];
 }
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_cmd'])) {
+    $id_a_modifier = $_POST['id_cmd'];
 
-if (isset($_POST['id_livraison_fin'])) {
-    $id_a_modifier = $_POST['id_livraison_fin'];
+    $nouveau_statut = isset($_POST['action_livrer']) ? "livree" : "abandonnee";
+
     for ($i = 0; $i < count($commandes); $i++) {
         if ($commandes[$i]['id'] == $id_a_modifier) {
-            $commandes[$i]['statut'] = "livree";
+            $commandes[$i]['statut'] = $nouveau_statut;
+            break;
         }
     }
+
     file_put_contents($fichier, json_encode($commandes, JSON_PRETTY_PRINT));
     header("Location: livreur.php");
     exit();
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -38,9 +42,12 @@ if (isset($_POST['id_livraison_fin'])) {
 
     <?php
     $nb_total = count($commandes);
+    $vide = true;
+
     for ($i = 0; $i < $nb_total; $i++) {
 
-        if ($commandes[$i]['statut'] === "en cours de livraison") { ?>
+        if ($commandes[$i]['statut'] === "en cours de livraison") {
+            $vide = false; ?>
 
             <section class="delivery-card">
                 <h2 class="order-id">Commande #<?php echo $commandes[$i]['id']; ?></h2>
@@ -60,31 +67,32 @@ if (isset($_POST['id_livraison_fin'])) {
 
                     <div class="info-groupe">
                         <p><strong>Client :</strong> <?php echo htmlspecialchars($commandes[$i]['client']); ?></p>
-
-                        <p><strong>Adresse de livraison :</strong>
-                            <span style="color: #f4c542;">
-                                <?php echo htmlspecialchars($commandes[$i]['adresse']); ?>
-                            </span>
-                        </p>
+                        <p><strong>Adresse :</strong> <span style="color: #f4c542;"><?php echo htmlspecialchars($commandes[$i]['adresse']); ?></span></p>
                     </div>
 
-                    <form method="POST" style="margin-top: 20px;">
-                        <input type="hidden" name="id_livraison_fin" value="<?php echo $commandes[$i]['id']; ?>">
-                        <button type="submit" class="btn-final">✔ LIVRAISON TERMINÉE</button>
+                    <!-- FORMULAIRE UNIQUE POUR LES DEUX ACTIONS -->
+                    <form method="POST" style="margin-top: 20px; display: flex; flex-direction: column; gap: 10px;">
+                        <input type="hidden" name="id_cmd" value="<?php echo $commandes[$i]['id']; ?>">
+
+
+                        <button type="submit" name="action_livrer" class="btn-final">✔ LIVRAISON TERMINÉE</button>
+
+
+                        <button type="submit" name="action_abandon"
+                            style="background-color: #e74c3c; color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer; font-weight: bold;"
+                            onclick="return confirm('Confirmer l\'abandon ? (Adresse introuvable)')">
+                            ✖ ABANDONNER (ADRESSE INTROUVABLE)
+                        </button>
                     </form>
                 </div>
             </section>
 
     <?php }
-    } ?>
-
-    <?php
-
-    $vide = true;
-    for ($i = 0; $i < count($commandes); $i++) {
-        if ($commandes[$i]['statut'] === "en cours de livraison") $vide = false;
     }
-    if ($vide) echo "<p style='text-align:center; color:white; margin-top:50px;'>Aucune course en attente.</p>";
+
+    if ($vide) {
+        echo "<p style='text-align:center; color:white; margin-top:50px;'>Aucune course en attente.</p>";
+    }
     ?>
 </body>
 

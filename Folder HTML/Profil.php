@@ -6,6 +6,7 @@ if (!isset($_SESSION['email'])) {
     exit();
 }
 
+// 1. Récupération des infos utilisateur
 $users = json_decode(file_get_contents('../Folder_Data/utilisateur.json'), true) ?? [];
 $userActuel = null;
 for ($i = 0; $i < count($users); $i++) {
@@ -15,7 +16,7 @@ for ($i = 0; $i < count($users); $i++) {
     }
 }
 
-
+// 2. Récupération des commandes
 $commandesData = json_decode(file_get_contents('../Folder_Data/commandes.json'), true) ?? [];
 $mesCommandes = [];
 for ($i = 0; $i < count($commandesData); $i++) {
@@ -82,6 +83,15 @@ $mesCommandes = array_reverse($mesCommandes);
                     for ($j = 0; $j < count($cmd['articles']); $j++) {
                         $totalPrix += $cmd['articles'][$j]['prix'];
                     }
+
+                    // Logique de couleur simple pour le statut
+                    $couleurStatus = "#f39c12"; // Orange par défaut
+                    if ($cmd['statut'] === "livree") {
+                        $couleurStatus = "#2ecc71";
+                    }
+                    if ($cmd['statut'] === "abandonnee") {
+                        $couleurStatus = "#e74c3c";
+                    }
                 ?>
                     <article class="commande-card">
                         <div class="commande-image">
@@ -96,7 +106,10 @@ $mesCommandes = array_reverse($mesCommandes);
                             </h3>
                             <p class="commande-date"><?= $cmd['date'] ?></p>
                             <p class="commande-prix"><?= number_format($totalPrix, 2) ?> €</p>
-                            <span class="commande-statut livré"><?= htmlspecialchars($cmd['statut']) ?></span>
+
+                            <span class="commande-statut" style="background-color: <?= $couleurStatus ?>; color: white; padding: 3px 10px; border-radius: 5px; font-weight: bold; font-size: 0.8em; text-transform: uppercase;">
+                                <?= htmlspecialchars($cmd['statut']) ?>
+                            </span>
                         </div>
                         <a href="Menus.php"><button class="btn-recommander">Recommander</button></a>
                     </article>
