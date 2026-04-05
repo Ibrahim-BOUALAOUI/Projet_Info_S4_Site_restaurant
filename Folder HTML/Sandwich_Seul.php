@@ -2,46 +2,9 @@
 session_start();
 $connecte = isset($_SESSION['email']);
 $nb_articles = isset($_SESSION['panier']) ? count($_SESSION['panier']) : 0;
-
-// 1. Définition des Sandwichs (Ta "base de données" locale)
-$sandwichs = [
-    [
-        "nom" => "Le Chicken Rouge 🟥",
-        "prix" => 9.99,
-        "img" => "Chiken_Rouge_Seul.png",
-        "desc" => "Pain maison, filet de poulet frais mariné au tandoori, crudités et sauce au choix. Servi avec des frites."
-    ],
-    [
-        "nom" => "Le Spécial ⭐",
-        "prix" => 9.99,
-        "img" => "special.png",
-        "desc" => "Pain maison, haut de cuisse de poulet frais mariné au paprika, poivrons, crudités et sauce au choix. Servi avec des frites."
-    ],
-    [
-        "nom" => "L'Escalope 🍗",
-        "prix" => 10.40,
-        "img" => "Escalope_Seul.png",
-        "desc" => "Pain maison, escalope de poulet frais, crudités et sauce au choix. Servi avec des frites."
-    ],
-    [
-        "nom" => "Le Suprême 👑",
-        "prix" => 11.50,
-        "img" => "Supreme_seul.png",
-        "desc" => "Pain maison, escalope de poulet frais, bacon de dinde, œuf, crudités et sauce au choix. Servi avec des frites."
-    ],
-    [
-        "nom" => "Le Steak 🥩",
-        "prix" => 9.80,
-        "img" => "Steak_Seul.png",
-        "desc" => "Pain maison, steak de bœuf, fromage, crudités et sauce au choix. Servi avec des frites."
-    ],
-    [
-        "nom" => "Le Tremblay 🥩🍗",
-        "prix" => 10.40,
-        "img" => "Le_Tremblay_Seul.png",
-        "desc" => "Pain maison, 3 steaks de bœuf, escalope de poulet frais, bacon de dinde, œuf, fromage, crudités et sauce au choix. Servi avec des frites."
-    ]
-];
+$json = file_get_contents("../Folder_Data/Menus.json");
+$data = json_decode($json, true);
+$plat = $data['plats'];
 ?>
 
 <!DOCTYPE html>
@@ -49,7 +12,6 @@ $sandwichs = [
 
 <head>
     <link rel="stylesheet" href="../Folder CSS/Sous_page.css">
-    <link rel="stylesheet" href="../Folder CSS/Commander_Article.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LES SANDWICHS SIGNATURES 🥙🍟</title>
@@ -65,7 +27,9 @@ $sandwichs = [
     <?php endif; ?>
 
     <header class="top_bar">
-        <a href="index.php"> <img src="../Folder img/129.png" alt="Logo" width="200"> </a>
+        <a href="index.php">
+            <img src="../Folder img/129.png" alt="Logo" width="200">
+        </a>
         <aside>
             <?php if ($connecte) : ?>
                 <a href="Profil.php" class="btn-profil">
@@ -80,24 +44,33 @@ $sandwichs = [
         </aside>
     </header>
 
-    <div class="rect-menus">
-        <!-- 2. Boucle PHP dynamique -->
-        <?php foreach ($sandwichs as $sandwich) : ?>
-            <div class="menu-item">
-                <div class="menu-info">
-                    <h3 class="menu-title"><?php echo strtoupper($sandwich['nom']); ?></h3>
-                    <p class="menu-price"><?php echo number_format($sandwich['prix'], 2, ',', ' '); ?> €</p>
-                    <p class="menu-description"><?php echo $sandwich['desc']; ?></p>
-                </div>
-                <div style="position: relative;">
-                    <img src="../Folder img/<?php echo $sandwich['img']; ?>" alt="<?php echo $sandwich['nom']; ?>" class="menu-image">
-                    
-                    <!-- Lien avec encodage des caractères spéciaux pour le panier -->
-                    <a href="ajouter_panier.php?nom=<?php echo urlencode($sandwich['nom']); ?>&prix=<?php echo $sandwich['prix']; ?>" class="add-button-link">+</a>
-                </div>
-            </div>
-        <?php endforeach; ?>
-    </div>
+    <main>
+        <div class="rect-menus">
+            <?php if (empty($plat)): ?>
+                <p class="no-result">Aucun produit trouvé.</p>
+            <?php else: ?>
+                <?php foreach ($plat as $p): ?>
+                    <?php if($p['type'] == 'sandwich') :?>
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h3 class="menu-title"><?= htmlspecialchars($p['nom']) ?></h3>
+                            <p class="menu-description"><?= htmlspecialchars($p['description']) ?></p>
+                            <p class="menu-price"><?= number_format($p['prix'], 2, ',', ' ') ?> €</p>
+                        </div>
+                        <div style="position: relative; flex-shrink: 0;">
+                            <img src="<?= htmlspecialchars($p['image']) ?>"
+                                 alt="<?= htmlspecialchars($p['nom']) ?>"
+                                 class="menu-image">
+                            <a href="ajouter_panier.php?nom=<?= urlencode($p['nom']) ?>&prix=<?= $p['prix'] ?>"
+                               class="add-button-link"
+                               title="Ajouter au panier">+</a>
+                        </div>
+                    </div>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </div>
+    </main>
 
 </body>
 </html>
