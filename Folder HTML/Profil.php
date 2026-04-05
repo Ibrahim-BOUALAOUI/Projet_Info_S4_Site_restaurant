@@ -56,14 +56,14 @@ foreach ($users as $user) {
 
                 <div class="info-item">
                     <span class="info-label">Téléphone :</span>
-                    <span class="info-value">06 40 80 94 50</span>
+                    <span class="info-value"><?= htmlspecialchars($userActuel['phone']) ?></span>
                 </div>
 
                 <div class="info-item">
                     <span class="info-label">Email :</span>
                     <span class="info-value"><?= htmlspecialchars($_SESSION['email']) ?></span>
                 </div>
-                
+
                 <div class="info-item">
                     <span class="info-label">Date de naissance :</span>
                     <span class="info-value"><?= htmlspecialchars($userActuel['birthdate']) ?></span>
@@ -75,12 +75,12 @@ foreach ($users as $user) {
             </a>
         </section>
 
-        <!-- Section Dernières Commandes -->
+
         <section class="commandes-section">
             <h2 class="section-title">🛍️ Vos dernières commandes</h2>
 
             <div class="commandes-grid">
-                <!-- Commande 1 -->
+
                 <article class="commande-card">
                     <div class="commande-image">
                         <img src="../Folder img/Chiken_tendori_logo.png" alt="Menu Chicken Tandoori">
@@ -94,7 +94,7 @@ foreach ($users as $user) {
                     <a href="Menus.php"> <button class="btn-recommander"> Recommander</button> </a>
                 </article>
 
-                <!-- Commande 2 -->
+
                 <article class="commande-card">
                     <div class="commande-image">
                         <img src="../Folder img/special.png" alt="Menu Spécial">
@@ -108,7 +108,7 @@ foreach ($users as $user) {
                     <a href="Menus.php"> <button class="btn-recommander"> Recommander</button> </a>
                 </article>
 
-                <!-- Commande 3 -->
+
                 <article class="commande-card">
                     <div class="commande-image">
                         <img src="../Folder img/steak.png" alt="Menu Steak">
@@ -124,7 +124,7 @@ foreach ($users as $user) {
             </div>
         </section>
 
-        <!-- Section Actions Rapides -->
+
         <section class="actions-section">
             <h2 class="section-title">⚡ Actions rapides</h2>
 

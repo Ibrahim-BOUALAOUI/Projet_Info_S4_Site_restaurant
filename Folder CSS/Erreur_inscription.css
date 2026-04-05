@@ -1,0 +1,71 @@
+:root {
+    --bg-color: hsl(272, 77%, 15%);
+    --card-bg: #202020;
+    --accent-color: #f4c542;
+}
+
+
+body {
+    background-color: var(--bg-color);
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+
+.login-card {
+    background-color: var(--card-bg);
+    width: 100%;
+    max-width: 400px;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    color: white;
+}
+
+.site-logo {
+    width: 250px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+
+.error-box {
+    text-align: left;
+    background-color: rgba(255, 0, 0, 0.1);
+    border-left: 4px solid #ff4d4d;
+    padding: 15px;
+    margin-bottom: 25px;
+    border-radius: 4px;
+}
+
+.error-box p {
+    color: #ff4d4d;
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+
+.main-btn {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    background-color: #37105e;
+    color: white;
+    border: none;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+    text-decoration: none;
+
+    transition: background 0.3s;
+}
+
+.main-btn:hover {
+    background-color: #8a2be2;
+}

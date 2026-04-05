@@ -32,7 +32,7 @@ $nb_articles = isset($_SESSION['panier']) ? count($_SESSION['panier']) : 0;
                     <span class="profil-text">Mon profil</span>
                 </a>
             <?php } else { ?>
-                <a href="connection.php">
+                <a href="connexion.php">
                     <button class="Btn">Connexion</button>
                 </a>
             <?php } ?>

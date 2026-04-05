@@ -1,6 +1,3 @@
-/* ========================================
-   VARIABLES DE COULEURS
-======================================== */
 :root {
     --violet-nuit: #280944;
     --ivoire-chaud: #F5EFE6;
@@ -10,9 +7,6 @@
 }
 
 
-/* ========================================
-   CORPS DE LA PAGE
-======================================== */
 body {
     background-color: var(--violet-nuit);
     color: var(--ivoire-chaud);
@@ -26,9 +20,6 @@ body {
 }
 
 
-/* ========================================
-   EN-TÊTE (LOGO)
-======================================== */
 header {
     display: flex;
     justify-content: center;
@@ -42,6 +33,7 @@ header img {
     max-width: 100%;
     height: auto;
 }
+
 .top_bar {
     display: flex;
     justify-content: space-between;
@@ -61,9 +53,6 @@ header img {
     transform: scale(1.05);
 }
 
-/* ========================================
-   SECTION FORMULAIRE
-======================================== */
 .avis-form {
     display: flex;
     justify-content: center;
@@ -75,9 +64,6 @@ header img {
 }
 
 
-/* ========================================
-   CARTE (CONTENEUR DU FORMULAIRE)
-======================================== */
 .card {
     background-color: var(--ivoire-chaud);
     color: var(--aubergine);
@@ -92,9 +78,6 @@ header img {
 }
 
 
-/* ========================================
-   TITRE ET SOUS-TITRE
-======================================== */
 .card h2 {
     text-align: center;
     margin-top: 0;
@@ -112,9 +95,6 @@ header img {
 }
 
 
-/* ========================================
-   FORMULAIRE
-======================================== */
 form {
     display: flex;
     flex-direction: column;
@@ -122,9 +102,6 @@ form {
 }
 
 
-/* ========================================
-   GROUPES DE CHAMPS
-======================================== */
 .form-group {
     display: flex;
     flex-direction: column;
@@ -132,9 +109,6 @@ form {
 }
 
 
-/* ========================================
-   LABELS (TITRES DES CHAMPS)
-======================================== */
 .label-title {
     font-size: 15px;
     font-weight: bold;
@@ -142,9 +116,6 @@ form {
 }
 
 
-/* ========================================
-   CHAMPS DE TEXTE ET TEXTAREA
-======================================== */
 textarea,
 input[type="text"] {
     padding-top: 14px;
@@ -165,7 +136,6 @@ textarea {
     min-height: 120px;
 }
 
-/* Focus sur les champs */
 textarea:focus,
 input[type="text"]:focus {
     outline: none;
@@ -174,9 +144,6 @@ input[type="text"]:focus {
 }
 
 
-/* ========================================
-   SYSTÈME D'ÉTOILES (NOTE GLOBALE)
-======================================== */
 .rating {
     display: flex;
     flex-direction: row-reverse;
@@ -186,12 +153,10 @@ input[type="text"]:focus {
     padding-bottom: 10px;
 }
 
-/* Cache les inputs radio */
 .rating input[type="radio"] {
     display: none;
 }
 
-/* Style des labels (étoiles) */
 .rating label {
     cursor: pointer;
     font-size: 40px;
@@ -203,28 +168,22 @@ input[type="text"]:focus {
     content: '★';
 }
 
-/* Hover sur les étoiles */
 .rating label:hover,
-.rating label:hover ~ label {
+.rating label:hover~label {
     color: #ffa723;
     transform: scale(1.1);
 }
 
-/* Étoiles sélectionnées */
-.rating input[type="radio"]:checked ~ label {
+.rating input[type="radio"]:checked~label {
     color: #ffa723;
 }
 
-/* Animation au hover quand une étoile est sélectionnée */
-.rating input[type="radio"]:checked ~ label:hover,
-.rating input[type="radio"]:checked ~ label:hover ~ label {
+.rating input[type="radio"]:checked~label:hover,
+.rating input[type="radio"]:checked~label:hover~label {
     color: #ff9e0b;
 }
 
 
-/* ========================================
-   NOTE DE LA LIVRAISON (BOUTONS RONDS)
-======================================== */
 .livraison-rating {
     display: flex;
     gap: 15px;
@@ -239,12 +198,10 @@ input[type="text"]:focus {
     gap: 5px;
 }
 
-/* Cache les inputs radio */
 .livraison-rating input[type="radio"] {
     display: none;
 }
 
-/* Style des labels (chiffres) */
 .livraison-rating label {
     display: flex;
     align-items: center;
@@ -261,15 +218,13 @@ input[type="text"]:focus {
     transition: all 0.3s ease;
 }
 
-/* Hover sur les boutons */
 .livraison-rating label:hover {
     background-color: var(--rose-poudré);
     border-color: var(--aubergine);
     transform: scale(1.1);
 }
 
-/* Bouton sélectionné */
-.livraison-rating input[type="radio"]:checked + label {
+.livraison-rating input[type="radio"]:checked+label {
     background-color: var(--doré-doux);
     border-color: var(--doré-doux);
     color: white;
@@ -277,9 +232,6 @@ input[type="text"]:focus {
 }
 
 
-/* ========================================
-   BOUTON ENVOYER
-======================================== */
 .btn {
     background-color: var(--aubergine);
     color: var(--ivoire-chaud);
@@ -308,12 +260,8 @@ input[type="text"]:focus {
 }
 
 
-/* ========================================
-   RESPONSIVE - TABLETTE
-   Moins de 768px
-======================================== */
 @media screen and (max-width: 768px) {
-    
+
     header {
         min-height: 150px;
     }

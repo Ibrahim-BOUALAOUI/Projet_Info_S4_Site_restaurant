@@ -1,15 +1,9 @@
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="../folder CSS/connection.css">
-</head>
-
 <?php
-if (isset($_POST['birthdate']) && isset($_POST['name']) && isset($_POST['last_name']) && isset($_POST['email'])  && isset($_POST['phone']) && isset($_POST['adress']) && isset($_POST['password'])) {
+session_start();
 
-    $passwordHash = password_hash($_POST['password'], PASSWORD_DEFAULT);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $errors = [];
+
 
     $birthdate = $_POST['birthdate'];
     $name = $_POST['name'];
@@ -17,43 +11,33 @@ if (isset($_POST['birthdate']) && isset($_POST['name']) && isset($_POST['last_na
     $email = $_POST['email'];
     $phone = $_POST['phone'];
     $adress = $_POST['adress'];
-    $password = $passwordHash;
+
 
     $Year = date('Y', strtotime($birthdate));
     if ($Year < 1900 || $Year > 2026) {
-        $errors[] = "Date de naissance incorrect";
+        $errors[] = "Date de naissance incorrecte.";
     }
-
     if (strpos($email, '@') === false) {
-        $errors[] = "L'email doit contenir un @";
+        $errors[] = "L'email doit contenir un @.";
     }
-
     if (preg_match('/[0-9]/', $name) || preg_match('/[0-9]/', $last_name)) {
-        $errors[] = "Le nom et le prénom ne doivent pas contenir de chiffres.";
+        $errors[] = "Le nom/prénom ne doit pas contenir de chiffres.";
     }
-
-
     if (!ctype_digit($phone) || strlen($phone) !== 10) {
-        $errors[] = "Le numéro doit faire 10 chiffres ";
+        $errors[] = "Le numéro doit faire 10 chiffres.";
     }
-
     if (strlen($adress) < 5) {
-        $errors[] = "L'adresse est trop courte";
+        $errors[] = "L'adresse est trop courte.";
     }
 
-    $file = "../Folder_Data/utilisateur.json";
-    $users = [];
 
-    if (file_exists($file)) {
-        $json = file_get_contents($file);
-        $users = json_decode($json, true);
-        if ($users === null) {
-            $users = [];
-        }
-    }
+    if (!empty($errors)) {
+        $_SESSION['message_erreur'] = $errors;
+        header("Location: Erreur_inscription.php");
+        exit();
+    } else {
 
-    if (empty($errors)) {
-        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+
 
         $newUser = [
             "birthdate" => $birthdate,
@@ -62,25 +46,46 @@ if (isset($_POST['birthdate']) && isset($_POST['name']) && isset($_POST['last_na
             "email" => $email,
             "phone" => $phone,
             "adress" => $adress,
-            "password" => $passwordHash,
+            "password" => password_hash($_POST['password'], PASSWORD_DEFAULT),
             "type" => 'client',
             "connected" => true,
         ];
 
+        $file = "../Folder_Data/utilisateur.json";
+        $users = [];
+
+        if (file_exists($file)) {
+            $json = file_get_contents($file);
+            $users = json_decode($json, true);
+
+            if ($users === null) {
+                $users = [];
+            }
+        }
+
         $users[] = $newUser;
         file_put_contents($file, json_encode($users, JSON_PRETTY_PRINT));
 
-        header("Location: connection.php");
+        header("Location: connexion.php");
         exit();
     }
 }
+
 ?>
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../folder CSS/connexion.css">
+</head>
 
 <body>
     <div class="login-wrapper">
         <div class="login-card">
             <div class="logo-box">
-                <img src="../folder CSS/129.png" alt="Logo Le 129" class="site-logo">
+                <img src="../folder img/129.png" alt="Logo Le 129" class="site-logo">
+
 
                 <form method="POST">
                     <h2 class="form-title">VOS INFORMATIONS</h2>

@@ -55,7 +55,7 @@ $plat = array_filter($plat, function ($p) use ($filtreType, $filtreSaveur, $filt
                     <span class="profil-text">Mon profil</span>
                 </a>
             <?php } else { ?>
-                <a href="connection.php">
+                <a href="connexion.php">
                     <button class="Btn">Connexion</button>
                 </a>
             <?php } ?>

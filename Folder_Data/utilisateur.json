@@ -1,34 +1,12 @@
 [
     {
-        "birthdate": "0001-01-01",
-        "name": "Evina",
-        "last_name": "Nathan",
-        "email": "client1@gmail.com",
-        "phone": "06 41 95 82 31",
-        "adress": "chez ta mere",
-        "password": "$2y$10$llbi9HD6wzWKBqnJcnLnxeqCykkzsZBpKMAzZKDsKRGkxnQb9w02y",
-        "type": "client",
-        "connected": true
-    },
-    {
-        "birthdate": null,
-        "name": "admin",
-        "last_name": "Bou",
-        "email": "admin@gmail.com",
-        "phone": "00 00 00 00",
-        "adress": "Chez moi",
-        "password": "$2y$10$bZTmLWIqOViAsW2PW5H5X.e\/GpGsoV3dQv0GAbaKTmxejVE5NB7ae",
-        "type": "admin",
-        "connected": true
-    },
-    {
         "birthdate": "2005-02-12",
         "name": "Sayf",
-        "last_name": "Sbai",
-        "email": "sayfsbai122@gmail.com",
+        "last_name": "SBAI",
+        "email": "sbaisayf121@gmail.com",
         "phone": "0652393535",
-        "adress": "MotherBase",
-        "password": "$2y$10$uRAAppRI4biXFsXzg6nRWej7pw4Xzv2wIkmnIxkVe9CxK9dr32bOC",
+        "adress": "12 rue du kaka meru",
+        "password": "$2y$10$fjtmpLrQooEAfiUQDEKx8.PorjsGFcmjCeKK9h\/SjBwC8TnNMJWOO",
         "type": "client",
         "connected": true
     }

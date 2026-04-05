@@ -37,7 +37,7 @@ $nb_articles = isset($_SESSION['panier']) ? count($_SESSION['panier']) : 0;
 
             <?php } else { ?>
 
-                <a href="connection.php" aria-label="Se connecter">
+                <a href="connexion.php" aria-label="Se connecter">
                     <button class="Btn" aria-label="Connexion">Connexion</button>
                 </a>
 

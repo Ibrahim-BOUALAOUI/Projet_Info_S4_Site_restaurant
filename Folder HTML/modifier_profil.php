@@ -8,27 +8,27 @@ if (!isset($_SESSION['connecte'])) {
 
 $message =  "";
 
-// Traitement du formulaire quand il est soumis
+
 if (isset($_POST['nom'])) {
     $file = '../Folder_Data/utilisateur.json';
     $users = json_decode(file_get_contents($file), true);
 
     foreach ($users as &$user) {
         if ($user['email'] === $_SESSION['email']) {
-            // Met à jour les champs modifiés
-            
+
+
             $user['name'] = $_POST['nom'];
             $user['last_name'] = $_POST['prenom'];
             $user['email'] = $_POST['email'];
             $user['adress'] = $_POST['adress'];
             $user['birthdate'] = $_POST['birthdate'];
 
-            
+
             if (!empty($_POST['password'])) {
                 $user['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
             }
 
-            
+
             $_SESSION['nom']   = $_POST['nom'];
             $_SESSION['email'] = $_POST['email'];
 
@@ -36,12 +36,12 @@ if (isset($_POST['nom'])) {
         }
     }
 
-    // Sauvegarde dans le JSON
+
     file_put_contents($file, json_encode($users, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
     $message = "✅ Informations mises à jour avec succès !";
 }
 
-// Charge les infos actuelles de l'utilisateur
+
 $file = '../Folder_Data/utilisateur.json';
 $users = json_decode(file_get_contents($file), true);
 $userActuel = null;
@@ -55,12 +55,14 @@ foreach ($users as $user) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../Folder CSS/Profil.css">
     <title>Modification mon Profil</title>
 </head>
+
 <body>
     <header>
         <a href="index.php">
@@ -93,7 +95,7 @@ foreach ($users as $user) {
                 <div class="info-item">
                     <label class="info-label"> Adresse : </label>
                     <input type="text" name="adress" class="input-modifier"
-                    value="<?= htmlspecialchars($userActuel['adress'])?>" required>
+                        value="<?= htmlspecialchars($userActuel['adress']) ?>" required>
                 </div>
 
                 <div class="info-item">
@@ -116,4 +118,5 @@ foreach ($users as $user) {
         </section>
     </main>
 </body>
+
 </html>

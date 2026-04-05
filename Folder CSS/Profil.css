@@ -1,8 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Bungee&family=Rufina:wght@400;700&display=swap');
 
-/* ========================================
-   VARIABLES ET BASE
-======================================== */
+
 * {
     margin: 0;
     padding: 0;
@@ -17,7 +15,7 @@ body {
     line-height: 1.6;
 }
 
-/* Bouton déconnexion */
+
 .btn-deconnexion {
     background-color: transparent;
     border: 2px solid #f44336;
@@ -35,7 +33,6 @@ body {
     color: white;
 }
 
-/* Champs de modification */
 .input-modifier {
     width: 100%;
     padding: 10px 15px;
@@ -53,7 +50,6 @@ body {
     border-color: #F67D00;
 }
 
-/* Actions du formulaire */
 .form-actions {
     display: flex;
     gap: 15px;
@@ -76,7 +72,6 @@ body {
     background-color: rgba(184, 179, 171, 0.1);
 }
 
-/* Message de succès */
 .message-succes {
     background-color: rgba(76, 175, 80, 0.2);
     border: 1px solid #4caf50;
@@ -86,9 +81,7 @@ body {
     margin-bottom: 20px;
 }
 
-/* ========================================
-   EN-TÊTE (LOGO)
-======================================== */
+
 header {
     display: flex;
     justify-content: center;
@@ -109,9 +102,6 @@ header img:hover {
 }
 
 
-/* ========================================
-   CONTAINER PRINCIPAL
-======================================== */
 .rect-mid {
     max-width: 1200px;
     margin-left: auto;
@@ -122,9 +112,6 @@ header img:hover {
 }
 
 
-/* ========================================
-   TITRES DE SECTION
-======================================== */
 .section-title {
     font-family: 'Bungee', cursive;
     color: #F67D00;
@@ -133,10 +120,6 @@ header img:hover {
     text-align: center;
 }
 
-
-/* ========================================
-   CARTE INFORMATIONS PERSONNELLES
-======================================== */
 .informations {
     background-color: #1b0730;
     border: 2px solid rgba(246, 125, 0, 0.4);
@@ -150,9 +133,6 @@ header img:hover {
 }
 
 
-/* ========================================
-   CONTENU DES INFORMATIONS
-======================================== */
 .info-content {
     display: flex;
     flex-direction: column;
@@ -185,10 +165,6 @@ header img:hover {
     padding-left: 10px;
 }
 
-
-/* ========================================
-   BOUTON MODIFIER
-======================================== */
 .btn-modifier {
     width: 100%;
     background: linear-gradient(135deg, #F67D00 0%, #ff8c42 100%);
@@ -217,27 +193,16 @@ header img:hover {
 }
 
 
-/* ========================================
-   SECTION COMMANDES
-======================================== */
 .commandes-section {
     margin-bottom: 40px;
 }
 
-
-/* ========================================
-   GRILLE DES COMMANDES
-======================================== */
 .commandes-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 25px;
 }
 
-
-/* ========================================
-   CARTE COMMANDE
-======================================== */
 .commande-card {
     background-color: #1b0730;
     border: 2px solid rgba(246, 125, 0, 0.4);
@@ -259,10 +224,6 @@ header img:hover {
     box-shadow: 0 8px 25px rgba(246, 125, 0, 0.3);
 }
 
-
-/* ========================================
-   IMAGE DE LA COMMANDE
-======================================== */
 .commande-image {
     width: 100%;
     height: 180px;
@@ -286,9 +247,6 @@ header img:hover {
 }
 
 
-/* ========================================
-   INFORMATIONS DE LA COMMANDE
-======================================== */
 .commande-info {
     display: flex;
     flex-direction: column;
@@ -319,9 +277,6 @@ header img:hover {
 }
 
 
-/* ========================================
-   STATUT DE LA COMMANDE
-======================================== */
 .commande-statut {
     display: inline-block;
     padding-top: 6px;
@@ -348,9 +303,6 @@ header img:hover {
 }
 
 
-/* ========================================
-   BOUTON RECOMMANDER
-======================================== */
 .btn-recommander {
     background-color: rgba(246, 125, 0, 0.1);
     color: #F67D00;
@@ -373,17 +325,10 @@ header img:hover {
 }
 
 
-/* ========================================
-   SECTION ACTIONS RAPIDES
-======================================== */
 .actions-section {
     margin-bottom: 40px;
 }
 
-
-/* ========================================
-   GRILLE DES ACTIONS
-======================================== */
 .actions-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -391,9 +336,6 @@ header img:hover {
 }
 
 
-/* ========================================
-   CARTE ACTION
-======================================== */
 .action-card {
     background-color: #1b0730;
     border: 2px solid rgba(246, 125, 0, 0.4);
@@ -430,12 +372,8 @@ header img:hover {
 }
 
 
-/* ========================================
-   RESPONSIVE - TABLETTE
-   Moins de 1024px
-======================================== */
 @media screen and (max-width: 1024px) {
-    
+
     .profil-container {
         padding-left: 15px;
         padding-right: 15px;
@@ -452,12 +390,8 @@ header img:hover {
 }
 
 
-/* ========================================
-   RESPONSIVE - MOBILE
-   Moins de 768px
-======================================== */
 @media screen and (max-width: 768px) {
-    
+
     header {
         padding-top: 20px;
         padding-bottom: 20px;
@@ -504,4 +438,3 @@ header img:hover {
         font-size: 0.85rem;
     }
 }
-

@@ -12,7 +12,7 @@ body {
 /* ========================================
    MISE EN PAGE PRINCIPALE (GRID)
 ======================================== */
-body > main {
+body>main {
     display: grid;
     grid-template-areas:
         "header right-top"
@@ -32,6 +32,7 @@ header {
     justify-content: center;
     align-items: center;
 }
+
 .top_bar {
     display: flex;
     justify-content: space-between;
@@ -52,9 +53,7 @@ header {
 }
 
 
-/* ========================================
-   TEXTE AVEC POLICE BUNGEE
-======================================== */
+
 .Bungee {
     font-family: Bungee;
     font-size: 100%;
@@ -62,9 +61,7 @@ header {
 }
 
 
-/* ========================================
-   BARRE DU HAUT (Logo + Bouton)
-======================================== */
+
 .top_bar {
     display: flex;
     justify-content: space-between;
@@ -75,9 +72,7 @@ header {
     padding-right: 40px;
 }
 
-/* ========================================
-   BOUTON PROFIL (remplace connexion)
-======================================== */
+
 aside {
     grid-area: right-top;
     display: flex;
@@ -128,9 +123,7 @@ aside {
 }
 
 
-/* ========================================
-   ZONE BOUTON CONNEXION (en haut à droite)
-======================================== */
+
 aside {
     grid-area: right-top;
     display: flex;
@@ -143,9 +136,7 @@ aside {
 }
 
 
-/* ========================================
-   BOUTON CONNEXION
-======================================== */
+
 .Btn {
     width: 140px;
     height: 40px;
@@ -179,7 +170,7 @@ aside {
     transition: background-position 1s ease;
 }
 
-/* Quand la souris passe sur le bouton */
+
 .Btn:hover {
     background-position: right;
 }
@@ -188,15 +179,12 @@ aside {
     background-position: right;
 }
 
-/* Quand on clique sur le bouton */
 .Btn:active {
     transform: scale(0.95);
 }
 
 
-/* ========================================
-   GRILLE DES MENUS
-======================================== */
+
 .rect-menus {
     grid-area: section;
     display: grid;
@@ -209,9 +197,7 @@ aside {
 }
 
 
-/* ========================================
-   CARTE MENU (un seul item)
-======================================== */
+
 .menu-item {
     background-color: #1b0730;
     border: 2px solid rgba(246, 125, 0, 0.4);
@@ -224,12 +210,12 @@ aside {
     gap: 15px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     cursor: pointer;
-    transition: transform 0.25s ease, 
-                border-color 0.25s ease, 
-                box-shadow 0.25s ease;
+    transition: transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
 }
 
-/* Quand la souris passe sur un menu */
+
 .menu-item:hover {
     transform: translateY(-6px) scale(1.01);
     border-color: #F67D00;
@@ -237,9 +223,6 @@ aside {
 }
 
 
-/* ========================================
-   INFORMATIONS DU MENU (texte)
-======================================== */
 .menu-info {
     flex: 1;
 }
@@ -270,9 +253,7 @@ aside {
 }
 
 
-/* ========================================
-   IMAGE DU MENU
-======================================== */
+
 .menu-image {
     width: 150px;
     height: 150px;
@@ -282,15 +263,13 @@ aside {
     transition: transform 0.25s ease;
 }
 
-/* Animation de l'image au survol */
+
 .menu-item:hover .menu-image {
     transform: scale(1.05) rotate(-1deg);
 }
 
 
-/* ========================================
-   BOUTON + (ajouter)
-======================================== */
+
 .add-button {
     position: absolute;
     bottom: 10px;
@@ -304,27 +283,23 @@ aside {
     color: white;
     cursor: pointer;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s ease, 
-                transform 0.3s ease, 
-                box-shadow 0.3s ease;
+    transition: background-color 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
-/* Quand la souris passe sur le bouton + */
 .add-button:hover {
     background-color: #ffa500;
     transform: scale(1.1);
 }
 
-/* Animation supplémentaire quand on survole la carte */
 .menu-item:hover .add-button {
     transform: scale(1.15);
     box-shadow: 0 0 12px rgba(255, 165, 0, 0.7);
 }
 
 
-/* ========================================
-   CONTAINER DES BOISSONS
-======================================== */
+
 .boissons-container {
     display: flex;
     flex-wrap: wrap;
@@ -337,9 +312,7 @@ aside {
 }
 
 
-/* ========================================
-   CARTE BOISSON (un seul item)
-======================================== */
+
 .boisson-card {
     background-color: #1b0730;
     border: 2px solid rgba(246, 125, 0, 0.4);
@@ -355,20 +328,17 @@ aside {
     padding-left: 15px;
     padding-right: 15px;
     text-align: center;
-    transition: transform 0.3s ease, 
-                border-color 0.3s ease;
+    transition: transform 0.3s ease,
+        border-color 0.3s ease;
 }
 
-/* Quand la souris passe sur une boisson */
+
 .boisson-card:hover {
     transform: translateY(-5px);
     border-color: #F67D00;
 }
 
 
-/* ========================================
-   IMAGE DE LA BOISSON
-======================================== */
 .boisson-image {
     width: 100px;
     height: 100px;
@@ -378,9 +348,7 @@ aside {
 }
 
 
-/* ========================================
-   INFORMATIONS DE LA BOISSON
-======================================== */
+
 .boisson-info h3 {
     font-family: 'Bungee';
     font-size: 0.9rem;
@@ -392,24 +360,20 @@ aside {
 }
 
 
-/* ========================================
-   RESPONSIVE - TABLETTES (écrans moyens)
-   Entre 768px et 1024px
-======================================== */
 @media screen and (max-width: 1024px) {
-    
-    /* Grille principale - ajustement */
-    body > main {
+
+
+    body>main {
         grid-template-columns: 1fr;
     }
 
-    /* Barre du haut - moins d'espace */
+
     .top_bar {
         padding-left: 20px;
         padding-right: 20px;
     }
 
-    /* Grille des menus - toujours 2 colonnes mais plus petites */
+
     .rect-menus {
         grid-template-columns: 1fr 1fr;
         gap: 15px;
@@ -417,7 +381,6 @@ aside {
         padding-right: 15px;
     }
 
-    /* Cartes menu - un peu plus petites */
     .menu-item {
         padding-top: 12px;
         padding-bottom: 12px;
@@ -425,13 +388,13 @@ aside {
         padding-right: 12px;
     }
 
-    /* Image du menu - plus petite */
+
     .menu-image {
         width: 120px;
         height: 120px;
     }
 
-    /* Container des boissons */
+
     .boissons-container {
         gap: 15px;
         padding-left: 15px;
@@ -440,14 +403,11 @@ aside {
 }
 
 
-/* ========================================
-   RESPONSIVE - MOBILE (petits écrans)
-   Moins de 768px
-======================================== */
+
 @media screen and (max-width: 768px) {
-    
-    /* Grille principale - une seule colonne */
-    body > main {
+
+
+    body>main {
         grid-template-areas:
             "header"
             "right-top"
@@ -457,7 +417,6 @@ aside {
         grid-template-columns: 1fr;
     }
 
-    /* En-tête - plus petit */
     header {
         padding-top: 10px;
         padding-bottom: 10px;
@@ -468,7 +427,7 @@ aside {
         height: auto;
     }
 
-    /* Barre du haut - centré */
+
     .top_bar {
         flex-direction: column;
         padding-top: 10px;
@@ -478,14 +437,13 @@ aside {
         gap: 15px;
     }
 
-    /* Bouton connexion - centré */
+
     aside {
         justify-content: center;
         padding-top: 10px;
         padding-bottom: 10px;
     }
 
-    /* Grille des menus - UNE SEULE COLONNE */
     .rect-menus {
         grid-template-columns: 1fr;
         gap: 15px;
@@ -495,14 +453,14 @@ aside {
         padding-right: 10px;
     }
 
-    /* Cartes menu - empilées verticalement */
+
     .menu-item {
         flex-direction: column;
         align-items: center;
         text-align: center;
     }
 
-    /* Image du menu - centrée */
+
     .menu-image {
         width: 100%;
         max-width: 200px;
@@ -510,22 +468,21 @@ aside {
         margin-bottom: 15px;
     }
 
-    /* Informations du menu - centrées */
     .menu-info {
         width: 100%;
     }
 
-    /* Titre du menu - plus petit */
+
     .menu-title {
         font-size: 1.1rem;
     }
 
-    /* Description - plus petite */
+
     .menu-description {
         font-size: 0.9rem;
     }
 
-    /* Container des boissons - centré */
+
     .boissons-container {
         justify-content: center;
         gap: 15px;
@@ -535,19 +492,19 @@ aside {
         padding-right: 10px;
     }
 
-    /* Cartes boissons - un peu plus petites */
+
     .boisson-card {
         width: 160px;
         height: 200px;
     }
 
-    /* Image boisson - plus petite */
+
     .boisson-image {
         width: 80px;
         height: 80px;
     }
 
-    /* Texte boisson - plus petit */
+
     .boisson-info h3 {
         font-size: 0.85rem;
     }

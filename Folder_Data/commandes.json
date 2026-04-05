@@ -1,1 +1,18 @@
-[]
+[
+    {
+        "id": 1775393187,
+        "client": "sbaisayf121@gmail.com",
+        "articles": [
+            {
+                "nom": "Perrier Citron",
+                "prix": "1.50"
+            },
+            {
+                "nom": "Le Cheese",
+                "prix": "4.00"
+            }
+        ],
+        "statut": "\u00e0 pr\u00e9parer",
+        "date": "2026-04-05 12:46:27"
+    }
+]

@@ -14,9 +14,9 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
                 $userFound = true;
 
                 if (password_verify($_POST["password"], $user["password"])) {
-                    $_SESSION['connecte'] = true;      
+                    $_SESSION['connecte'] = true;
                     $_SESSION['nom'] = $user["name"];
-                    $_SESSION['email'] = $user["email"]; 
+                    $_SESSION['email'] = $user["email"];
                     $_SESSION['type'] = $user["type"];
                     header("Location: index.php");
                     exit();
@@ -42,7 +42,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Le 129 | Connexion</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../folder CSS/connection.css">
+    <link rel="stylesheet" href="../folder CSS/connexion.css">
 </head>
 
 <body>
