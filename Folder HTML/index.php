@@ -2,7 +2,7 @@
 
 session_start();
 $connecte = isset($_SESSION['email']);
-$role = $_SESSION['type'] ?? null; // ✅ récupère le rôle
+$role = $_SESSION['type'] ?? null;
 ?>
 
 <!DOCTYPE html>

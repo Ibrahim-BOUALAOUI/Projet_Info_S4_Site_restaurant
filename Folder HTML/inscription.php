@@ -12,6 +12,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $phone = $_POST['phone'];
     $adress = $_POST['adress'];
 
+    $file = "../Folder_Data/utilisateur.json";
+    $users = [];
+    if (file_exists($file)) {
+        $json = file_get_contents($file);
+        $users = json_decode($json, true) ?? [];
+    }
+
+
+    for ($i = 0; $i < count($users); $i++) {
+        if ($users[$i]['email'] === $email) {
+            $errors[] = "Cet email est déjà utilisé par un autre compte.";
+            break;
+        }
+    }
 
     $Year = date('Y', strtotime($birthdate));
     if ($Year < 1900 || $Year > 2026) {
@@ -51,17 +65,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             "connected" => true,
         ];
 
-        $file = "../Folder_Data/utilisateur.json";
-        $users = [];
-
-        if (file_exists($file)) {
-            $json = file_get_contents($file);
-            $users = json_decode($json, true);
-
-            if ($users === null) {
-                $users = [];
-            }
-        }
 
         $users[] = $newUser;
         file_put_contents($file, json_encode($users, JSON_PRETTY_PRINT));
@@ -70,7 +73,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="fr">

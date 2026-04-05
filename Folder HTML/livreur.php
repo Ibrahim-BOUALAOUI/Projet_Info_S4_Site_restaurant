@@ -1,10 +1,33 @@
+<?php
+session_start();
+
+
+$fichier = '../Folder_Data/commandes.json';
+$commandes = [];
+if (file_exists($fichier)) {
+    $json = file_get_contents($fichier);
+    $commandes = json_decode($json, true) ?? [];
+}
+
+
+if (isset($_POST['id_livraison_fin'])) {
+    $id_a_modifier = $_POST['id_livraison_fin'];
+    for ($i = 0; $i < count($commandes); $i++) {
+        if ($commandes[$i]['id'] == $id_a_modifier) {
+            $commandes[$i]['statut'] = "livrée";
+        }
+    }
+    file_put_contents($fichier, json_encode($commandes, JSON_PRETTY_PRINT));
+    header("Location: livreur.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
-    <title>Livraison</title>
+    <title>Livraison - Le 129</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../Folder CSS/livreur.css">
 </head>
 
@@ -13,52 +36,56 @@
         <img src="../Folder img/129.png" alt="logo" class="logo-admin" width="200">
     </header>
 
-    <section class="delivery-card">
-        <h2 class="order-id">Commande #98</h2>
+    <?php
+    $nb_total = count($commandes);
+    for ($i = 0; $i < $nb_total; $i++) {
 
-        <div class="info">
-            <div class="delivery-info">
-                <p>2X Chicken Rouge (complet), 2X Sprite</p>
-            </div>
+        if ($commandes[$i]['statut'] === "en cours de livraison") { ?>
 
-            <div class="info-groupe">
-                <p><strong>Adresse :</strong> CY Tech, Av. du Parc, 95000 Cergy</p>
-                <p><strong>Tél :</strong> 01 34 25 10 10</p>
-            </div>
+            <section class="delivery-card">
+                <h2 class="order-id">Commande #<?php echo $commandes[$i]['id']; ?></h2>
 
+                <div class="info">
+                    <div class="delivery-info">
+                        <p><strong>Contenu :</strong>
+                            <?php
+                            $articles = $commandes[$i]['articles'];
+                            for ($j = 0; $j < count($articles); $j++) {
+                                echo htmlspecialchars($articles[$j]['nom']);
+                                if ($j < count($articles) - 1) echo ", ";
+                            }
+                            ?>
+                        </p>
+                    </div>
 
-            <a href="https://www.google.com/maps/dir/?api=1&destination=CY+Tech+Av+du+Parc+95000+Cergy" target="_blank"
-                class="btn-maps">
-                📍 OUVRIR L’ITINÉRAIRE
-            </a>
+                    <div class="info-groupe">
+                        <p><strong>Client :</strong> <?php echo htmlspecialchars($commandes[$i]['client']); ?></p>
 
-            <button class="btn-final">✔ LIVRAISON TERMINÉE</button>
-        </div>
-    </section>
+                        <p><strong>Adresse de livraison :</strong>
+                            <span style="color: #f4c542;">
+                                <?php echo htmlspecialchars($commandes[$i]['adresse']); ?>
+                            </span>
+                        </p>
+                    </div>
 
-    <section class="delivery-card">
-        <h2 class="order-id">Commande #99</h2>
+                    <form method="POST" style="margin-top: 20px;">
+                        <input type="hidden" name="id_livraison_fin" value="<?php echo $commandes[$i]['id']; ?>">
+                        <button type="submit" class="btn-final">✔ LIVRAISON TERMINÉE</button>
+                    </form>
+                </div>
+            </section>
 
-        <div class="info">
-            <div class="delivery-info">
-                <p>1X Tremblay (complet), 1X Coca</p>
-            </div>
+    <?php }
+    } ?>
 
-            <div class="info-groupe">
-                <p><strong>Adresse :</strong> 55 Rue du Faubourg Saint-Honoré, 75008 Paris</p>
-                <p><strong>Tél :</strong> 09 08 07 06 05</p>
-            </div>
+    <?php
 
-
-            <a href="https://www.google.com/maps/dir/?api=1&destination=55+Rue+du+Faubourg+Saint-Honoré+75008+Paris"
-                target="_blank" class="btn-maps">
-                📍 OUVRIR L’ITINÉRAIRE
-            </a>
-
-            <button class="btn-final">✔ LIVRAISON TERMINÉE</button>
-        </div>
-    </section>
-
+    $vide = true;
+    for ($i = 0; $i < count($commandes); $i++) {
+        if ($commandes[$i]['statut'] === "en cours de livraison") $vide = false;
+    }
+    if ($vide) echo "<p style='text-align:center; color:white; margin-top:50px;'>Aucune course en attente.</p>";
+    ?>
 </body>
 
 </html>

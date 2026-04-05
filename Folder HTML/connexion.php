@@ -18,6 +18,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
                     $_SESSION['nom'] = $user["name"];
                     $_SESSION['email'] = $user["email"];
                     $_SESSION['type'] = $user["type"];
+                    $_SESSION['adress'] = $user['adress'];
                     header("Location: index.php");
                     exit();
                 } else {
