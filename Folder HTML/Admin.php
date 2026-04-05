@@ -4,17 +4,15 @@ $json = file_get_contents("../Folder_Data/utilisateur.json");
 $users = json_decode($json,true);
 
 if (isset($_POST['action'])) {
-
-    // Supprimer des utilisateurs
+    
     if ($_POST['action'] == 'delete' && isset($_POST['user_delete'])) {
-        $ids_a_supprimer = $_POST['user_delete']; // tableau d'ids cochés
+        $ids_a_supprimer = $_POST['user_delete']; 
 
         $users = array_filter($users, function($user) use ($ids_a_supprimer) {
             return !in_array($user['id'], $ids_a_supprimer);
         });
     }
 
-    // Mettre à jour les permissions
     if ($_POST['action'] == 'update' && isset($_POST['permission'])) {
         foreach ($users as &$user) {
             if (isset($_POST['permission'][$user['id']])) {
@@ -23,7 +21,6 @@ if (isset($_POST['action'])) {
         }
     }
 
-    // Réécrire le JSON
     file_put_contents("../Folder_Data/utilisateur.json", 
                        json_encode(array_values($users), JSON_PRETTY_PRINT));
 }
