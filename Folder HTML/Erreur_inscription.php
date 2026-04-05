@@ -7,7 +7,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <title>Erreur d'inscription</title>
-    <link rel="stylesheet" href="../folder CSS/Erreur_inscription.css">
+    <link rel="stylesheet" href="../folder CSS/Erreur.css">
 
 </head>
 

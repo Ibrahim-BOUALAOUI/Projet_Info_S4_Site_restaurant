@@ -1,35 +1,43 @@
 <?php
 session_start();
 
-if (isset($_POST['email']) && isset($_POST['password'])) {
-    $file = '../Folder_Data/utilisateur.json';
-    if (file_exists($file)) {
-        $json = file_get_contents($file);
-        $users = json_decode($json, true);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['email']) && isset($_POST['password'])) {
+        $file = '../Folder_Data/utilisateur.json';
+        $errors = [];
 
-        $userFound = false;
+        if (file_exists($file)) {
+            $json = file_get_contents($file);
+            $users = json_decode($json, true) ?? array();
+            $userFound = false;
 
-        foreach ($users as $user) {
-            if ($user["email"] == $_POST["email"]) {
-                $userFound = true;
-
-                if (password_verify($_POST["password"], $user["password"])) {
-                    $_SESSION['connecte'] = true;
-                    $_SESSION['nom'] = $user["name"];
-                    $_SESSION['email'] = $user["email"];
-                    $_SESSION['type'] = $user["type"];
-                    $_SESSION['adress'] = $user['adress'];
-                    header("Location: index.php");
-                    exit();
-                } else {
-                    echo "Mot de passe incorrect";
+            for ($i = 0; $i < count($users); $i++) {
+                if ($users[$i]['email'] === $_POST['email']) {
+                    $userFound = true;
+                    if (password_verify($_POST['password'], $users[$i]['password'])) {
+                        $_SESSION['connecte'] = true;
+                        $_SESSION['nom'] = $users[$i]['name'];
+                        $_SESSION['email'] = $users[$i]['email'];
+                        $_SESSION['type'] = $users[$i]['type'];
+                        $_SESSION['adress'] = $users[$i]['adress'];
+                        header("Location: index.php");
+                        exit();
+                    } else {
+                        $errors[] = "Le mot de passe saisi est incorrect.";
+                    }
+                    break;
                 }
-                break;
+            }
+
+            if (!$userFound) {
+                $errors[] = "Aucun compte n'est associé à cette adresse e-mail.";
             }
         }
 
-        if (!$userFound) {
-            echo "Email incorrect";
+        if (!empty($errors)) {
+            $_SESSION['message_erreur'] = $errors;
+            header("Location: erreur_connexion.php");
+            exit();
         }
     }
 }
