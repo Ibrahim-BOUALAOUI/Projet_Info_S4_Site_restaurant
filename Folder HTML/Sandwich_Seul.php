@@ -93,7 +93,7 @@ $sandwichs = [
                     <img src="../Folder img/<?php echo $sandwich['img']; ?>" alt="<?php echo $sandwich['nom']; ?>" class="menu-image">
                     
                     <!-- Lien avec encodage des caractères spéciaux pour le panier -->
-                    <a href="ajouter_panier.php?nom=<?php echo urlencode($sandwich['nom']); ?>&prix=<?php echo $sandwich['prix']; ?>" class="add-button-link">+</a>
+                    <a href="ajouter_panier.php?nom=<?= urlencode($sandwich['nom']) ?>&prix=<?= $sandwich['prix'] ?>" class="add-button-link">+</a>
                 </div>
             </div>
         <?php endforeach; ?>

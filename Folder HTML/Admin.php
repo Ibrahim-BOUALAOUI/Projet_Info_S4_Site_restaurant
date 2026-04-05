@@ -1,4 +1,32 @@
 <?php
+session_start();
+$json = file_get_contents("../Folder_Data/utilisateur.json");
+$users = json_decode($json,true);
+
+if (isset($_POST['action'])) {
+
+    // Supprimer des utilisateurs
+    if ($_POST['action'] == 'delete' && isset($_POST['user_delete'])) {
+        $ids_a_supprimer = $_POST['user_delete']; // tableau d'ids cochés
+
+        $users = array_filter($users, function($user) use ($ids_a_supprimer) {
+            return !in_array($user['id'], $ids_a_supprimer);
+        });
+    }
+
+    // Mettre à jour les permissions
+    if ($_POST['action'] == 'update' && isset($_POST['permission'])) {
+        foreach ($users as &$user) {
+            if (isset($_POST['permission'][$user['id']])) {
+                $user['permission'] = $_POST['permission'][$user['id']];
+            }
+        }
+    }
+
+    // Réécrire le JSON
+    file_put_contents("../Folder_Data/utilisateur.json", 
+                       json_encode(array_values($users), JSON_PRETTY_PRINT));
+}
 
 ?>
 
@@ -14,7 +42,7 @@
 <body>
     
     <header>
-        <img src="../Folder img/129.png" alt="Logo de l'administration" width="200">
+        <a href="index.php"> <img src="../Folder img/129.png" alt="Logo" width="200"> </a>
     </header>
 
     
@@ -48,105 +76,33 @@
                         </tr>
                     </thead>
                     <tbody>
-                        
+                        <?php foreach ($users as $user): ?>
                         <tr>
                             <td class="col-checkbox">
-                                <input type="checkbox" name="user_delete[]" value="15964" id="user1">
-                                <label for="user1"></label>
+                                <input type="checkbox" name="user_delete[]" 
+                                    value="<?= $user['id'] ?>" id="user<?= $user['id'] ?>">
+                                <label for="user<?= $user['id'] ?>"></label>
                             </td>
-                            <td><strong>15964</strong></td>
-                            <td>abc@gmail.com</td>
+                            <td><strong><?= $user['id'] ?></strong></td>
+                            <td><?= $user['email'] ?></td>
                             <td>
-                                <select name="permission[15964]" class="select-status">
+                                <select name="permission[<?= $user['id'] ?>]" class="select-status">
                                     <option value="">-</option>
-                                    <option value="User">Client</option>
-                                    <option value="Livreur">Livreur</option>
-                                    <option value="Restaurateur">Restaurateur</option>
-                                    <option value="Admin">Admin</option>
+                                    <?php
+                                    $roles = ['User' => 'Client', 'Livreur' => 'Livreur',
+                                            'preparateur' => 'preparateur', 'Admin' => 'Admin'];
+                                    foreach ($roles as $value => $label):
+                                    ?>
+                                        <option value="<?= $value ?>"
+                                            <?= ($user['permission'] == $value) ? 'selected' : '' ?>>
+                                            <?= $label ?>
+                                        </option>
+                                    <?php endforeach; ?>
                                 </select>
                             </td>
-                            <td><span class="date-badge">16/07/2025</span></td>
+                            <td><span class="date-badge"><?= $user['last_connection'] ?></span></td>
                         </tr>
-
-                        <tr>
-                            <td class="col-checkbox">
-                                <input type="checkbox" name="user_delete[]" value="15965" id="user2">
-                                <label for="user2"></label>
-                            </td>
-                            <td><strong>15965</strong></td>
-                            <td>user@example.com</td>
-                            <td>
-                                <select name="permission[15965]" class="select-status">
-                                    <option value="">-</option>
-                                    <option value="User" selected>Client</option>
-                                    <option value="Livreur">Livreur</option>
-                                    <option value="Restaurateur">Restaurateur</option>
-                                    <option value="Admin">Admin</option>
-                                </select>
-                            </td>
-                            <td><span class="date-badge">12/07/2025</span></td>
-                        </tr>
-
-                        
-                        <tr>
-                            <td class="col-checkbox">
-                                <input type="checkbox" name="user_delete[]" value="15966" id="user3">
-                                <label for="user3"></label>
-                            </td>
-                            <td><strong>15966</strong></td>
-                            <td>livreur@resto.com</td>
-                            <td>
-                                <select name="permission[15966]" class="select-status">
-                                    <option value="">-</option>
-                                    <option value="User">Client</option>
-                                    <option value="Livreur" selected>Livreur</option>
-                                    <option value="Restaurateur">Restaurateur</option>
-                                    <option value="Admin">Admin</option>
-                                </select>
-                            </td>
-                            <td><span class="date-badge">15/07/2025</span></td>
-                        </tr>
-
-                        
-                        <tr>
-                            <td class="col-checkbox">
-                                <input type="checkbox" name="user_delete[]" value="15967" id="user4">
-                                <label for="user4"></label>
-                            </td>
-                            <td><strong>15967</strong></td>
-                            <td>resto@example.com</td>
-                            <td>
-                                <select name="permission[15967]" class="select-status">
-                                    <option value="">-</option>
-                                    <option value="User">Client</option>
-                                    <option value="Livreur">Livreur</option>
-                                    <option value="Restaurateur" selected>Restaurateur</option>
-                                    <option value="Admin">Admin</option>
-                                </select>
-                            </td>
-                            <td><span class="date-badge">14/07/2025</span></td>
-                        </tr>
-
-                        
-                        <tr>
-                            <td class="col-checkbox">
-                                <input type="checkbox" name="user_delete[]" value="15968" id="user5">
-                                <label for="user5"></label>
-                            </td>
-                            <td><strong>15968</strong></td>
-                            <td>admin@resto.com</td>
-                            <td>
-                                <select name="permission[15968]" class="select-status">
-                                    <option value="">-</option>
-                                    <option value="User">Client</option>
-                                    <option value="Livreur">Livreur</option>
-                                    <option value="Restaurateur">Restaurateur</option>
-                                    <option value="Admin" selected>Admin</option>
-                                </select>
-                            </td>
-                            <td><span class="date-badge">16/07/2025</span></td>
-                        </tr>
-
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>

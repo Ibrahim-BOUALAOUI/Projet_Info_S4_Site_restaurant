@@ -20,5 +20,16 @@
         "password": "$2y$10$0yXXj95K7P6iyb3HIunpmeIypEjrgtV46QOEwEhn0rDvc0.A4jXru",
         "type": "client",
         "connected": true
+    },
+    {
+        "birthdate": "2006-01-01",
+        "name": "Ibrahim",
+        "last_name": "Boualaoui",
+        "email": "admin@gmail.com",
+        "phone": "0698885565",
+        "adress": "chez mio",
+        "password": "$2y$12$hXHtifNw6YszL6CTPc5EHesxsq6Z75SPYbHh3\/t\/quMO.AkaDeyfS",
+        "type": "admin",
+        "connected": true
     }
 ]
