@@ -14,7 +14,7 @@ if (isset($_POST['id_livraison_fin'])) {
     $id_a_modifier = $_POST['id_livraison_fin'];
     for ($i = 0; $i < count($commandes); $i++) {
         if ($commandes[$i]['id'] == $id_a_modifier) {
-            $commandes[$i]['statut'] = "livrée";
+            $commandes[$i]['statut'] = "livree";
         }
     }
     file_put_contents($fichier, json_encode($commandes, JSON_PRETTY_PRINT));
