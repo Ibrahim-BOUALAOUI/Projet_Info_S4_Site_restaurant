@@ -1,20 +1,30 @@
 <?php
 session_start();
 $connecte = isset($_SESSION['email']);
-
-
 $nb_articles = isset($_SESSION['panier']) ? count($_SESSION['panier']) : 0;
+
+
+$boissons = [
+    ["nom" => "Coca-Cola", "prix" => 1.50, "img" => "Coca.png"],
+    ["nom" => "Coca Cherry", "prix" => 1.50, "img" => "Coca Cherry.png"],
+    ["nom" => "Coca Zero", "prix" => 1.50, "img" => "Coca Zéro.png"],
+    ["nom" => "Ice Tea", "prix" => 1.50, "img" => "Ice Tea.png"],
+    ["nom" => "Perrier Citron Vert", "prix" => 1.50, "img" => "Perrier.png"],
+    ["nom" => "Oasis Tropical", "prix" => 1.50, "img" => "Oasis Tropical.jpg"],
+    ["nom" => "Oasis Pomme Cassis", "prix" => 1.50, "img" => "Oasis Pomme Cassis.png"],
+    ["nom" => "Eau", "prix" => 1.00, "img" => "eau.jpg"],
+    ["nom" => "Cristalline Fraise", "prix" => 1.50, "img" => "Cristalline Fraise.png"],
+    ["nom" => "Fanta Orange", "prix" => 1.50, "img" => "Fanta Orange.png"],
+];
 ?>
 
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <link rel="stylesheet" href="../Folder CSS/Sous_page.css">
     <link rel="stylesheet" href="../Folder CSS/Commander_Article.css">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <title>Nos Boissons</title>
 </head>
 
 <body>
@@ -28,141 +38,34 @@ $nb_articles = isset($_SESSION['panier']) ? count($_SESSION['panier']) : 0;
     <header class="top_bar">
         <a href="index.php"> <img src="../Folder img/129.png" alt="Logo" width="200"> </a>
         <aside>
-            <?php if ($connecte) { ?>
+            <?php if ($connecte) : ?>
                 <a href="Profil.php" class="btn-profil">
-                    <span class="profil-icon">👤</span>
-                    <span class="profil-text">Mon profil</span>
+                    <span class="profil-icon">👤</span> Mon profil
                 </a>
-            <?php } else { ?>
-                <a href="connexion.php">
-                    <button class="Btn">Connexion</button>
-                </a>
-            <?php } ?>
+            <?php else : ?>
+                <a href="connexion.php"><button class="Btn">Connexion</button></a>
+            <?php endif; ?>
         </aside>
     </header>
 
     <div class="boissons-container">
 
-
-        <div class="boisson-card">
-            <div style="position: relative;">
-                <img src="../Folder img/Coca.png" alt="Coca" class="boisson-image">
-                <a href="ajouter_panier.php?nom=Coca-Cola&prix=1.50" class="add-button-link">+</a>
+        
+        <?php foreach ($boissons as $boisson) : ?>
+            <div class="boisson-card">
+                <div style="position: relative;">
+                    <img src="../Folder img/<?php echo $boisson['img']; ?>" alt="<?php echo $boisson['nom']; ?>" class="boisson-image">
+                    
+                    
+                    <a href="ajouter_panier.php?nom=<?php echo urlencode($boisson['nom']); ?>&prix=<?php echo $boisson['prix']; ?>" class="add-button-link">+</a>
+                </div>
+                <div class="boisson-info">
+                    <h3><?php echo strtoupper($boisson['nom']); ?></h3>
+                    <p class="menu-price"><?php echo number_format($boisson['prix'], 2, ',', ' '); ?> €</p>
+                </div>
             </div>
-            <div class="boisson-info">
-                <h3>COCA-COLA</h3>
-                <p class="menu-price">1,50 €</p>
-            </div>
-        </div>
-
-
-        <div class="boisson-card">
-            <div style="position: relative;">
-                <img src="../Folder img/Coca Cherry.png" alt="Coca Cherry" class="boisson-image">
-                <a href="ajouter_panier.php?nom=Coca%20Cherry&prix=1.50" class="add-button-link">+</a>
-            </div>
-            <div class="boisson-info">
-                <h3>COCA CHERRY</h3>
-                <p class="menu-price">1,50 €</p>
-            </div>
-        </div>
-
-
-        <div class="boisson-card">
-            <div style="position: relative;">
-                <img src="../Folder img/Coca Zéro.png" alt="Coca Zéro" class="boisson-image">
-                <a href="ajouter_panier.php?nom=Coca%20Zero&prix=1.50" class="add-button-link">+</a>
-            </div>
-            <div class="boisson-info">
-                <h3>COCA ZERO</h3>
-                <p class="menu-price">1,50 €</p>
-            </div>
-        </div>
-
-
-        <div class="boisson-card">
-            <div style="position: relative;">
-                <img src="../Folder img/Ice Tea.png" alt="Ice Tea" class="boisson-image">
-                <a href="ajouter_panier.php?nom=Ice%20Tea&prix=1.50" class="add-button-link">+</a>
-            </div>
-            <div class="boisson-info">
-                <h3>ICE TEA</h3>
-                <p class="menu-price">1,50 €</p>
-            </div>
-        </div>
-
-
-        <div class="boisson-card">
-            <div style="position: relative;">
-                <img src="../Folder img/Perrier.png" alt="Perrier" class="boisson-image">
-                <a href="ajouter_panier.php?nom=Perrier%20Citron&prix=1.50" class="add-button-link">+</a>
-            </div>
-            <div class="boisson-info">
-                <h3>PERRIER CITRON VERT</h3>
-                <p class="menu-price">1,50 €</p>
-            </div>
-        </div>
-
-
-        <div class="boisson-card">
-            <div style="position: relative;">
-                <img src="../Folder img/Oasis Tropical.jpg" alt="Oasis Tropical" class="boisson-image">
-                <a href="ajouter_panier.php?nom=Oasis%20Tropical&prix=1.50" class="add-button-link">+</a>
-            </div>
-            <div class="boisson-info">
-                <h3>OASIS TROPICAL</h3>
-                <p class="menu-price">1,50 €</p>
-            </div>
-        </div>
-
-
-        <div class="boisson-card">
-            <div style="position: relative;">
-                <img src="../Folder img/Oasis Pomme Cassis.png" alt="Oasis Pomme Cassis" class="boisson-image">
-                <a href="ajouter_panier.php?nom=Oasis%20Pomme%20Cassis&prix=1.50" class="add-button-link">+</a>
-            </div>
-            <div class="boisson-info">
-                <h3>OASIS POMME CASSIS</h3>
-                <p class="menu-price">1,50 €</p>
-            </div>
-        </div>
-
-
-        <div class="boisson-card">
-            <div style="position: relative;">
-                <img src="../Folder img/eau.jpg" alt="Eau" class="boisson-image">
-                <a href="ajouter_panier.php?nom=Eau&prix=1.50" class="add-button-link">+</a>
-            </div>
-            <div class="boisson-info">
-                <h3>EAU</h3>
-                <p class="menu-price">1,50 €</p>
-            </div>
-        </div>
-
-        <div class="boisson-card">
-            <div style="position: relative;">
-                <img src="../Folder img/Cristalline Fraise.png" alt="Cristalline Fraise" class="boisson-image">
-                <a href="ajouter_panier.php?nom=Cristalline%20Fraise&prix=1.50" class="add-button-link">+</a>
-            </div>
-            <div class="boisson-info">
-                <h3>CRISTALLINE FRAISE</h3>
-                <p class="menu-price">1,50 €</p>
-            </div>
-        </div>
-
-
-        <div class="boisson-card">
-            <div style="position: relative;">
-                <img src="../Folder img/Fanta Orange.png" alt="Fanta Orange" class="boisson-image">
-                <a href="ajouter_panier.php?nom=Fanta%20Orange&prix=1.50" class="add-button-link">+</a>
-            </div>
-            <div class="boisson-info">
-                <h3>FANTA ORANGE</h3>
-                <p class="menu-price">1,50 €</p>
-            </div>
-        </div>
+        <?php endforeach; ?>
 
     </div>
 </body>
-
 </html>

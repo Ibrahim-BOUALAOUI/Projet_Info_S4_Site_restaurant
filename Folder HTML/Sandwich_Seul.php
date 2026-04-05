@@ -1,13 +1,51 @@
 <?php
 session_start();
 $connecte = isset($_SESSION['email']);
-
-
 $nb_articles = isset($_SESSION['panier']) ? count($_SESSION['panier']) : 0;
+
+// 1. Définition des Sandwichs (Ta "base de données" locale)
+$sandwichs = [
+    [
+        "nom" => "Le Chicken Rouge 🟥",
+        "prix" => 9.99,
+        "img" => "Chiken_Rouge_Seul.png",
+        "desc" => "Pain maison, filet de poulet frais mariné au tandoori, crudités et sauce au choix. Servi avec des frites."
+    ],
+    [
+        "nom" => "Le Spécial ⭐",
+        "prix" => 9.99,
+        "img" => "special.png",
+        "desc" => "Pain maison, haut de cuisse de poulet frais mariné au paprika, poivrons, crudités et sauce au choix. Servi avec des frites."
+    ],
+    [
+        "nom" => "L'Escalope 🍗",
+        "prix" => 10.40,
+        "img" => "Escalope_Seul.png",
+        "desc" => "Pain maison, escalope de poulet frais, crudités et sauce au choix. Servi avec des frites."
+    ],
+    [
+        "nom" => "Le Suprême 👑",
+        "prix" => 11.50,
+        "img" => "Supreme_seul.png",
+        "desc" => "Pain maison, escalope de poulet frais, bacon de dinde, œuf, crudités et sauce au choix. Servi avec des frites."
+    ],
+    [
+        "nom" => "Le Steak 🥩",
+        "prix" => 9.80,
+        "img" => "Steak_Seul.png",
+        "desc" => "Pain maison, steak de bœuf, fromage, crudités et sauce au choix. Servi avec des frites."
+    ],
+    [
+        "nom" => "Le Tremblay 🥩🍗",
+        "prix" => 10.40,
+        "img" => "Le_Tremblay_Seul.png",
+        "desc" => "Pain maison, 3 steaks de bœuf, escalope de poulet frais, bacon de dinde, œuf, fromage, crudités et sauce au choix. Servi avec des frites."
+    ]
+];
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <link rel="stylesheet" href="../Folder CSS/Sous_page.css">
@@ -29,105 +67,37 @@ $nb_articles = isset($_SESSION['panier']) ? count($_SESSION['panier']) : 0;
     <header class="top_bar">
         <a href="index.php"> <img src="../Folder img/129.png" alt="Logo" width="200"> </a>
         <aside>
-            <?php if ($connecte) { ?>
-                <a href="Profil.php" class="btn-profil" aria-label="Accéder à mon profil">
+            <?php if ($connecte) : ?>
+                <a href="Profil.php" class="btn-profil">
                     <span class="profil-icon">👤</span>
                     <span class="profil-text">Mon profil</span>
                 </a>
-
-            <?php } else { ?>
-
-                <a href="connexion.php" aria-label="Se connecter">
-                    <button class="Btn" aria-label="Connexion">Connexion</button>
+            <?php else : ?>
+                <a href="connexion.php">
+                    <button class="Btn">Connexion</button>
                 </a>
-
-            <?php } ?>
+            <?php endif; ?>
         </aside>
-
     </header>
+
     <div class="rect-menus">
-        <div class="menu-item">
-            <div class="menu-info">
-                <h3 class="menu-title">LE CHICKEN ROUGE 🟥</h3>
-                <p class="menu-price">9,99 €</p>
-                <p class="menu-description">Pain maison, filet de poulet frais mariné au tandoori, crudités et sauce au
-                    choix. Servi avec des frites.</p>
+        <!-- 2. Boucle PHP dynamique -->
+        <?php foreach ($sandwichs as $sandwich) : ?>
+            <div class="menu-item">
+                <div class="menu-info">
+                    <h3 class="menu-title"><?php echo strtoupper($sandwich['nom']); ?></h3>
+                    <p class="menu-price"><?php echo number_format($sandwich['prix'], 2, ',', ' '); ?> €</p>
+                    <p class="menu-description"><?php echo $sandwich['desc']; ?></p>
+                </div>
+                <div style="position: relative;">
+                    <img src="../Folder img/<?php echo $sandwich['img']; ?>" alt="<?php echo $sandwich['nom']; ?>" class="menu-image">
+                    
+                    <!-- Lien avec encodage des caractères spéciaux pour le panier -->
+                    <a href="ajouter_panier.php?nom=<?php echo urlencode($sandwich['nom']); ?>&prix=<?php echo $sandwich['prix']; ?>" class="add-button-link">+</a>
+                </div>
             </div>
-            <div style="position: relative;">
-                <img src="../Folder img/Chiken_Rouge_Seul.png" alt="Chicken Rouge solo" class="menu-image">
-                <a href="ajouter_panier.php?nom=Le%20Chicken%20Rouge&prix=9.99" class="add-button-link">+</a>
-            </div>
-        </div>
-
-        <div class="menu-item">
-            <div class="menu-info">
-                <h3 class="menu-title">LE SPÉCIAL ⭐</h3>
-                <p class="menu-price">9,99 € </p>
-                <p class="menu-description">Pain maison, haut de cuisse de poulet frais mariné au paprika, poivrons,
-                    crudités et sauce au choix. Servi avec des frites.
-                </p>
-            </div>
-            <div style="position: relative;">
-                <img src="../Folder img/special.png" alt="Spécial solo" class="menu-image">
-                <a href="ajouter_panier.php?nom=Le%20Spécial&prix=9.99" class="add-button-link">+</a>
-            </div>
-        </div>
-
-        <div class="menu-item">
-            <div class="menu-info">
-                <h3 class="menu-title">L'ESCALOPE 🍗</h3>
-                <p class="menu-price">10,40 €</p>
-                <p class="menu-description">Pain maison, escalope de poulet frais, crudités et sauce au choix. Servi
-                    avec des frites.
-                </p>
-            </div>
-            <div style="position: relative;">
-                <img src="../Folder img/Escalope_Seul.png" alt="Escalope Solo" class="menu-image">
-                <a href="ajouter_panier.php?nom=L%27Escalope&prix=10.40" class="add-button-link">+</a>
-            </div>
-        </div>
-
-        <div class="menu-item">
-            <div class="menu-info">
-                <h3 class="menu-title">LE SUPRÊME 👑</h3>
-                <p class="menu-price">11,50 €</p>
-                <p class="menu-description">Pain maison, escalope de poulet frais, bacon de dinde, œuf, crudités et
-                    sauce au choix. Servi avec des frites.</p>
-            </div>
-            <div style="position: relative;">
-                <img src="../Folder img/Supreme_seul.png" alt="Suprême solo" class="menu-image">
-                <a href="ajouter_panier.php?nom=Le%20Suprême&prix=11.50" class="add-button-link">+</a>
-            </div>
-        </div>
-
-        <div class="menu-item">
-            <div class="menu-info">
-                <h3 class="menu-title">LE STEAK 🥩</h3>
-                <p class="menu-price">9,80 €</p>
-                <p class="menu-description">Pain maison, steak de bœuf, fromage, crudités et sauce au choix. Servi avec
-                    des frites.
-                </p>
-            </div>
-            <div style="position: relative;">
-                <img src="../Folder img/Steak_Seul.png" alt="steak solo" class="menu-image">
-                <a href="ajouter_panier.php?nom=Le%20Steak&prix=9.80" class="add-button-link">+</a>
-            </div>
-        </div>
-
-        <div class="menu-item">
-            <div class="menu-info">
-                <h3 class="menu-title">LE TREMBLAY 🥩🍗</h3>
-                <p class="menu-price">10,40 €</p>
-                <p class="menu-description">Pain maison, 3 steaks de bœuf, escalope de poulet frais, bacon de dinde,
-                    œuf, fromage, crudités et sauce au choix. Servi avec des frites.
-                </p>
-            </div>
-            <div style="position: relative;">
-                <img src="../Folder img/Le_Tremblay_Seul.png" alt="Tremblay" class="menu-image">
-                <a href="ajouter_panier.php?nom=Le%20Tremblay%20Seul&prix=10.40" class="add-button-link">+</a>
-            </div>
-        </div>
+        <?php endforeach; ?>
     </div>
-</body>
 
+</body>
 </html>
