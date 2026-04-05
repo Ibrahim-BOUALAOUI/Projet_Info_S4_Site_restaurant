@@ -69,7 +69,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_cmd'])) {
                         <p><strong>Client :</strong> <?php echo htmlspecialchars($commandes[$i]['client']); ?></p>
                         <p><strong>Adresse :</strong> <span style="color: #f4c542;"><?php echo htmlspecialchars($commandes[$i]['adresse']); ?></span></p>
                     </div>
-
                     <!-- FORMULAIRE UNIQUE POUR LES DEUX ACTIONS -->
                     <form method="POST" style="margin-top: 20px; display: flex; flex-direction: column; gap: 10px;">
                         <input type="hidden" name="id_cmd" value="<?php echo $commandes[$i]['id']; ?>">
