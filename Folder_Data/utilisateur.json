@@ -2,11 +2,22 @@
     {
         "birthdate": "2005-02-12",
         "name": "Sayf",
-        "last_name": "SBAI",
+        "last_name": "Sbai",
         "email": "sbaisayf121@gmail.com",
         "phone": "0652393535",
-        "adress": "12 rue du kaka meru",
-        "password": "$2y$10$fjtmpLrQooEAfiUQDEKx8.PorjsGFcmjCeKK9h\/SjBwC8TnNMJWOO",
+        "adress": "Rue Louis Bloquet 8",
+        "password": "$2y$10$4CLoKoIe1kH2kK.Xz4D4QuHrMBCsa826B4xjfrXJxqnPTM2w5429u",
+        "type": "client",
+        "connected": true
+    },
+    {
+        "birthdate": "2005-02-12",
+        "name": "Jean",
+        "last_name": "DelaRue",
+        "email": "sayfsbai122@gmail.com",
+        "phone": "0652393535",
+        "adress": "125 rue des petits allocos, Chambly",
+        "password": "$2y$10$0yXXj95K7P6iyb3HIunpmeIypEjrgtV46QOEwEhn0rDvc0.A4jXru",
         "type": "client",
         "connected": true
     }
