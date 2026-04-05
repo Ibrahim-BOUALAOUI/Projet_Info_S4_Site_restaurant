@@ -20,7 +20,6 @@ for ($i = 0; $i < count($panier); $i++) {
 }
 $montant_formatte = number_format($total_general, 2, '.', '');
 
-// CONFIGURATION BANQUE
 $vendeur = "MI-1_A";
 $api_key = getAPIKey($vendeur);
 $transaction = "TX" . time();
