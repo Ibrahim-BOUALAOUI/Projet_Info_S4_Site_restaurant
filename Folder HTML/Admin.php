@@ -63,8 +63,8 @@ $ca_total = array_sum(array_map(function($c) {
 }, $commandes));
 $en_cours = count(array_filter($commandes, fn($c) => $c['statut'] !== 'livree'));
 
-/* ── Couleurs statuts ── */
-function statut_class(string $s): string {
+
+function statut_class( $s):  {
     return match($s) {
         'livree'                 => 'statut-livre',
         'en cours de livraison'  => 'statut-livraison',
@@ -72,7 +72,7 @@ function statut_class(string $s): string {
         default                  => 'statut-autre',
     };
 }
-function statut_label(string $s): string {
+function statut_label( $s): {
     return match($s) {
         'livree'                => '✅ Livrée',
         'en cours de livraison' => '🛵 En livraison',
@@ -105,9 +105,7 @@ function statut_label(string $s): string {
 
 <div class="admin-container">
 
-    <!-- ════════════════════════════════
-         STATS RAPIDES
-    ════════════════════════════════ -->
+    
     <section id="section-stats" class="stats-grid">
         <div class="stat-card">
             <span class="stat-icon">🛒</span>
@@ -131,9 +129,7 @@ function statut_label(string $s): string {
         </div>
     </section>
 
-    <!-- ════════════════════════════════
-         GESTION UTILISATEURS
-    ════════════════════════════════ -->
+    
     <section id="section-users" class="admin-section">
         <h2 class="section-title">👥 Gestion des utilisateurs</h2>
 
@@ -202,9 +198,7 @@ function statut_label(string $s): string {
         </form>
     </section>
 
-    <!-- ════════════════════════════════
-         GESTION COMMANDES
-    ════════════════════════════════ -->
+    
     <section id="section-commandes" class="admin-section">
         <h2 class="section-title">🛒 Gestion des commandes</h2>
 
@@ -227,13 +221,13 @@ function statut_label(string $s): string {
             <?php foreach ($commandes_filtrees as $cmd): ?>
             <div class="commande-card <?= statut_class($cmd['statut']) ?>-card">
 
-                <!-- En-tête commande -->
+                
                 <div class="cmd-header">
                     <span class="cmd-id">#<?= $cmd['id'] ?></span>
                     <span class="cmd-date"><?= htmlspecialchars($cmd['date']) ?></span>
                 </div>
 
-                <!-- Infos client -->
+                
                 <div class="cmd-client">
                     <span class="cmd-label">👤 Client</span>
                     <span><?= htmlspecialchars($cmd['client']) ?></span>
@@ -243,7 +237,7 @@ function statut_label(string $s): string {
                     <span><?= htmlspecialchars($cmd['adresse']) ?></span>
                 </div>
 
-                <!-- Articles -->
+                
                 <div class="cmd-articles">
                     <span class="cmd-label">🧾 Articles</span>
                     <ul>
@@ -259,7 +253,7 @@ function statut_label(string $s): string {
                     </div>
                 </div>
 
-                <!-- Statut + modification -->
+                
                 <div class="cmd-footer">
                     <span class="statut-badge <?= statut_class($cmd['statut']) ?>">
                         <?= statut_label($cmd['statut']) ?>
@@ -288,6 +282,6 @@ function statut_label(string $s): string {
         </div>
     </section>
 
-</div><!-- /admin-container -->
+</div>
 </body>
 </html>
