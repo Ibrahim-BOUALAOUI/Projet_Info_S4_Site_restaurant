@@ -26,7 +26,7 @@
             "type": "Menus",
             "saveur": "doux",
             "regime": [],
-            "image": "../Folder img/escalope.png"
+            "image": "../Folder img/Escalope.png"
         },
         {
             "nom": "Menu Le Suprême",
@@ -35,7 +35,7 @@
             "type": "Menus",
             "saveur": "salé",
             "regime": [],
-            "image": "../Folder img/supreme.png"
+            "image": "../Folder img/Supreme.png"
         },
         {
             "nom": "Le Chicken Rouge",
@@ -224,7 +224,7 @@
             "type": "boisson",
             "saveur": "doux",
             "regime": ["sans lactose", "sans gluten"],
-            "image": "../Folder img/eau.jpg"
+            "image": "../Folder img/Eau.jpg"
         },
         {
             "nom": "Cristalline Fraise",
