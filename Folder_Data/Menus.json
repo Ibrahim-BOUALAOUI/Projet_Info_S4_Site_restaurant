@@ -243,6 +243,15 @@
             "saveur": "sucré",
             "regime": ["sans lactose", "sans gluten"],
             "image": "../Folder img/Fanta Orange.png"
+        },
+        {
+            "nom": "Schweppes Ivan",
+            "description": "Carburant d'Ivan",
+            "prix": 1.00,
+            "type": "boisson",
+            "saveur": "sucré",
+            "regime": ["sans lactose", "sans gluten"],
+            "image": "../Folder img/Schweppes_Ivan.png"
         }
     ]
 }
