@@ -80,14 +80,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../folder CSS/connexion.css">
+    <link rel="stylesheet" href="../Folder CSS/connexion.css">
 </head>
 
 <body>
     <div class="login-wrapper">
         <div class="login-card">
             <div class="logo-box">
-                <img src="../folder img/129.png" alt="Logo Le 129" class="site-logo">
+                <img src="../Folder img/129.png" alt="Logo Le 129" class="site-logo">
 
 
                 <form method="POST">

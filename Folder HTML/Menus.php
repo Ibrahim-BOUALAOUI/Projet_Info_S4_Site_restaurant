@@ -71,43 +71,6 @@ $plat = $data['plats'];
             <?php endif; ?>
         </div>
     </main>
-
-    <div class="menu-item">
-        <div class="menu-info">
-            <h3 class="menu-title">MENU LE SPÉCIAL ⭐</h3>
-            <p class="menu-price">13,50 € </p>
-            <p class="menu-description">Pain maison, haut de cuisse de poulet frais mariné au paprika, poivrons, crudités et sauce au choix. Servi avec frites et boisson au choix.</p>
-        </div>
-        <div style="position: relative;">
-            <img src="../Folder img/special.png" alt="Spécial" class="menu-image">
-            <a href="ajouter_panier.php?nom=Menu%20Le%20Spécial&prix=13.50" class="add-button-link">+</a>
-        </div>
-    </div>
-
-    <div class="menu-item">
-        <div class="menu-info">
-            <h3 class="menu-title">MENU L'ESCALOPE 🍗</h3>
-            <p class="menu-price">13,50 €</p>
-            <p class="menu-description">Pain maison, escalope de poulet frais, crudités et sauce au choix. Servi avec frites et boisson au choix.</p>
-        </div>
-        <div style="position: relative;">
-            <img src="../Folder img/escalope.png" alt="Escalope" class="menu-image">
-            <a href="ajouter_panier.php?nom=Menu%20L%27Escalope&prix=13.50" class="add-button-link">+</a>
-        </div>
-    </div>
-
-    <div class="menu-item">
-        <div class="menu-info">
-            <h3 class="menu-title">MENU LE SUPRÊME 👑</h3>
-            <p class="menu-price">13,70 €</p>
-            <p class="menu-description">Pain maison, escalope de poulet frais, bacon de dinde, œuf, crudités et sauce au choix. Servi avec frites et boisson au choix.</p>
-        </div>
-        <div style="position: relative;">
-            <img src="../Folder img/supreme.png" alt="Suprême" class="menu-image">
-            <a href="ajouter_panier.php?nom=Menu%20L%27Escalope&prix=13.50" class="add-button-link">+</a>
-        </div>
-    </div>
-    </div>
 </body>
 
 </html>
