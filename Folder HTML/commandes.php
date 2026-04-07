@@ -26,7 +26,7 @@ if (isset($_POST['id_prete'])) {
 <head>
     <title>Cuisine - Commandes</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../FOLDER CSS/commandes.css">
+    <link rel="stylesheet" href="../Folder CSS/commandes.css">
 </head>
 
 <body>

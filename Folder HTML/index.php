@@ -27,8 +27,8 @@ $role = $_SESSION['permission'] ?? null;
                     <span class="profil-icon">👤</span>
                     <span class="profil-text">Mon profil</span>
                 </a>
-                <?php if ($role === 'Admin'): ?>
-                    <a href="admin.php" class="btn-role btn-admin">
+                <?php if ($role === 'admin'): ?>
+                    <a href="Admin.php" class="btn-role btn-admin">
                         <span class="role-icon">⚙️</span>
                         <span class="role-text">Administration</span>
                     </a>
@@ -37,7 +37,7 @@ $role = $_SESSION['permission'] ?? null;
                         <span class="role-icon">👨‍🍳</span>
                         <span class="role-text">Commandes</span>
                     </a>
-                <?php elseif ($role === 'Livreur'): ?>
+                <?php elseif ($role === 'livreur'): ?>
                     <a href="livreur.php" class="btn-role btn-livreur">
                         <span class="role-icon">🛵</span>
                         <span class="role-text">Livraisons</span>

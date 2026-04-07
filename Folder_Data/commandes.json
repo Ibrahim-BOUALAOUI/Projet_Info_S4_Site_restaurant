@@ -45,8 +45,26 @@
                 "prix": "13.5"
             }
         ],
-        "statut": "a preparer",
+        "statut": "livree",
         "heure_prevue": "12:50",
         "date": "2026-04-05 21:42:52"
+    },
+    {
+        "id": "TX1775561390",
+        "client": "admin@gmail.com",
+        "adresse": "85 rue de l'abbe",
+        "articles": [
+            {
+                "nom": "Le Supr\u00eame",
+                "prix": "11.5"
+            },
+            {
+                "nom": "L'Escalope",
+                "prix": "10.4"
+            }
+        ],
+        "statut": "a preparer",
+        "heure_prevue": "01:01",
+        "date": "2026-04-07 11:30:46"
     }
 ]

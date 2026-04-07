@@ -36,7 +36,7 @@ $control = md5($phrase);
     <meta charset="UTF-8">
     <title>Mon Panier</title>
     <link rel="stylesheet" href="../Folder CSS/Sous_page.css">
-    <link rel="stylesheet" href="../Folder CSS/Panier.css">
+    <link rel="stylesheet" href="../Folder CSS/panier.css">
 </head>
 
 <body>

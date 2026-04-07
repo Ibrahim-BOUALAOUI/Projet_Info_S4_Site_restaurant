@@ -53,7 +53,7 @@
         "password": "$2y$12$RG1omRo651eQGjQqC7hncuakD5Bw6IUKJAOgfh9kz.I320xj8Ezyu",
         "type": "client",
         "connected": true,
-        "permission": "preparateur"
+        "permission": "admin"
     },
     {
         "id": "0e2f748e4bd9acd614328a530bf35953",
