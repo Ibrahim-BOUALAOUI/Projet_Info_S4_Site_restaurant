@@ -1,0 +1,32 @@
+/* Nouvelle charte graphique sombre */
+body {
+    background-color: #121212 !important;
+    color: #e0e0e0 !important;
+}
+
+/* On adapte les sections de vos fichiers existants (Profil.php, index.php) */
+.rect-left, .rect-mid, .rect-menus, .cart-container, .login-card, .avis-form .card {
+    background-color: #1e1e1e !important;
+    border: 1px solid #333 !important;
+    color: #f0f0f0 !important;
+}
+
+h1, h2, h3, .info-label, .menu-title {
+    color: #ff9800 !important; /* Orange pour garder l'esprit du restaurant */
+}
+
+input, textarea {
+    background-color: #333 !important;
+    color: white !important;
+    border: 1px solid #444 !important;
+}
+
+.btn-modifier, .main-btn, .btn-confirm {
+    background-color: #ff9800 !important;
+    color: black !important;
+}
+
+/* Correction pour les textes sombres dans le panier */
+.item-info p, .summary-title, .commande-date {
+    color: #bbb !important;
+}
