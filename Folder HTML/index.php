@@ -12,23 +12,13 @@ $role = $_SESSION['permission'] ?? null;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil - Nos Sandwichs</title>
-
-    <!-- 1. Le style de base (Structure et Centrage) -->
     <link rel="stylesheet" href="../Folder CSS/Accueil.css">
-
-    <!-- 2. La balise vide qui accueillera le mode sombre par-dessus -->
-    <link rel="stylesheet" id="style-sombre" href="">
-
-    <!-- 3. JavaScript (une seule fois suffit) -->
-    <script src="../Folder JS/affichage.js" defer></script>
 </head>
 
 <body>
     <main>
         <header class="top_bar">
     <img src="../Folder img/129.png" alt="Logo du restaurant" width="200" height="auto">
-    <!-- Un seul bouton, bien placé, sans doublon d'image -->
-    <button id="bouton-theme" style="padding: 8px; cursor: pointer; border-radius: 5px; background: orange; color: white; border: none; margin-left: 20px;">🌓 Changer de mode</button>
 </header>
         <aside>
             <?php if ($connecte) { ?>
