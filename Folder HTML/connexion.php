@@ -42,8 +42,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (!empty($errors)) {
             $_SESSION['message_erreur'] = $errors;
-            header("Location: erreur_connexion.php");
-            exit();
         }
     }
 }
@@ -62,6 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body>
 
+
     <div class="login-wrapper">
         <div class="login-card">
 
@@ -69,7 +68,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <img src="../Folder img/129.png" alt="Logo Le 129" class="site-logo">
             </div>
 
-            <form method="POST">
+            <?php if (isset($_SESSION['message_erreur'])): ?>
+                <div id="erreur-client" class="erreur-msg">
+                    <?php foreach ($_SESSION['message_erreur'] as $err): ?>
+                        <p><?php echo htmlspecialchars($err); ?></p>
+                    <?php endforeach; ?>
+                </div>
+                <?php unset($_SESSION['message_erreur']); ?>
+            <?php else: ?>
+                <div id="erreur-client" class="erreur-msg" style="display:none;"></div>
+            <?php endif; ?>
+
+            <form method="POST" id="login-form" onsubmit="return validerFormulaire()" novalidate>
                 <h2 id="form-title">SE CONNECTER</h2>
 
                 <div class="input-group">
@@ -89,12 +99,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <a href="#">Mot de passe oublié ?</a>
                 </div>
 
+                <div id="erreur-client" class="erreur-msg" style="display:none;"></div>
 
                 <button type="submit" class="main-btn">SE CONNECTER MAINTENANT</button>
             </form>
             <p class="toggle-text">Vous n'avez pas de compte ? <a href="inscription.php">S'inscrire</a></p>
         </div>
     </div>
+    <script>
+        function validerFormulaire() {
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const erreurDiv = document.getElementById('erreur-client');
+            let message = '';
+            const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!email) {
+                message = "L'adresse e-mail est obligatoire.";
+            } else if (!regexEmail.test(email)) {
+                message = "L'adresse e-mail n'est pas valide.";
+            } else if (!password) {
+                message = "Le mot de passe est obligatoire.";
+            }
+
+            if (message) {
+                erreurDiv.textContent = message;
+                erreurDiv.style.display = 'block';
+                return false;
+            }
+
+            erreurDiv.style.display = 'none';
+            return true;
+        }
+    </script>
 </body>
 
 

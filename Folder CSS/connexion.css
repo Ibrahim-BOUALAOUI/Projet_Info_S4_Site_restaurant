@@ -162,6 +162,15 @@ input[type="date"] {
     cursor: pointer;
 }
 
+.erreur-msg {
+    background-color: #ffe0e0;
+    color: #c0392b;
+    border: 1px solid #c0392b;
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+}
 
 @keyframes fadeIn {
     from {
