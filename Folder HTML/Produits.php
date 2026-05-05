@@ -1,27 +1,11 @@
 <?php
 session_start();
 $connecte = isset($_SESSION['email']);
-
-$nb_articles = isset($_SESSION['panier']) ? count($_SESSION['panier']) : 0;
-
 $json = file_get_contents("../Folder_Data/Menus.json");
 $data = json_decode($json, true);
 $plat = $data['plats'];
 
-$filtreType   = isset($_GET["type"])   ? $_GET["type"]   : null;
-$filtreSaveur = isset($_GET["saveur"]) ? $_GET["saveur"] : null;
-$filtreRegime = isset($_GET["regime"]) ? $_GET["regime"] : null;
-$filtrePrix   = isset($_GET["prix"])   ? $_GET["prix"]   : null;
 
-$plat = array_filter($plat, function ($p) use ($filtreType, $filtreSaveur, $filtreRegime, $filtrePrix) {
-    if ($filtreType && $p["type"] !== $filtreType) return false;
-    if ($filtreSaveur && strtolower($p["saveur"]) !== strtolower($filtreSaveur)) return false;
-    if ($filtreRegime && !in_array($filtreRegime, $p["regime"])) return false;
-    if ($filtrePrix === "petit"  && $p["prix"] >= 5)  return false;
-    if ($filtrePrix === "moyen"  && ($p["prix"] < 5  || $p["prix"] > 10)) return false;
-    if ($filtrePrix === "grand"  && $p["prix"] <= 10) return false;
-    return true;
-});
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +13,8 @@ $plat = array_filter($plat, function ($p) use ($filtreType, $filtreSaveur, $filt
 
 <head>
     <link rel="stylesheet" href="../Folder CSS/Produits.css">
-    <link rel="stylesheet" href="../Folder CSS/Commander_Article.css">
+    <link rel="stylesheet" href="../Folder CSS/Sous_page.css">
+    <script src = "../Folder_JS/Filtres.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tous nos produits</title>
@@ -70,17 +55,13 @@ $plat = array_filter($plat, function ($p) use ($filtreType, $filtreSaveur, $filt
         <aside class="filters-sidebar">
             <h2 class="filters-title">🎯 Filtres</h2>
             <form method="GET" action="Produits.php">
-                <div class="filter-buttons">
-                    <button type="submit" class="btn-filtrer">Filtrer</button>
-                    <a href="Produits.php" class="btn-reinitialiser">Reset</a>
-                </div>
 
                 <section class="filter-group">
                     <h3 class="filter-title">Type</h3>
-                    <label class="filter-option"><input type="checkbox" name="type" value="Menus" <?= $filtreType === "Menus" ? "checked" : "" ?>> Menus</label>
-                    <label class="filter-option"><input type="checkbox" name="type" value="sandwich" <?= $filtreType === "sandwich" ? "checked" : "" ?>> Sandwichs</label>
-                    <label class="filter-option"><input type="checkbox" name="type" value="extra" <?= $filtreType === "extra" ? "checked" : "" ?>> Extras</label>
-                    <label class="filter-option"><input type="checkbox" name="type" value="boisson" <?= $filtreType === "boisson" ? "checked" : "" ?>> Boissons</label>
+                    <label class="filter-option"><input type="checkbox" name="type" id="Menus" > Menus</label>
+                    <label class="filter-option"><input type="checkbox" name="type" id="sandwich" > Sandwichs</label>
+                    <label class="filter-option"><input type="checkbox" name="type" id="extra" > Extras</label>
+                    <label class="filter-option"><input type="checkbox" name="type" id="boisson" > Boissons</label>
                 </section>
             </form>
         </aside>
