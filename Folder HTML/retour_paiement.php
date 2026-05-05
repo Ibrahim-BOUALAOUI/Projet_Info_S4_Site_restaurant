@@ -1,6 +1,6 @@
 <?php
 session_start();
-require('getapikey.php'); // Indispensable pour récupérer la clé secrète[cite: 4]
+require('getapikey.php'); //récupérer la clé secrète
 
 // 1. Récupération des données renvoyées par CYBank dans l'URL
 $status      = isset($_GET['status']) ? $_GET['status'] : 'error';
@@ -13,12 +13,12 @@ $heure_retrait = isset($_SESSION['choix_heure']) ? $_SESSION['choix_heure'] : "I
 $message = "";
 $adresse_finale = "Non renseignée";
 
-// 2. RECALCUL DU CONTRÔLE DE SÉCURITÉ[cite: 10]
+// 2. RECALCUL DU CONTRÔLE DE SÉCURITÉ
 $api_key = getAPIKey($vendeur);
 $phrase_verif = $api_key . "#" . $id_trans . "#" . $montant_paye . "#" . $vendeur . "#" . $status . "#";
 $control_verif = md5($phrase_verif);
 
-// 3. VÉRIFICATION DE L'INTÉGRITÉ (Est-ce que l'URL a été modifiée ?)
+// 3. VÉRIFICATION DE L'INTÉGRITÉ (au cas ou l'URL est modifiée)
 if ($control_psp !== $control_verif) {
     $message = "Alerte de sécurité : Les données de paiement ont été altérées !";
     $status = "fraud"; // On force l'échec
