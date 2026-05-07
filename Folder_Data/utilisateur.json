@@ -68,16 +68,5 @@
         "type": "client",
         "connected": true,
         "permission": "preparateur"
-    },
-    {
-        "birthdate": "1000-02-12",
-        "name": "Sayf",
-        "last_name": "SBAI",
-        "email": "sa",
-        "phone": "sd",
-        "address": "s",
-        "password": "$2y$10$iLV7JDwn4mqbZy9tOTIxH.vW1ic0zwZhOkSfHPr8fq5N\/gV3lpa1G",
-        "type": "client",
-        "connected": true
     }
 ]
