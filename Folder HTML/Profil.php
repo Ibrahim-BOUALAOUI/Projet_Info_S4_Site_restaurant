@@ -44,11 +44,15 @@ $mesCommandes = array_reverse($mesCommandes);
 </head>
 
 <body>
-    <header>
-        <button id="bouton-theme" style="padding: 8px; cursor: pointer; border-radius: 5px; background: orange; color: white; border: none; margin: 10px;">🌓 Changer de mode</button>
-        <a href="index.php"><img src="../Folder img/129.png" alt="Logo" width="200"></a>
-        <a href="deconnection.php" class="btn-deconnexion">🚪 Se déconnecter</a>
-    </header>
+    <header style="display: flex; align-items: center; justify-content: space-between; padding: 10px 50px; background-color: #1b0730; border-bottom: 2px solid #F67D00;">
+    <a href="index.php">
+        <img src="../Folder img/129.png" alt="Logo" width="200">
+    </a>
+
+    <a href="deconnection.php" class="btn-deconnexion" style="text-decoration: none;">
+        🚪 Se déconnecter
+    </a>
+</header>
 
     <main class="rect-mid">
         <section class="informations">
