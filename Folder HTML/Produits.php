@@ -19,6 +19,8 @@ $plat = $data['plats'];
 <html lang="fr">
 
 <head>
+    <link rel="stylesheet" id="style-sombre" href="">
+    <script src="../Folder JS/affichage.js" defer></script>
     <link rel="stylesheet" href="../Folder CSS/Produits.css">
     <link rel="stylesheet" href="../Folder CSS/Sous_page.css">
     <script src = "../Folder_JS/Filtres.js"></script>

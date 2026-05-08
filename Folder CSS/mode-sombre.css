@@ -1,32 +1,62 @@
-/* Nouvelle charte graphique sombre */
-body {
-    background-color: #121212 !important;
-    color: #e0e0e0 !important;
+/* =====================================================
+   MODE CLAIR — Le 129
+   ===================================================== */
+
+[data-theme="sombre"] body {
+    background-color: #f8f9fa !important; /* Gris très clair / Blanc */
+    background-image: radial-gradient(circle at top right, #ffffff, #e9ecef) !important;
+    color: #2d3436 !important;
 }
 
-/* On adapte les sections de vos fichiers existants (Profil.php, index.php) */
-.rect-left, .rect-mid, .rect-menus, .cart-container, .login-card, .avis-form .card {
-    background-color: #1e1e1e !important;
-    border: 1px solid #333 !important;
-    color: #f0f0f0 !important;
+/* Header en mode clair */
+[data-theme="sombre"] header, 
+[data-theme="sombre"] .top_bar,
+[data-theme="sombre"] .header-profil {
+    background-color: #ffffff !important;
+    border-bottom: 2px solid #F67D00 !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1) !important;
 }
 
-h1, h2, h3, .info-label, .menu-title {
-    color: #ff9800 !important; /* Orange pour garder l'esprit du restaurant */
+/* Blocs et Cartes (Profil, Menus, Commandes) */
+[data-theme="sombre"] .rect-left, 
+[data-theme="sombre"] aside,
+[data-theme="sombre"] .menu-item, 
+[data-theme="sombre"] .informations, 
+[data-theme="sombre"] .commande-card, 
+[data-theme="sombre"] .action-card {
+    background: #ffffff !important;
+    border: 1px solid #dee2e6 !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important;
+    color: #333333 !important;
 }
 
-input, textarea {
-    background-color: #333 !important;
+/* Titres */
+[data-theme="sombre"] h1, 
+[data-theme="sombre"] h2, 
+[data-theme="sombre"] h3, 
+[data-theme="sombre"] .Bungee, 
+[data-theme="sombre"] .menu-title, 
+[data-theme="sombre"] .section-title {
+    color: #F67D00 !important; /* On garde l'orange emblématique */
+    text-shadow: none !important;
+}
+
+/* Textes et Labels */
+[data-theme="sombre"] .info-label, 
+[data-theme="sombre"] .info-value, 
+[data-theme="sombre"] .action-text,
+[data-theme="sombre"] p {
+    color: #4b4b4b !important;
+}
+
+/* Boutons (on les rend plus doux) */
+[data-theme="sombre"] .btn-modifier, 
+[data-theme="sombre"] .btn-recommander,
+[data-theme="sombre"] .btn-deconnexion {
+    background-color: #F67D00 !important;
     color: white !important;
-    border: 1px solid #444 !important;
 }
 
-.btn-modifier, .main-btn, .btn-confirm {
-    background-color: #ff9800 !important;
-    color: black !important;
-}
-
-/* Correction pour les textes sombres dans le panier */
-.item-info p, .summary-title, .commande-date {
-    color: #bbb !important;
+[data-theme="sombre"] .action-card {
+    background-color: #f1f3f5 !important;
 }

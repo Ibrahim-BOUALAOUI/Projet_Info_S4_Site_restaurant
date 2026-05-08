@@ -25,7 +25,7 @@ $role = $_SESSION['permission'] ?? null;
             <img src="../Folder img/129.png" alt="Logo du restaurant" width="200" height="auto">
             
           <button id="bouton-theme" style="padding: 10px 15px; cursor: pointer; border-radius: 8px; background: orange; color: white; border: none; font-weight: bold; font-family: 'Bungee', cursive; z-index: 1000; margin-bottom: 60px;">
-    🌓 Changer de mode
+    ☀️ Mode Clair
 </button>
         </header>
 

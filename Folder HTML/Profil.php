@@ -34,17 +34,15 @@ $mesCommandes = array_reverse($mesCommandes);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon Profil</title>
 
-    <!-- Style de base du profil -->
     <link rel="stylesheet" href="../Folder CSS/Profil.css">
 
-    <!-- Balise pour le mode sombre -->
     <link rel="stylesheet" id="style-sombre" href="">
 
     <script src="../Folder JS/affichage.js" defer></script>
 </head>
 
 <body>
-    <header style="display: flex; align-items: center; justify-content: space-between; padding: 10px 50px; background-color: #1b0730; border-bottom: 2px solid #F67D00;">
+    <header class="header-profil" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 50px; border-bottom: 2px solid #F67D00;">
     <a href="index.php">
         <img src="../Folder img/129.png" alt="Logo" width="200">
     </a>
