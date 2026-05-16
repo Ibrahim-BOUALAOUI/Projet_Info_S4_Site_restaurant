@@ -38,7 +38,7 @@ $mesCommandes = array_reverse($mesCommandes);
 
     <link rel="stylesheet" id="style-sombre" href="">
 
-    <script src="../Folder JS/affichage.js" defer></script>
+    <script src="../Folder_JS/affichage.js" defer></script>
 </head>
 
 <body>

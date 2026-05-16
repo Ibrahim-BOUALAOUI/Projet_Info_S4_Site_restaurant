@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <head>
     <link rel="stylesheet" id="style-sombre" href="">
-    <script src="../Folder JS/affichage.js" defer></script>
+    <script src="../Folder_JS/affichage.js" defer></script>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../Folder CSS/connexion.css">
 </head>
