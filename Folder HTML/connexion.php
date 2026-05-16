@@ -58,6 +58,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Le 129 | Connexion</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../Folder CSS/connexion.css">
+
+    <script src="../Folder_JS/verification_connexion.js" defer></script>
 </head>
 
 <body>
@@ -108,32 +110,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <p class="toggle-text">Vous n'avez pas de compte ? <a href="inscription.php">S'inscrire</a></p>
         </div>
     </div>
-    <script>
-        function validerFormulaire() {
-            const email = document.getElementById('email').value.trim();
-            const password = document.getElementById('password').value.trim();
-            const erreurDiv = document.getElementById('erreur-client');
-            let message = '';
-            const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-            if (!email) {
-                message = "L'adresse e-mail est obligatoire.";
-            } else if (!regexEmail.test(email)) {
-                message = "L'adresse e-mail n'est pas valide.";
-            } else if (!password) {
-                message = "Le mot de passe est obligatoire.";
-            }
-
-            if (message) {
-                erreurDiv.textContent = message;
-                erreurDiv.style.display = 'block';
-                return false;
-            }
-
-            erreurDiv.style.display = 'none';
-            return true;
-        }
-    </script>
 </body>
 
 

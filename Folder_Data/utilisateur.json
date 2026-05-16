@@ -68,5 +68,18 @@
         "type": "client",
         "connected": true,
         "permission": "preparateur"
+    },
+    {
+        "id": "db6033816c84152b054563521d5ebb25",
+        "last_connection": "05\/05\/2026  13:37",
+        "birthdate": "2005-02-22",
+        "name": "anthony",
+        "last_name": "ancelin",
+        "email": "antho@gmail.com",
+        "phone": "0783883392",
+        "adress": "Rue de je sais pas ou",
+        "password": "$2y$12$v3OGQMS8uT8KksQmBbukiuyib67CWyoe7gR6u92s.Xm9v3jTwoEbG",
+        "type": "client",
+        "connected": true
     }
 ]
