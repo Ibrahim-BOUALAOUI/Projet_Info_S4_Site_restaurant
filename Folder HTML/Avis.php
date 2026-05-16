@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+       <link rel="stylesheet" id="style-sombre" href="">
+    <script src="../Folder_JS/affichage.js" defer></script>
     <link rel="stylesheet" href="../Folder CSS/Avis.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

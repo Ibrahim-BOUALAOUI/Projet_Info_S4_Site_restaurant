@@ -33,6 +33,8 @@ $control = md5($phrase);
 <html lang="fr">
 
 <head>
+    <link rel="stylesheet" id="style-sombre" href="">
+    <script src="../Folder_JS/affichage.js" defer></script>
     <meta charset="UTF-8">
     <title>Mon Panier</title>
     <link rel="stylesheet" href="../Folder CSS/Sous_page.css">

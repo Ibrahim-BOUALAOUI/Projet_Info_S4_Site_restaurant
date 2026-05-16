@@ -5,6 +5,8 @@ session_start();
 <html lang="fr">
 
 <head>
+    <link rel="stylesheet" id="style-sombre" href="">
+    <script src="../Folder_JS/affichage.js" defer></script>
     <meta charset="UTF-8">
     <title>Erreur d'inscription</title>
     <link rel="stylesheet" href="../folder CSS/Erreur.css">

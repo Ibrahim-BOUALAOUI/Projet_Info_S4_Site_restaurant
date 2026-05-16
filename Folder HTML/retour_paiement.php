@@ -81,6 +81,8 @@ if ($status === 'accepted' && isset($_SESSION['panier']) && count($_SESSION['pan
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <link rel="stylesheet" id="style-sombre" href="">
+    <script src="../Folder_JS/affichage.js" defer></script>
     <meta charset="UTF-8">
     <title>Confirmation de commande</title>
     <link rel="stylesheet" href="../Folder CSS/Sous_page.css">
