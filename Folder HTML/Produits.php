@@ -20,10 +20,10 @@ $plat = $data['plats'];
 
 <head>
     <link rel="stylesheet" id="style-sombre" href="">
-    <script src="../Folder JS/affichage.js" defer></script>
+    <script src="../Folder_JS/affichage.js" defer></script>
     <link rel="stylesheet" href="../Folder CSS/Produits.css">
     <link rel="stylesheet" href="../Folder CSS/Sous_page.css">
-    <script src = "../Folder_JS/Filtres.js"></script>
+    <script src = "../Folder_JS/Filtres.js" defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tous nos produits</title>
@@ -63,16 +63,18 @@ $plat = $data['plats'];
     <main class="produits-container">
         <aside class="filters-sidebar">
             <h2 class="filters-title">🎯 Filtres</h2>
-            <form method="GET" action="Produits.php">
-
-                <section class="filter-group">
-                    <h3 class="filter-title">Type</h3>
-                    <label class="filter-option"><input type="checkbox" name="type" id="Menus" > Menus</label>
-                    <label class="filter-option"><input type="checkbox" name="type" id="sandwich" > Sandwichs</label>
-                    <label class="filter-option"><input type="checkbox" name="type" id="extra" > Extras</label>
-                    <label class="filter-option"><input type="checkbox" name="type" id="boisson" > Boissons</label>
-                </section>
-            </form>
+            <section class="filter-group">
+                <h3 class="filter-title">Type</h3>
+                <label class="filter-option"><input type="checkbox" name="type" id="Menus"> Menus</label>
+                <label class="filter-option"><input type="checkbox" name="type" id="sandwich"> Sandwichs</label>
+                <label class="filter-option"><input type="checkbox" name="type" id="extra"> Extras</label>
+                <label class="filter-option"><input type="checkbox" name="type" id="boisson"> Boissons</label>
+                <h3 class="filter-title">Prix</h3>
+                <label class="filter-option"><input type="checkbox" name="type" id="prix-0-5"> 0-5€</label>
+                <label class="filter-option"><input type="checkbox" name="type" id="prix-5-10"> 5-10€</label>
+                <label class="filter-option"><input type="checkbox" name="type" id="prix-10"> Plus de 10€</label>
+            </section>
+        <button class="btn-reinitialiser" id="reset-filtres">Reset</button>
         </aside>
 
         <section class="products-grid">
