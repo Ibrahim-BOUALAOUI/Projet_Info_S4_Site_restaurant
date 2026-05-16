@@ -33,24 +33,20 @@ $mesCommandes = array_reverse($mesCommandes);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon Profil</title>
-
     <link rel="stylesheet" href="../Folder CSS/Profil.css">
-
     <link rel="stylesheet" id="style-sombre" href="">
-
     <script src="../Folder_JS/affichage.js" defer></script>
 </head>
 
 <body>
     <header class="header-profil" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 50px; border-bottom: 2px solid #F67D00;">
-    <a href="index.php">
-        <img src="../Folder img/129.png" alt="Logo" width="200">
-    </a>
-
-    <a href="deconnection.php" class="btn-deconnexion" style="text-decoration: none;">
-        🚪 Se déconnecter
-    </a>
-</header>
+        <a href="index.php">
+            <img src="../Folder img/129.png" alt="Logo" width="200">
+        </a>
+        <a href="deconnection.php" class="btn-deconnexion" style="text-decoration: none;">
+            🚪 Se déconnecter
+        </a>
+    </header>
 
     <main class="rect-mid">
         <section class="informations">
@@ -93,7 +89,7 @@ $mesCommandes = array_reverse($mesCommandes);
                         $totalPrix += $cmd['articles'][$j]['prix'];
                     }
 
-                    $couleurStatus = "#f39c12"; 
+                    $couleurStatus = "#f39c12";
                     if ($cmd['statut'] === "livree") {
                         $couleurStatus = "#2ecc71";
                     }
@@ -119,7 +115,17 @@ $mesCommandes = array_reverse($mesCommandes);
                                 <?= htmlspecialchars($cmd['statut']) ?>
                             </span>
                         </div>
-                        <a href="Menus.php"><button class="btn-recommander">Recommander</button></a>
+                        <div class="commande-actions" style="display: flex; flex-direction: column; gap: 5px; margin-top: 10px;">
+                            <a href="Menus.php"><button class="btn-recommander" style="width: 100%;">Recommander</button></a>
+
+                            <?php if ($cmd['statut'] === "a preparer"): ?>
+                                <a href="modifier_commande.php?id_cmd=<?= urlencode($cmd['id']) ?>">
+                                    <button class="btn-modifier" style="background-color: #3498db; color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 5px; font-weight: bold; width: 100%;">
+                                        ✏️ Modifier
+                                    </button>
+                                </a>
+                            <?php endif; ?>
+                        </div>
                     </article>
                 <?php } ?>
 
