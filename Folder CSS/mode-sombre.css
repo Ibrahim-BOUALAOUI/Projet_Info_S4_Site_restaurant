@@ -3,7 +3,7 @@
    ===================================================== */
 
 [data-theme="sombre"] body {
-    background-color: #f8f9fa !important; /* Gris très clair / Blanc */
+    background-color: #f8f9fa !important;
     background-image: radial-gradient(circle at top right, #ffffff, #e9ecef) !important;
     color: #2d3436 !important;
 }
@@ -30,6 +30,83 @@
     color: #333333 !important;
 }
 
+/* ── CARTES PRODUITS ── */
+[data-theme="sombre"] .product-card,
+[data-theme="sombre"] .produit-card,
+[data-theme="sombre"] .produit,
+[data-theme="sombre"] .carte-produit,
+[data-theme="sombre"] .card-produit,
+[data-theme="sombre"] .item-produit,
+[data-theme="sombre"] .product-item,
+[data-theme="sombre"] .product,
+[data-theme="sombre"] .menu-card,
+[data-theme="sombre"] .plat-card,
+[data-theme="sombre"] .plat,
+[data-theme="sombre"] .dish-card {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    background-image: none !important;
+    border: 1px solid #dee2e6 !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06) !important;
+    color: #333333 !important;
+}
+
+/* Textes à l'intérieur des cartes produits */
+[data-theme="sombre"] .product-card *,
+[data-theme="sombre"] .produit-card *,
+[data-theme="sombre"] .produit *,
+[data-theme="sombre"] .carte-produit *,
+[data-theme="sombre"] .card-produit *,
+[data-theme="sombre"] .item-produit *,
+[data-theme="sombre"] .product-item *,
+[data-theme="sombre"] .product *,
+[data-theme="sombre"] .menu-card *,
+[data-theme="sombre"] .plat-card *,
+[data-theme="sombre"] .plat * {
+    color: #333333 !important;
+}
+
+/* Prix des produits */
+[data-theme="sombre"] .product-price,
+[data-theme="sombre"] .prix,
+[data-theme="sombre"] .produit-prix,
+[data-theme="sombre"] .price {
+    color: #F67D00 !important;
+}
+
+/* ── BARRE DE RECHERCHE ── */
+[data-theme="sombre"] .search-container {
+    background: transparent !important;
+}
+
+[data-theme="sombre"] .search-bar {
+    background-color: #ffffff !important;
+    color: #333333 !important;
+    border: 1px solid #dee2e6 !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important;
+}
+
+[data-theme="sombre"] .search-bar::placeholder {
+    color: #999999 !important;
+}
+
+[data-theme="sombre"] .search-bar:focus {
+    border-color: #F67D00 !important;
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(246,125,0,0.15) !important;
+}
+
+/* Grille / conteneur des produits */
+[data-theme="sombre"] .products-grid,
+[data-theme="sombre"] .produits-grid,
+[data-theme="sombre"] .produits-container,
+[data-theme="sombre"] .products-container,
+[data-theme="sombre"] .liste-produits,
+[data-theme="sombre"] .menu-container,
+[data-theme="sombre"] .nos-produits {
+    background-color: transparent !important;
+}
+
 /* Titres */
 [data-theme="sombre"] h1, 
 [data-theme="sombre"] h2, 
@@ -37,7 +114,7 @@
 [data-theme="sombre"] .Bungee, 
 [data-theme="sombre"] .menu-title, 
 [data-theme="sombre"] .section-title {
-    color: #F67D00 !important; /* On garde l'orange emblématique */
+    color: #F67D00 !important;
     text-shadow: none !important;
 }
 
@@ -49,7 +126,7 @@
     color: #4b4b4b !important;
 }
 
-/* Boutons (on les rend plus doux) */
+/* Boutons */
 [data-theme="sombre"] .btn-modifier, 
 [data-theme="sombre"] .btn-recommander,
 [data-theme="sombre"] .btn-deconnexion {
