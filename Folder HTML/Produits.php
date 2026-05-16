@@ -69,12 +69,19 @@ $plat = $data['plats'];
                 <label class="filter-option"><input type="checkbox" name="type" id="sandwich"> Sandwichs</label>
                 <label class="filter-option"><input type="checkbox" name="type" id="extra"> Extras</label>
                 <label class="filter-option"><input type="checkbox" name="type" id="boisson"> Boissons</label>
+
                 <h3 class="filter-title">Prix</h3>
-                <label class="filter-option"><input type="checkbox" name="type" id="prix-0-5"> 0-5€</label>
-                <label class="filter-option"><input type="checkbox" name="type" id="prix-5-10"> 5-10€</label>
-                <label class="filter-option"><input type="checkbox" name="type" id="prix-10"> Plus de 10€</label>
+                <label class="filter-option"><input type="checkbox" name="prix" id="prix-0-5"> 0-5€</label>
+                <label class="filter-option"><input type="checkbox" name="prix" id="prix-5-10"> 5-10€</label>
+                <label class="filter-option"><input type="checkbox" name="prix" id="prix-10-plus"> Plus de 10€</label>
+
+                <h3 class="filter-title">Saveur</h3>
+                <label class="filter-option"><input type="checkbox" id="épicé"> Épicé</label>
+                <label class="filter-option"><input type="checkbox" id="doux"> Doux</label>
+                <label class="filter-option"><input type="checkbox" id="salé"> Salé</label>
+                <label class="filter-option"><input type="checkbox" id="sucré"> Sucré</label>
             </section>
-        <button class="btn-reinitialiser" id="reset-filtres">Reset</button>
+
         </aside>
 
         <section class="products-grid">

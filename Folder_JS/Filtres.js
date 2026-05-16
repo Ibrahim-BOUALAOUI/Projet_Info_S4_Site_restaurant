@@ -1,10 +1,10 @@
 let TousLesPlats = [];
 
 const FiltresActif = { 
-    type: null,
-    saveur : null,
-    regime : null,
-    prix : null
+    type: [],
+    saveur : [],
+    regime : [],
+    prix : []
 };
 
 // Je récupère les données du fichier JSON
@@ -14,37 +14,47 @@ async function init(){
     TousLesPlats = data.plats; //Je Fill mon tableau
     afficherPlats(TousLesPlats);
     //Récpuere l'information des checkboxes
-     document.getElementById("sandwich").addEventListener("change", function() {
-    if (this.checked) {
-      setFiltre("type", "sandwich");
-    } else {
-      setFiltre("type", null);
-    }
+    //Filtre sur le Type de nourriture
+    document.querySelectorAll("#Menus, #sandwich, #extra, #boisson").forEach(checkboxe => {
+      checkboxe.addEventListener("change", function() {
+        FiltresActif.type = []; // On reconstruit le tableau à chaque changement
+        
+        document.querySelectorAll("#Menus, #sandwich, #extra, #boisson").forEach(cb=> {
+        if (cb.checked){
+          FiltresActif.type.push(cb.id); // Actualsation
+        }
+      });
+      
+
+      filtrerPlats();
+      });
+    });
+    // Filtre sur le prix des menus
+    document.querySelectorAll("#prix-0-5, #prix-5-10, #prix-10-plus").forEach(checkboxe =>{
+      checkboxe.addEventListener("change", function() {
+        FiltresActif.prix = []; // On reconstruit le tableau du prix
+        document.querySelectorAll("#prix-0-5, #prix-5-10, #prix-10-plus").forEach(prix => {
+          if (prix.checked){
+            FiltresActif.prix.push(prix.id);
+          }
+        });
+        filtrerPlats();
+      });
+    })
+    document.querySelectorAll("#épicé, #doux, #salé, #sucré").forEach(checkbox => {
+      checkbox.addEventListener("change", function() {
+        FiltresActif.saveur = [];
+
+        document.querySelectorAll("#épicé, #doux, #salé, #sucré").forEach(cb => {
+          if (cb.checked) {
+            FiltresActif.saveur.push(cb.id);
+          }
+        });
+
+        filtrerPlats();
+    });
   });
 
-  document.getElementById("Menus").addEventListener("change", function() {
-    if (this.checked) {
-      setFiltre("type", "Menus");
-    } else {
-      setFiltre("type", null);
-    }
-  });
-
-  document.getElementById("extra").addEventListener("change", function() {
-    if (this.checked) {
-      setFiltre("type", "extra");
-    } else {
-      setFiltre("type", null);
-    }
-  });
-
-  document.getElementById("boisson").addEventListener("change", function() {
-    if (this.checked) {
-      setFiltre("type", "boisson");
-    } else {
-      setFiltre("type", null);
-    }
-  });
 }
 function setFiltre(type,valeur){ 
     //La fonction qui filtre en fonction du filtre en question
@@ -53,15 +63,35 @@ function setFiltre(type,valeur){
 }
 
 function filtrerPlats(){
-    const resultats = TousLesPlats.filter(plat=> {
-    if (FiltresActif.type && plat.type !== FiltresActif.type)
+  const resultats = TousLesPlats.filter(plat => {
+    if (FiltresActif.type.length > 0 && !FiltresActif.type.includes(plat.type))
       return false;
-    if (FiltresActif.saveur && plat.saveur !== FiltresActif.saveur)
+
+    if (FiltresActif.saveur.length > 0 && !FiltresActif.saveur.includes(plat.saveur))
       return false;
-    if (FiltresActif.regime && !plat.regime.includes(FiltresActif.regime))
+
+    if (FiltresActif.regime.length > 0 && !FiltresActif.regime.some(r => plat.regime.includes(r)))
       return false;
+
+    if (FiltresActif.prix.length > 0) {
+      let prixOk = false;
+
+      FiltresActif.prix.forEach(tranche => {
+        if (tranche === "prix-0-5" && plat.prix >= 0 && plat.prix <= 5)
+          prixOk = true;
+        if (tranche === "prix-5-10" && plat.prix > 5 && plat.prix <= 10)
+          prixOk = true;
+        if (tranche === "prix-10-plus" && plat.prix > 10)
+          console.log(plat.nom, plat.prix, plat.prix > 10);
+        if (plat.prix > 10) prixOk = true;
+      });
+
+      if (!prixOk) return false;
+    }
+
     return true;
   });
+
   afficherPlats(resultats);
 }
 
