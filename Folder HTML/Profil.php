@@ -6,20 +6,22 @@ if (!isset($_SESSION['email'])) {
     exit();
 }
 
+// Récupération de l'utilisateur
 $users = json_decode(file_get_contents('../Folder_Data/utilisateur.json'), true) ?? [];
 $userActuel = null;
-for ($i = 0; $i < count($users); $i++) {
-    if ($users[$i]['email'] === $_SESSION['email']) {
-        $userActuel = $users[$i];
+foreach ($users as $user) {
+    if ($user['email'] === $_SESSION['email']) {
+        $userActuel = $user;
         break;
     }
 }
 
+// Récupération des commandes
 $commandesData = json_decode(file_get_contents('../Folder_Data/commandes.json'), true) ?? [];
 $mesCommandes = [];
-for ($i = 0; $i < count($commandesData); $i++) {
-    if ($commandesData[$i]['client'] === $_SESSION['email']) {
-        $mesCommandes[] = $commandesData[$i];
+foreach ($commandesData as $cmd) {
+    if ($cmd['client'] === $_SESSION['email']) {
+        $mesCommandes[] = $cmd;
     }
 }
 
@@ -32,10 +34,9 @@ $mesCommandes = array_reverse($mesCommandes);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Profil</title>
+    <title>Mon Profil - Le 129</title>
 
     <link rel="stylesheet" href="../Folder CSS/Profil.css">
-
     <link rel="stylesheet" id="style-sombre" href="">
 
     <script src="../Folder_JS/affichage.js" defer></script>
@@ -43,35 +44,22 @@ $mesCommandes = array_reverse($mesCommandes);
 
 <body>
     <header class="header-profil" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 50px; border-bottom: 2px solid #F67D00;">
-    <a href="index.php">
-        <img src="../Folder img/129.png" alt="Logo" width="200">
-    </a>
-
-    <a href="deconnection.php" class="btn-deconnexion" style="text-decoration: none;">
-        🚪 Se déconnecter
-    </a>
-</header>
+        <a href="index.php">
+            <img src="../Folder img/129.png" alt="Logo" width="200">
+        </a>
+        <a href="deconnection.php" class="btn-deconnexion" style="text-decoration: none;">
+            🚪 Se déconnecter
+        </a>
+    </header>
 
     <main class="rect-mid">
         <section class="informations">
             <h2 class="section-title"> Vos informations</h2>
             <div class="info-content">
-                <div class="info-item">
-                    <span class="info-label">Prénom :</span>
-                    <span class="info-value"><?= htmlspecialchars($userActuel['name'] ?? 'Non renseigné') ?></span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">Adresse :</span>
-                    <span class="info-value"><?= htmlspecialchars($userActuel['adress'] ?? 'Non renseignée') ?></span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">Téléphone :</span>
-                    <span class="info-value"><?= htmlspecialchars($userActuel['phone'] ?? 'Non renseigné') ?></span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">Email :</span>
-                    <span class="info-value"><?= htmlspecialchars($_SESSION['email']) ?></span>
-                </div>
+                <div class="info-item"><span class="info-label">Prénom :</span> <span class="info-value"><?= htmlspecialchars($userActuel['name'] ?? 'Non renseigné') ?></span></div>
+                <div class="info-item"><span class="info-label">Adresse :</span> <span class="info-value"><?= htmlspecialchars($userActuel['adress'] ?? 'Non renseignée') ?></span></div>
+                <div class="info-item"><span class="info-label">Téléphone :</span> <span class="info-value"><?= htmlspecialchars($userActuel['phone'] ?? 'Non renseigné') ?></span></div>
+                <div class="info-item"><span class="info-label">Email :</span> <span class="info-value"><?= htmlspecialchars($_SESSION['email']) ?></span></div>
             </div>
             <a href="modifier_profil.php"><button class="btn-modifier">✏️ Modifier</button></a>
         </section>
@@ -79,65 +67,54 @@ $mesCommandes = array_reverse($mesCommandes);
         <section class="commandes-section">
             <h2 class="section-title">🛍️ Vos dernières commandes</h2>
             <div class="commandes-grid">
+                <?php if (empty($mesCommandes)): ?>
+                    <p style='color:white;'>Vous n'avez pas encore passé de commande.</p>
+                <?php endif; ?>
 
-                <?php
-                if (count($mesCommandes) === 0) {
-                    echo "<p style='color:white;'>Vous n'avez pas encore passé de commande.</p>";
-                }
-
-                for ($i = 0; $i < count($mesCommandes); $i++) {
-                    $cmd = $mesCommandes[$i];
-
+                <?php foreach ($mesCommandes as $cmd): 
                     $totalPrix = 0;
-                    for ($j = 0; $j < count($cmd['articles']); $j++) {
-                        $totalPrix += $cmd['articles'][$j]['prix'];
-                    }
+                    foreach ($cmd['articles'] as $art) { $totalPrix += $art['prix']; }
+
+                    $statut = $cmd['statut'] ?? 'en_cours';
+                    $typeCmd = $cmd['type_commande'] ?? 'livraison';
+                    $dejaNote = $cmd['deja_note'] ?? false;
 
                     $couleurStatus = "#f39c12"; 
-                    if ($cmd['statut'] === "livree") {
-                        $couleurStatus = "#2ecc71";
-                    }
-                    if ($cmd['statut'] === "abandonnee") {
-                        $couleurStatus = "#e74c3c";
-                    }
+                    if ($statut === "livree") $couleurStatus = "#2ecc71";
+                    if ($statut === "abandonnee") $couleurStatus = "#e74c3c";
+
+                    $peutNoter = ($statut === "livree" && $typeCmd === "livraison" && !$dejaNote);
                 ?>
                     <article class="commande-card">
-                        <div class="commande-image">
-                            <img src="../Folder img/129.png" alt="Commande">
-                        </div>
+                        <div class="commande-image"><img src="../Folder img/129.png" alt="Commande"></div>
                         <div class="commande-info">
-                            <h3 class="commande-nom">
-                                <?php
-                                echo htmlspecialchars($cmd['articles'][0]['nom']);
-                                if (count($cmd['articles']) > 1) echo " (+" . (count($cmd['articles']) - 1) . ")";
-                                ?>
-                            </h3>
-                            <p class="commande-date"><?= $cmd['date'] ?></p>
+                            <h3 class="commande-nom"><?= htmlspecialchars($cmd['articles'][0]['nom']) ?><?php if (count($cmd['articles']) > 1) echo " (+" . (count($cmd['articles']) - 1) . ")"; ?></h3>
+                            <p class="commande-date"><?= htmlspecialchars($cmd['date']) ?></p>
                             <p class="commande-prix"><?= number_format($totalPrix, 2) ?> €</p>
-
                             <span class="commande-statut" style="background-color: <?= $couleurStatus ?>; color: white; padding: 3px 10px; border-radius: 5px; font-weight: bold; font-size: 0.8em; text-transform: uppercase;">
-                                <?= htmlspecialchars($cmd['statut']) ?>
+                                <?= htmlspecialchars($statut) ?>
                             </span>
                         </div>
-                        <a href="Menus.php"><button class="btn-recommander">Recommander</button></a>
+                        <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
+                            <a href="Menus.php" style="width: 100%;"><button class="btn-recommander" style="width: 100%;">Recommander</button></a>
+                            <?php if ($peutNoter): ?>
+                                <a href="Avis.php?commande_id=<?= urlencode($cmd['id']) ?>" style="width: 100%;">
+                                    <button class="btn-modifier" style="width: 100%; background-color: #F67D00; border: none;">⭐ Noter la commande</button>
+                                </a>
+                            <?php endif; ?>
+                        </div>
                     </article>
-                <?php } ?>
-
+                <?php endforeach; ?>
             </div>
         </section>
 
         <section class="actions-section">
             <h2 class="section-title">⚡ Actions rapides</h2>
             <div class="actions-grid">
-                <a href="Menus.php" class="action-card">
-                    <span class="action-icon">🍔</span><span class="action-text">Commander</span>
-                </a>
-                <a href="Avis.php" class="action-card">
-                    <span class="action-icon">⭐</span><span class="action-text">Avis</span>
-                </a>
+                <a href="Menus.php" class="action-card"><span class="action-icon">🍔</span><span class="action-text">Commander</span></a>
+                <a href="Avis.php" class="action-card"><span class="action-icon">⭐</span><span class="action-text">Avis</span></a>
             </div>
         </section>
     </main>
 </body>
-
 </html>
