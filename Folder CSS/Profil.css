@@ -31,6 +31,28 @@ a { text-decoration: none; outline: none; color: inherit; }
 a:focus, button:focus { outline: 2px solid #F67D00; outline-offset: 2px; }
 html { scroll-behavior: smooth; }
 
+/* ========================================
+   Bloquée
+======================================== */
+.btn-bloquer {
+    padding: 6px 14px;
+    border: none;
+    border-radius: 8px;
+    background: rgba(244, 67, 54, 0.15);
+    color: #f44336;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-bloquer:hover {
+    background: rgba(244, 67, 54, 0.3);
+}
+
+.user-bloque {
+    opacity: 0.5;
+    background: rgba(244, 67, 54, 0.05);
+}
 
 /* ========================================
    BOUTON DÉCONNEXION

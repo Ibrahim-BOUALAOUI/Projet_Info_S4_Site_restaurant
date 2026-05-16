@@ -34,12 +34,7 @@ $mesCommandes = array_reverse($mesCommandes);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
-    <title>Mon Profil</title>
-=======
     <title>Mon Profil - Le 129</title>
-
->>>>>>> f4de8505a1c438105f1a9893b0ba2dd2cedabf93
     <link rel="stylesheet" href="../Folder CSS/Profil.css">
     <link rel="stylesheet" id="style-sombre" href="">
     <script src="../Folder_JS/affichage.js" defer></script>
@@ -82,21 +77,11 @@ $mesCommandes = array_reverse($mesCommandes);
                     $typeCmd = $cmd['type_commande'] ?? 'livraison';
                     $dejaNote = $cmd['deja_note'] ?? false;
 
-<<<<<<< HEAD
-                    $couleurStatus = "#f39c12";
-                    if ($cmd['statut'] === "livree") {
-                        $couleurStatus = "#2ecc71";
-                    }
-                    if ($cmd['statut'] === "abandonnee") {
-                        $couleurStatus = "#e74c3c";
-                    }
-=======
                     $couleurStatus = "#f39c12"; 
                     if ($statut === "livree") $couleurStatus = "#2ecc71";
                     if ($statut === "abandonnee") $couleurStatus = "#e74c3c";
 
                     $peutNoter = ($statut === "livree" && $typeCmd === "livraison" && !$dejaNote);
->>>>>>> f4de8505a1c438105f1a9893b0ba2dd2cedabf93
                 ?>
                     <article class="commande-card">
                         <div class="commande-image"><img src="../Folder img/129.png" alt="Commande"></div>
@@ -108,7 +93,6 @@ $mesCommandes = array_reverse($mesCommandes);
                                 <?= htmlspecialchars($statut) ?>
                             </span>
                         </div>
-<<<<<<< HEAD
                         <div class="commande-actions" style="display: flex; flex-direction: column; gap: 5px; margin-top: 10px;">
                             <a href="Menus.php"><button class="btn-recommander" style="width: 100%;">Recommander</button></a>
 
@@ -117,13 +101,6 @@ $mesCommandes = array_reverse($mesCommandes);
                                     <button class="btn-modifier" style="background-color: #3498db; color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 5px; font-weight: bold; width: 100%;">
                                         ✏️ Modifier
                                     </button>
-=======
-                        <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
-                            <a href="Menus.php" style="width: 100%;"><button class="btn-recommander" style="width: 100%;">Recommander</button></a>
-                            <?php if ($peutNoter): ?>
-                                <a href="Avis.php?commande_id=<?= urlencode($cmd['id']) ?>" style="width: 100%;">
-                                    <button class="btn-modifier" style="width: 100%; background-color: #F67D00; border: none;">⭐ Noter la commande</button>
->>>>>>> f4de8505a1c438105f1a9893b0ba2dd2cedabf93
                                 </a>
                             <?php endif; ?>
                         </div>
@@ -141,8 +118,4 @@ $mesCommandes = array_reverse($mesCommandes);
         </section>
     </main>
 </body>
-<<<<<<< HEAD
-
-=======
->>>>>>> f4de8505a1c438105f1a9893b0ba2dd2cedabf93
 </html>

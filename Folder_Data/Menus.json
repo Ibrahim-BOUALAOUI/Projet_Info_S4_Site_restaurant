@@ -6,7 +6,7 @@
             "description" : "Filet de poulet mariné au tandoori, crudités et sauce. Avec frites et boisson.",
             "prix" : 13.50,
             "type" : "Menus",
-            "saveur" : "Doux",
+            "saveur" : "épicé",
             "regime" : [],
             "image" : "../Folder img/chiken_tendori.png"
         },
