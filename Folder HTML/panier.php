@@ -19,9 +19,7 @@ for ($i = 0; $i < count($panier); $i++) {
     $total_general += $panier[$i]['prix'];
 }
 
-// -------------------------------------------------------------------------
-// GESTION DE L'AVOIR POUR UNE COMMANDE CLASSIQUE (HORS MODIFICATION)
-// -------------------------------------------------------------------------
+
 $avoir_disponible = 0;
 $avoir_deduit = 0;
 $montant_apres_avoir = $total_general;
@@ -58,6 +56,20 @@ $url_retour = "http://localhost:8888/Folder HTML/retour_paiement.php";
 
 $phrase = $api_key . "#" . $transaction . "#" . $montant_formatte . "#" . $vendeur . "#" . $url_retour . "#";
 $control = md5($phrase);
+
+//Gestion du blocage de la personne
+$json_users = file_get_contents("../Folder_Data/utilisateur.json");
+$users = json_decode($json_users, true);
+
+if (isset($_SESSION['email'])) {
+    foreach ($users as $user) {
+        if ($user['email'] === $_SESSION['email'] && !empty($user['bloque'])) {
+            session_destroy();
+            header("Location: connexion.php?erreur=bloque");
+            exit;
+        }
+    }
+}
 ?>
 
 <!DOCTYPE html>
