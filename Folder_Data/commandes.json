@@ -325,20 +325,5 @@
         "heure_prevue": "Imm\u00e9diat",
         "date": "2026-05-05 14:08:05",
         "montant_total": "108.00"
-    },
-    {
-        "id": "TX1778958527",
-        "client": "antho@gmail.com",
-        "adresse": "Rue de je sais pas ou",
-        "articles": [
-            {
-                "nom": "Menu Le Sp\u00e9cial",
-                "prix": "13.5"
-            }
-        ],
-        "statut": "a preparer",
-        "heure_prevue": "Imm\u00e9diat",
-        "date": "2026-05-16 19:09:16",
-        "montant_total": "13.50"
     }
 ]
