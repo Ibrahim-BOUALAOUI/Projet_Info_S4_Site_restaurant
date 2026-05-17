@@ -20,6 +20,9 @@ function validerFormulaire() {
         if (year < 1900) {
             message = "Date de naissance incorrecte.";
         }
+        else if (year > 2026) {
+            message = "Date de naissance incorrecte.";
+        }
     }
 
     if (!message && !first_name) {

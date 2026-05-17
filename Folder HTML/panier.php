@@ -75,7 +75,11 @@ $control = md5($phrase);
         <div class="cart-items">
             <h1 class="cart-title">🛒 Votre commande</h1>
             <?php if (count($panier) === 0) : ?>
-                <p>Votre panier est vide.</p>
+                <?php if (isset($_SESSION['modifying_cmd_id'])): ?>
+                    <p style="color: #e74c3c; font-weight: bold;">Votre panier est vide. Validez les modifications à droite pour confirmer l'annulation complète et générer votre avoir.</p>
+                <?php else: ?>
+                    <p>Votre panier est vide.</p>
+                <?php endif; ?>
                 <a href="Menus.php" style="color: orange;">Retour aux menus</a>
             <?php else : ?>
                 <?php for ($i = 0; $i < count($panier); $i++) : ?>
@@ -90,7 +94,8 @@ $control = md5($phrase);
             <?php endif; ?>
         </div>
 
-        <?php if (count($panier) > 0) : ?>
+        <?php /* CHANGEMENT DE CONDITION ICI : On affiche le résumé si le panier contient des éléments OU si on est en train de modifier une commande */ ?>
+        <?php if (count($panier) > 0 || isset($_SESSION['modifying_cmd_id'])) : ?>
             <div class="cart-summary">
                 <h2 class="summary-title">Résumé</h2>
 
@@ -141,7 +146,8 @@ $control = md5($phrase);
                             <form action='retour_paiement.php' method='GET' style="margin-top: 10px;">
                                 <input type='hidden' name='status' value='accepted'>
                                 <input type='hidden' name='transaction' value='<?= $_SESSION['modifying_cmd_id'] ?>'>
-                                <input type='hidden' name='montant' value='<?= $diff_formattee ?>'> <input type='hidden' name='vendeur' value='<?= $vendeur ?>'>
+                                <input type='hidden' name='montant' value='<?= $diff_formattee ?>'>
+                                <input type='hidden' name='vendeur' value='<?= $vendeur ?>'>
                                 <input type='hidden' name='mode_modif' value='avoir_généré'>
                                 <button type="submit" class="btn-confirm" style="width:100%; background-color: #2ecc71;">VALIDER LES MODIFICATIONS</button>
                             </form>

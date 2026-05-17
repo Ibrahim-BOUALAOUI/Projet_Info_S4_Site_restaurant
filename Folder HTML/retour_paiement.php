@@ -38,7 +38,10 @@ if (isset($_SESSION['panier']) && is_array($_SESSION['panier'])) {
 $nouveau_total_formatte = number_format($total_actuel, 2, '.', '');
 
 // 3. ENREGISTREMENT ET VALIDATION DES DONNÉES
-if ($status === 'accepted' && isset($_SESSION['panier']) && count($_SESSION['panier']) > 0) {
+// On autorise un panier vide UNIQUEMENT si c'est une modification (ce qui équivaut à une annulation)
+$panier_valide = isset($_SESSION['panier']) && (count($_SESSION['panier']) > 0 || $is_modification);
+
+if ($status === 'accepted' && $panier_valide) {
 
     $file_path = '../Folder_Data/commandes.json';
     $cmds_existantes = file_exists($file_path) ? json_decode(file_get_contents($file_path), true) : array();
@@ -49,7 +52,7 @@ if ($status === 'accepted' && isset($_SESSION['panier']) && count($_SESSION['pan
         $ancien_paye = (float)$_SESSION['modifying_cmd_amount_paid'];
         $ticket_avoir_message = "";
 
-        // Si le nouveau panier coûte MOINS cher (retrait d'articles) -> on crédite la différence en avoir
+        // Si le nouveau panier coûte MOINS cher (ou vaut 0 car vide) -> on crédite la différence en avoir
         if ($total_actuel < $ancien_paye) {
             $reduction = $ancien_paye - $total_actuel;
             $ticket_avoir_message = " Un avoir de " . number_format($reduction, 2, ',', ' ') . " € a été ajouté à votre compte !";
@@ -69,19 +72,30 @@ if ($status === 'accepted' && isset($_SESSION['panier']) && count($_SESSION['pan
         // Écrasement et mise à jour dans commandes.json
         for ($i = 0; $i < count($cmds_existantes); $i++) {
             if ($cmds_existantes[$i]['id'] == $id_target) {
-                $cmds_existantes[$i]['articles'] = $_SESSION['panier'];
-                $cmds_existantes[$i]['heure_prevue'] = $heure_retrait;
-                $cmds_existantes[$i]['montant_total'] = $nouveau_total_formatte; // Enregistre le nouveau prix réel du panier
 
-                if (strpos($id_trans, 'TX_DIFF_') !== false) {
-                    $cmds_existantes[$i]['id_transaction_complement'] = $id_trans;
+                // Si l'utilisateur a vidé son panier -> Annulation complète de la commande
+                if (count($_SESSION['panier']) === 0) {
+                    $cmds_existantes[$i]['articles'] = array();
+                    $cmds_existantes[$i]['montant_total'] = "0.00";
+                    $cmds_existantes[$i]['statut'] = "abandonnee"; // Passera en rouge sur Profil.php
+                    $message = "Commande annulée avec succès !" . $ticket_avoir_message;
+                } else {
+                    // Sinon, modification classique des articles
+                    $cmds_existantes[$i]['articles'] = $_SESSION['panier'];
+                    $cmds_existantes[$i]['heure_prevue'] = $heure_retrait;
+                    $cmds_existantes[$i]['montant_total'] = $nouveau_total_formatte;
+
+                    if (strpos($id_trans, 'TX_DIFF_') !== false) {
+                        $cmds_existantes[$i]['id_transaction_complement'] = $id_trans;
+                    }
+                    $message = "Commande mise à jour avec succès !" . $ticket_avoir_message;
                 }
+
                 $adresse_finale = $cmds_existantes[$i]['adresse'];
                 break;
             }
         }
         file_put_contents($file_path, json_encode($cmds_existantes, JSON_PRETTY_PRINT));
-        $message = "Commande mise à jour avec succès !" . $ticket_avoir_message;
     } else {
         // --- CAS B : FLUX D'UNE NOUVELLE COMMANDE CLASSIQUE ---
 
@@ -121,7 +135,7 @@ if ($status === 'accepted' && isset($_SESSION['panier']) && count($_SESSION['pan
             "statut" => "a preparer",
             "heure_prevue" => $heure_retrait,
             "date" => date("Y-m-d H:i:s"),
-            "montant_total" => $nouveau_total_formatte // Stocke le prix final payé par le client (0.00 ou réduit)
+            "montant_total" => $nouveau_total_formatte
         );
 
         $cmds_existantes[] = $nouvelle_commande;
