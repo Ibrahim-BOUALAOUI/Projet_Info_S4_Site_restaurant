@@ -26,6 +26,22 @@ foreach ($commandesData as $cmd) {
 }
 
 $mesCommandes = array_reverse($mesCommandes);
+
+// Récupération des avis déjà laissés par l'utilisateur
+$avisData = file_exists('../Folder_Data/avis.json')
+    ? json_decode(file_get_contents('../Folder_Data/avis.json'), true)
+    : [];
+
+if (!is_array($avisData)) {
+    $avisData = [];
+}
+
+$commandesDejaNotees = [];
+foreach ($avisData as $avis) {
+    if (($avis['client'] ?? '') === $_SESSION['email']) {
+        $commandesDejaNotees[] = (string)($avis['commande_id'] ?? '');
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -77,7 +93,7 @@ $mesCommandes = array_reverse($mesCommandes);
 
                     $statut = $cmd['statut'] ?? 'en_cours';
                     $typeCmd = $cmd['type_commande'] ?? 'livraison';
-                    $dejaNote = $cmd['deja_note'] ?? false;
+                    $dejaNote = ($cmd['deja_note'] ?? false) || in_array((string)($cmd['id'] ?? ''), $commandesDejaNotees, true);
 
                     $couleurStatus = "#f39c12";
                     if ($statut === "livree") $couleurStatus = "#2ecc71";
@@ -102,6 +118,14 @@ $mesCommandes = array_reverse($mesCommandes);
                                 <a href="modifier_commande.php?id_cmd=<?= urlencode($cmd['id']) ?>">
                                     <button class="btn-modifier" style="background-color: #3498db; color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 5px; font-weight: bold; width: 100%;">
                                         ✏️ Modifier
+                                    </button>
+                                </a>
+                            <?php endif; ?>
+
+                            <?php if ($peutNoter): ?>
+                                <a href="Avis.php?commande_id=<?= urlencode($cmd['id']) ?>">
+                                    <button class="btn-modifier" style="background-color: #F67D00; color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 5px; font-weight: bold; width: 100%;">
+                                        ⭐ Noter la commande
                                     </button>
                                 </a>
                             <?php endif; ?>
