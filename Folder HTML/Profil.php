@@ -37,8 +37,6 @@ $mesCommandes = array_reverse($mesCommandes);
 <<<<<<< HEAD
     <title>Mon Profil</title>
 =======
-    <title>Mon Profil - Le 129</title>
-
 >>>>>>> f4de8505a1c438105f1a9893b0ba2dd2cedabf93
     <link rel="stylesheet" href="../Folder CSS/Profil.css">
     <link rel="stylesheet" id="style-sombre" href="">
@@ -75,8 +73,12 @@ $mesCommandes = array_reverse($mesCommandes);
                 <?php endif; ?>
 
                 <?php foreach ($mesCommandes as $cmd): 
+                <?php foreach ($mesCommandes as $cmd):
                     $totalPrix = 0;
                     foreach ($cmd['articles'] as $art) { $totalPrix += $art['prix']; }
+                    foreach ($cmd['articles'] as $art) {
+                        $totalPrix += $art['prix'];
+                    }
 
                     $statut = $cmd['statut'] ?? 'en_cours';
                     $typeCmd = $cmd['type_commande'] ?? 'livraison';
@@ -95,7 +97,6 @@ $mesCommandes = array_reverse($mesCommandes);
                     if ($statut === "livree") $couleurStatus = "#2ecc71";
                     if ($statut === "abandonnee") $couleurStatus = "#e74c3c";
 
-                    $peutNoter = ($statut === "livree" && $typeCmd === "livraison" && !$dejaNote);
 >>>>>>> f4de8505a1c438105f1a9893b0ba2dd2cedabf93
                 ?>
                     <article class="commande-card">
