@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             "password" => password_hash($password, PASSWORD_DEFAULT),
             "type" => 'client',
             "connected" => true,
-            "permission" => 'User'
+            "permission" => 'User',
             "bloquee" => false,
         ];
 
