@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $id = bin2hex(random_bytes(16));
     $date_actuelle = date("d/m/Y  H:i");
-    $bloquee = false;
+    $bloque = false;
 
     // Sécurité PHP au cas où le JS est contourné
     if (empty($birthdate) || empty($name) || empty($last_name) || empty($email) || empty($phone) || empty($adress) || empty($password)) {
@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             "type" => 'client',
             "connected" => true,
             "permission" => 'User',
-            "bloquee" => false,
+            "bloque" => false,
         ];
 
         $users[] = $newUser;

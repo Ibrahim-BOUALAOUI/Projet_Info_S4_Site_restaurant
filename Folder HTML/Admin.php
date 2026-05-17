@@ -93,7 +93,7 @@ function statut_label(string $s): string {
     <link rel="stylesheet" href="../Folder CSS/Admin.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="../Folder_JS/admin.js"></script>
+    <script src="../Folder_JS/admin.js" defer></script>
     <title>Administration — Le 129</title>
 </head>
 <body>
@@ -176,6 +176,7 @@ function statut_label(string $s): string {
                             <th>Email</th>
                             <th>Rôle</th>
                             <th>Dernière connexion</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -204,23 +205,24 @@ function statut_label(string $s): string {
                                     <?php endforeach; ?>
                                 </select>
                             </td>
-                            <td><span class="date-badge"><?= htmlspecialchars($user['last_connection'] ?? $last_connection) ?></span></td>
+                            <td>
+                                <span class="date-badge"><?= htmlspecialchars($user['last_connection'] ?? $last_connection) ?></span>
+                            </td>
+                            <td>
+                                <button class="btn-bloquer"
+                                    data-id="<?= $user['id'] ?>"
+                                    data-bloque="<?= !empty($user['bloque']) ? '1' : '0' ?>">
+                                    <?= !empty($user['bloque']) ? '🔓 Débloquer' : '🔒 Bloquer' ?>
+                                </button>
+                            </td>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
-
             <div class="action-buttons">
                 <button class="btn-secondary" type="reset">↩️ Annuler</button>
                 <button class="btn-primary" type="submit" name="action" value="update">✅ Valider les modifications</button>
-                <td>
-                <button class="btn-bloquer"
-                    data-id="<?= $user['id'] ?>"
-                    data-bloque="<?= !empty($user['bloque']) ? '1' : '0' ?>">
-                    <?= !empty($user['bloque']) ? '🔓 Débloquer' : '🔒 Bloquer' ?>
-                </button>
-            </td>
             </div>
         </form>
     </section>
