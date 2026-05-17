@@ -1,9 +1,8 @@
 document.querySelectorAll(".btn-bloquer").forEach(btn => {
     btn.addEventListener("click", async function() {
+        // Récupere l'état du compte
         const userId = this.dataset.id;
         const estBloque = this.dataset.bloque === "1";
-        console.log("ID envoyé :", userId);
-        console.log("Bloquer :", !estBloque);
         const action = estBloque ? "débloquer" : "bloquer";
 
         if (!confirm(`Voulez-vous vraiment ${action} cet utilisateur ?`)) return;

@@ -32,7 +32,7 @@ foreach ($users as &$user) {
         break;
     }
 }
-
+// Verification
 if (!$trouve) {
     echo json_encode(["succes" => false, "message" => "Utilisateur introuvable"]);
     exit;
