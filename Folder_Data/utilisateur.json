@@ -11,7 +11,8 @@
         "password": "$2y$12$d7F37MDbTcXqEd7P8Bbd4u\/EJQSd1LzwZaOa.mAKFh7N2LqOTOn\/i",
         "type": "admin",
         "connected": true,
-        "permission": "admin"
+        "permission": "admin",
+        "avoir": 2
     },
     {
         "id": "0c69facce10cc89117f858de3a39e354",
@@ -96,7 +97,7 @@
         "last_name": "Boulanger",
         "email": "client2@gmail.com",
         "phone": "0612049868",
-        "adress": "\u00e0 cot\u00e9 du pr\u00e9sident",
+        "adress": "à coté du président",
         "password": "$2y$12$9v7mRC3ssjhKHFeSdFdkNOGQ80GjFTAgZm0JEV.eQQRe5YMKeWXKG",
         "type": "client",
         "connected": true,

@@ -1,5 +1,6 @@
 <?php
-session_start();
+require("../include/Start.php");
+require("../include/Permission.php");
 $json  = file_get_contents("../Folder_Data/utilisateur.json");
 $users = json_decode($json, true);
 
@@ -7,7 +8,8 @@ $json_commandes  = file_get_contents("../Folder_Data/commandes.json");
 $commandes = json_decode($json_commandes, true);
 
 $role = $_SESSION['permission'] ?? null;
-require("../include/Permission.php");
+
+
 if(!isAdmin($role)){
     $accesRefuse = true;
 }
@@ -97,18 +99,9 @@ function statut_label(string $s): string {
     <title>Administration — Le 129</title>
 </head>
 <body>
-<?php  if (isset($accesRefuse)): ?>
 
-    <div class="acces-refuse-overlay">
-        <div class="acces-refuse-card">
-            <span class="acces-refuse-icon">🔒</span>
-            <h1 class="acces-refuse-titre">Accès refusé</h1>
-            <p class="acces-refuse-message">
-                Vous n'avez pas les droits nécessaires pour accéder à cette page.
-            </p>
-            <a href="index.php" class="acces-refuse-btn">Retour à l'accueil</a>
-        </div>
-    </div>
+<?php  if (isset($accesRefuse)): 
+    require("../includes/accèsRefusé"); ?>
 
 <?php else: ?>
 <header>

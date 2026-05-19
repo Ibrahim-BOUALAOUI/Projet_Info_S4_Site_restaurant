@@ -7,55 +7,55 @@ const FiltresActif = {
     prix : []
 };
 
-// Je récupère les données du fichier JSON
-async function init(){
-    const reponse = await fetch("../Folder_Data/Menus.json");
-    const data = await reponse.json();
-    TousLesPlats = data.plats; //Je Fill mon tableau
-    afficherPlats(TousLesPlats);
-    //Récpuere l'information des checkboxes
-    //Filtre sur le Type de nourriture
-    document.querySelectorAll("#Menus, #sandwich, #extra, #boisson").forEach(checkboxe => {
-      checkboxe.addEventListener("change", function() {
-        FiltresActif.type = []; // On reconstruit le tableau à chaque changement
+  // Je récupère les données du fichier JSON
+  async function init(){
+      const reponse = await fetch("../Folder_Data/Menus.json");
+      const data = await reponse.json();
+      TousLesPlats = data.plats; //Je Fill mon tableau
+      afficherPlats(TousLesPlats);
+      //Récpuere l'information des checkboxes
+      //Filtre sur le Type de nourriture
+      document.querySelectorAll("#Menus, #sandwich, #extra, #boisson").forEach(checkboxe => {
+        checkboxe.addEventListener("change", function() {
+          FiltresActif.type = []; // On reconstruit le tableau à chaque changement
+          
+          document.querySelectorAll("#Menus, #sandwich, #extra, #boisson").forEach(cb=> {
+          if (cb.checked){
+            FiltresActif.type.push(cb.id); // Actualsation
+          }
+        });
         
-        document.querySelectorAll("#Menus, #sandwich, #extra, #boisson").forEach(cb=> {
-        if (cb.checked){
-          FiltresActif.type.push(cb.id); // Actualsation
-        }
-      });
-      
-
-      filtrerPlats();
-      });
-    });
-    // Filtre sur le prix des menus
-    document.querySelectorAll("#prix-0-5, #prix-5-10, #prix-10-plus").forEach(checkboxe =>{
-      checkboxe.addEventListener("change", function() {
-        FiltresActif.prix = []; // On reconstruit le tableau du prix
-        document.querySelectorAll("#prix-0-5, #prix-5-10, #prix-10-plus").forEach(prix => {
-          if (prix.checked){
-            FiltresActif.prix.push(prix.id);
-          }
-        });
-        filtrerPlats();
-      });
-    })
-    document.querySelectorAll("#épicé, #doux, #salé, #sucré").forEach(checkbox => {
-      checkbox.addEventListener("change", function() {
-        FiltresActif.saveur = [];
-
-        document.querySelectorAll("#épicé, #doux, #salé, #sucré").forEach(cb => {
-          if (cb.checked) {
-            FiltresActif.saveur.push(cb.id);
-          }
-        });
 
         filtrerPlats();
-    });
-  });
+        });
+      });
+      // Filtre sur le prix des menus
+      document.querySelectorAll("#prix-0-5, #prix-5-10, #prix-10-plus").forEach(checkboxe =>{
+        checkboxe.addEventListener("change", function() {
+          FiltresActif.prix = []; // On reconstruit le tableau du prix
+          document.querySelectorAll("#prix-0-5, #prix-5-10, #prix-10-plus").forEach(prix => {
+            if (prix.checked){
+              FiltresActif.prix.push(prix.id);
+            }
+          });
+          filtrerPlats();
+        });
+      })
+      document.querySelectorAll("#épicé, #doux, #salé, #sucré").forEach(checkbox => {
+        checkbox.addEventListener("change", function() {
+          FiltresActif.saveur = [];
 
-}
+          document.querySelectorAll("#épicé, #doux, #salé, #sucré").forEach(cb => {
+            if (cb.checked) {
+              FiltresActif.saveur.push(cb.id);
+            }
+          });
+
+          filtrerPlats();
+      });
+    });
+
+  }
 function setFiltre(type,valeur){ 
     //La fonction qui filtre en fonction du filtre en question
     FiltresActif[type] = valeur;
@@ -81,9 +81,11 @@ function filtrerPlats(){
           prixOk = true;
         if (tranche === "prix-5-10" && plat.prix > 5 && plat.prix <= 10)
           prixOk = true;
-        if (tranche === "prix-10-plus" && plat.prix > 10)
+        if (tranche === "prix-10-plus" && plat.prix > 10){
+            prixOk = true;
+        }
           console.log(plat.nom, plat.prix, plat.prix > 10);
-        if (plat.prix > 10) prixOk = true;
+        
       });
 
       if (!prixOk) return false;
