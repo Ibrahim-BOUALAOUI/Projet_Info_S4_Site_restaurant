@@ -226,7 +226,7 @@ function statut_label(string $s): string {
 
         <!-- Filtre par client -->
         <form method="get" class="filter-form">
-            <a href="admin.php" class="btn-secondary <?= $filtre_client ? '' : 'active' ?>">Toutes</a>
+            <a href="Admin.php" class="btn-secondary <?= $filtre_client ? '' : 'active' ?>">Toutes</a>
             <?php
             $clients_uniques = array_unique(array_column($commandes, 'client'));
             sort($clients_uniques);
