@@ -11,16 +11,12 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    /* Permet à la page de s'adapter si le formulaire est grand */
     margin: 0;
     padding: 20px 0;
-    /* Évite que la carte colle aux bords de l'écran */
     box-sizing: border-box;
 }
 
-/* ========================================
-   Bloquée
-======================================== */
+
 .btn-bloquer {
     padding: 6px 14px;
     border: none;
@@ -43,7 +39,6 @@ body {
 
 .input-group {
     margin-bottom: 10px;
-    /* Réduit de 15px à 10px pour gagner de la place */
     text-align: left;
 }
 
@@ -61,7 +56,6 @@ body {
     width: 100%;
     max-width: 400px;
     padding: 25px 35px;
-    /* Réduit (avant c'était 40px partout) pour raccourcir le bloc */
     border-radius: 20px;
     text-align: center;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
@@ -70,12 +64,10 @@ body {
 
 .logo-box {
     margin-bottom: 5px;
-    /* Réduit pour remonter le logo */
 }
 
 .site-logo {
     width: 260px;
-    /* Légèrement réduit pour aider à tout faire rentrer */
     height: auto;
 }
 
@@ -84,16 +76,13 @@ h2 {
     font-size: 16px;
     margin-top: 0px;
     margin-bottom: 15px;
-    /* Réduit de 25px à 15px */
     letter-spacing: 1px;
 }
 
 input {
     width: 100%;
     padding: 11px 15px;
-    /* Réduit la hauteur des champs de saisie */
     margin-bottom: 5px;
-    /* Réduit l'espace inutile sous l'input */
     background: #333;
     border: 1px solid #444;
     color: white;
@@ -122,7 +111,6 @@ input:focus {
 .main-btn {
     width: 100%;
     padding: 14px;
-    /* Un poil plus compact */
     background-color: #37105e;
     color: white;
     border: none;
@@ -161,12 +149,10 @@ input[type="date"] {
 
 .form-title {
     font-size: 20px;
-    /* Réduit de 24px à 20px */
     font-weight: 800;
     letter-spacing: 1px;
     color: #ffffff;
     margin-bottom: 5px;
-    /* Réduit de 10px à 5px */
     text-transform: uppercase;
 }
 
@@ -174,7 +160,6 @@ input[type="date"] {
     font-size: 13px;
     color: #aaaaaa;
     margin-bottom: 15px;
-    /* Réduit de 25px à 15px */
     line-height: 1.4;
 }
 
