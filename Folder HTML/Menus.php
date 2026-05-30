@@ -1,5 +1,4 @@
 <?php
-session_start();
 $connecte = isset($_SESSION['email']);
 $nb_articles = isset($_SESSION['panier']) ? count($_SESSION['panier']) : 0;
 $json = file_get_contents("../Folder_Data/Menus.json");
