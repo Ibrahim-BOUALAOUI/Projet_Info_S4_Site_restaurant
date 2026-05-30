@@ -18,42 +18,45 @@ $role = $_SESSION['permission'] ?? null;
 
 <body>
     <main>
-        <header class="top_bar" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 40px;">
-            <img src="../Folder img/129.png" alt="Logo du restaurant" width="200" height="auto">
-            
-          <button id="bouton-theme" style="padding: 10px 15px; cursor: pointer; border-radius: 8px; background: orange; color: white; border: none; font-weight: bold; font-family: 'Bungee', cursive; z-index: 1000; margin-bottom: 60px;">
-    ☀️ Mode Clair
-</button>
-        </header>
+        <header class="top_bar">
+    <div class="header-left">
+        <img src="../Folder img/129.png" alt="Logo du restaurant" width="200" height="auto">
+        <a href="panier.php" class="btn-panier" aria-label="Accéder à mon panier">
+            <span class="panier-icon">🛒</span>
+            <span class="panier-text">Mon panier</span>
+        </a>
+    </div>
 
-        <aside>
-            <?php if ($connecte) { ?>
-                <a href="Profil.php" class="btn-profil" aria-label="Accéder à mon profil">
-                    <span class="profil-icon">👤</span>
-                    <span class="profil-text">Mon profil</span>
+    <div class="header-right">
+        <?php if ($connecte) { ?>
+            <a href="Profil.php" class="btn-profil" aria-label="Accéder à mon profil">
+                <span class="profil-icon">👤</span>
+                <span class="profil-text">Mon profil</span>
+            </a>
+            <?php if ($role === 'admin'): ?>
+                <a href="Admin.php" class="btn-role btn-admin">
+                    <span class="role-icon">⚙️</span>
+                    <span class="role-text">Administration</span>
                 </a>
-                <?php if ($role === 'admin'): ?>
-                    <a href="Admin.php" class="btn-role btn-admin">
-                        <span class="role-icon">⚙️</span>
-                        <span class="role-text">Administration</span>
-                    </a>
-                <?php elseif ($role === 'preparateur'): ?>
-                    <a href="commandes.php" class="btn-role btn-preparateur">
-                        <span class="role-icon">👨‍🍳</span>
-                        <span class="role-text">Commandes</span>
-                    </a>
-                <?php elseif ($role === 'livreur'): ?>
-                    <a href="livreur.php" class="btn-role btn-livreur">
-                        <span class="role-icon">🛵</span>
-                        <span class="role-text">Livraisons</span>
-                    </a>
-                <?php endif; ?>
-            <?php } else { ?>
-                <a href="connexion.php" aria-label="Se connecter">
-                    <button class="Btn" aria-label="Connexion">Connexion</button>
+            <?php elseif ($role === 'preparateur'): ?>
+                <a href="commandes.php" class="btn-role btn-preparateur">
+                    <span class="role-icon">👨‍🍳</span>
+                    <span class="role-text">Commandes</span>
                 </a>
-            <?php } ?>
-        </aside>
+            <?php elseif ($role === 'livreur'): ?>
+                <a href="livreur.php" class="btn-role btn-livreur">
+                    <span class="role-icon">🛵</span>
+                    <span class="role-text">Livraisons</span>
+                </a>
+            <?php endif; ?>
+        <?php } else { ?>
+            <a href="connexion.php" aria-label="Se connecter">
+                <button class="Btn" aria-label="Connexion">Connexion</button>
+            </a>
+        <?php } ?>
+        <button id="bouton-theme" class="btn-theme">☀️ Mode Clair</button>
+    </div>
+</header>
 
         <section class="rect-left" aria-labelledby="incontournables-title">
             <h2 id="incontournables-title" class="Bungee"><u>Nos incontournables</u></h2>
