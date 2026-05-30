@@ -1,5 +1,6 @@
 <?php
 session_start();
+require("../include/Start.php");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['email']) && isset($_POST['password'])) {

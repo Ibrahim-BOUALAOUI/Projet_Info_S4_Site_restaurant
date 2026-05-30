@@ -1,6 +1,6 @@
 <?php
-session_start();
 
+require("../include/Start.php");
 $fichier = '../Folder_Data/commandes.json';
 $commandes = [];
 if (file_exists($fichier)) {

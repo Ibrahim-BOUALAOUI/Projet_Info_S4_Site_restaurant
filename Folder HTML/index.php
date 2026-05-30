@@ -1,21 +1,7 @@
 <?php
-session_start();
-$connecte = isset($_SESSION['email']);
+require("../include/Start.php");
 $role = $_SESSION['permission'] ?? null;
 
-//Gestion du blocage de la personne
-$json_users = file_get_contents("../Folder_Data/utilisateur.json");
-$users = json_decode($json_users, true);
-
-if (isset($_SESSION['email'])) {
-    foreach ($users as $user) {
-        if ($user['email'] === $_SESSION['email'] && !empty($user['bloque'])) {
-            session_destroy();
-            header("Location: connexion.php?erreur=bloque");
-            exit;
-        }
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -91,6 +77,7 @@ if (isset($_SESSION['email'])) {
             </a>
         </section>
 
+        
         <section class="rect-menus" aria-label="Nos catégories de produits">
             <article class="menu-item menu-item-special">
                 <div class="menu-info">
@@ -100,6 +87,7 @@ if (isset($_SESSION['email'])) {
                     </a>
                 </div>
             </article>
+            
             <article class="menu-item">
                 <div class="menu-info">
                     <h3 class="menu-title">Nos menus</h3>

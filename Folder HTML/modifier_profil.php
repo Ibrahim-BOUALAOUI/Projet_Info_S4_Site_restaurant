@@ -1,5 +1,5 @@
 <?php
-session_start();
+require("../include/Start.php");
 
 if (!isset($_SESSION['connecte'])) {
     header("Location: index.php");

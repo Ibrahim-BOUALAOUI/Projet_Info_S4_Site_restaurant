@@ -1,6 +1,6 @@
 <?php
-session_start();
 
+require("../include/Start.php");
 $fichier = '../Folder_Data/commandes.json';
 $json = file_get_contents($fichier);
 $commandes = json_decode($json, true) ?? array();
