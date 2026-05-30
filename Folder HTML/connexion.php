@@ -94,6 +94,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="input-group">
                     <label for="password">MOT DE PASSE</label>
                     <input type="password" name="password" id="password" placeholder="••••••••" required>
+
+                    <label style="font-size: 11px; cursor: pointer; display: flex; align-items: center; gap: 8px; margin-top: 8px; font-weight: normal; text-transform: none; color: #aaa; width: 100%; max-width: 100%;">
+                        <input type="checkbox" onclick="document.getElementById('password').type = this.checked ? 'text' : 'password'" style="margin: 0; width: auto; height: auto; display: inline-block;"> Afficher le mot de passe
+                    </label>
                 </div>
 
                 <div class="form-helper">
