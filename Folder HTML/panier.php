@@ -83,6 +83,11 @@ if (isset($_SESSION['email'])) {
 </head>
 
 <body>
+    <header class="top_bar" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 40px;"> 
+        <a href="index.php">
+            <img src="../Folder img/129.png" alt="Logo" width="200">
+        </a>
+</header>
     <div class="cart-container">
         <div class="cart-items">
             <h1 class="cart-title">🛒 Votre commande</h1>
