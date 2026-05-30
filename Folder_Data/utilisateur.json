@@ -134,5 +134,20 @@
         "connected": true,
         "permission": "User",
         "bloque": false
+    },
+    {
+        "id": "84e4a868accf8690a9a9b36098f33cda",
+        "last_connection": "30\/05\/2026  13:34",
+        "birthdate": "2005-02-22",
+        "name": "Anthony",
+        "last_name": "Ancelin",
+        "email": "anthony@gmail.com",
+        "phone": "0783883393",
+        "adress": "Jsp trop",
+        "password": "$2y$12$mRbqhLteFIVHZgi.2LXf2.mlZzzJerVMPdFIvI8DvP9j1HrV.wuC.",
+        "type": "client",
+        "connected": true,
+        "permission": "User",
+        "bloque": false
     }
 ]

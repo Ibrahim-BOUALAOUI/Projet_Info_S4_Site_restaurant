@@ -85,9 +85,11 @@ $avis[] = [
     "id" => uniqid("avis_"),
     "commande_id" => $idCmd,
     "client" => $_SESSION['email'],
+    "email" => $_SESSION['email'],
     "note_plat" => $notePlat,
     "note_livraison" => $noteLivraison,
     "commentaire" => $commentaire,
+    "avis" => $commentaire,
     "prenom" => $prenom,
     "date" => date("Y-m-d H:i:s")
 ];

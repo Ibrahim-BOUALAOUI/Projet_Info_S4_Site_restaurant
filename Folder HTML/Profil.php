@@ -139,7 +139,7 @@ foreach ($avisData as $avis) {
             <h2 class="section-title">⚡ Actions rapides</h2>
             <div class="actions-grid">
                 <a href="Menus.php" class="action-card"><span class="action-icon">🍔</span><span class="action-text">Commander</span></a>
-                <a href="Avis.php" class="action-card"><span class="action-icon">⭐</span><span class="action-text">Avis</span></a>
+                <a href="Choisir_avis.php" class="action-card"><span class="action-icon">⭐</span><span class="action-text">Avis</span></a>
             </div>
         </section>
     </main>

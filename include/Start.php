@@ -1,7 +1,5 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+session_start();
 $connecte = isset($_SESSION['email']);
 $json = file_get_contents("../Folder_Data/Menus.json");
 $data = json_decode($json, true);
