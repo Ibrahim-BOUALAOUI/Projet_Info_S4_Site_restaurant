@@ -1,5 +1,4 @@
 <?php
-session_start();
 require("../include/Start.php");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
