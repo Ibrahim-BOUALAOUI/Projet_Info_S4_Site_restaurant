@@ -1,15 +1,70 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['email'])) {
+    header("Location: connexion.php");
+    exit();
+}
+
+$idCmd = $_GET['commande_id'] ?? '';
+
+if ($idCmd === '') {
+    header("Location: Choisir_avis.php");
+    exit();
+}
+
 $json_users = file_get_contents("../Folder_Data/utilisateur.json");
 $users = json_decode($json_users, true);
 
-if (isset($_SESSION['email'])) {
-    foreach ($users as $user) {
-        if ($user['email'] === $_SESSION['email'] && !empty($user['bloque'])) {
-            session_destroy();
-            header("Location: connexion.php?erreur=bloque");
-            exit;
-        }
+foreach ($users as $user) {
+    if (
+        $user['email'] === $_SESSION['email'] &&
+        (!empty($user['bloque']) || !empty($user['bloquee']))
+    ) {
+        session_destroy();
+        header("Location: connexion.php?erreur=bloque");
+        exit;
     }
+}
+
+$commandes = json_decode(file_get_contents('../Folder_Data/commandes.json'), true) ?? [];
+$avisData = file_exists('../Folder_Data/avis.json')
+    ? json_decode(file_get_contents('../Folder_Data/avis.json'), true)
+    : [];
+
+if (!is_array($avisData)) {
+    $avisData = [];
+}
+
+$dejaNotee = false;
+foreach ($avisData as $avis) {
+    if (
+        (string)($avis['commande_id'] ?? '') === $idCmd &&
+        (($avis['client'] ?? $avis['email'] ?? '') === $_SESSION['email'])
+    ) {
+        $dejaNotee = true;
+        break;
+    }
+}
+
+$commandeNotable = false;
+foreach ($commandes as $cmd) {
+    if (
+        (string)($cmd['id'] ?? '') === $idCmd &&
+        ($cmd['client'] ?? '') === $_SESSION['email'] &&
+        ($cmd['statut'] ?? '') === 'livree' &&
+        ($cmd['type_commande'] ?? 'livraison') === 'livraison' &&
+        empty($cmd['deja_note']) &&
+        !$dejaNotee
+    ) {
+        $commandeNotable = true;
+        break;
+    }
+}
+
+if (!$commandeNotable) {
+    header("Location: Choisir_avis.php?msg=Commande non notifiable ou déjà notée");
+    exit();
 }
 ?>
 <!DOCTYPE html>
@@ -37,7 +92,7 @@ if (isset($_SESSION['email'])) {
             <p class="subtitle">Votre expérience compte pour nous.</p>
 
             <form action="traitement_avis.php" method="POST">
-                <input type="hidden" name="commande_id" value="<?= htmlspecialchars($_GET['commande_id'] ?? '') ?>">
+                <input type="hidden" name="commande_id" value="<?= htmlspecialchars($idCmd) ?>">
 
                 <div class="form-group">
                     <label class="label-title">Votre note du plat</label>
