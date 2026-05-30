@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="login-card">
 
             <div class="logo-box">
-                <img src="../Folder img/129.png" alt="Logo Le 129" class="site-logo">
+                <a href="../Folder HTML/index.php"><img src="../Folder img/129.png" alt="Logo Le 129" class="site-logo"></a>
             </div>
 
             <?php if (isset($_SESSION['message_erreur'])): ?>
