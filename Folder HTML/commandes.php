@@ -1,36 +1,47 @@
 <?php
+session_start();
 
-require("../include/Start.php");
+if (!isset($_SESSION['email'])) {
+    header("Location: connexion.php");
+    exit();
+}
+
+if (($_SESSION['permission'] ?? '') !== 'preparateur') {
+    header("Location: index.php?erreur=acces_refuse");
+    exit();
+}
+
 $fichier = '../Folder_Data/commandes.json';
 $json = file_get_contents($fichier);
 $commandes = json_decode($json, true) ?? array();
 
+// Gestion du blocage de la personne
+$json_users = file_get_contents("../Folder_Data/utilisateur.json");
+$users = json_decode($json_users, true);
+
+foreach ($users as $user) {
+    if (
+        $user['email'] === $_SESSION['email'] &&
+        (!empty($user['bloque']) || !empty($user['bloquee']))
+    ) {
+        session_destroy();
+        header("Location: connexion.php?erreur=bloque");
+        exit;
+    }
+}
 
 if (isset($_POST['id_prete'])) {
     $id_cmd = $_POST['id_prete'];
     for ($i = 0; $i < count($commandes); $i++) {
         if ($commandes[$i]['id'] == $id_cmd) {
             $commandes[$i]['statut'] = "en cours de livraison";
+            $commandes[$i]['livreur'] = "";
             break;
         }
     }
     file_put_contents($fichier, json_encode($commandes, JSON_PRETTY_PRINT));
     header("Location: commandes.php");
     exit();
-}
-
-//Gestion du blocage de la personne
-$json_users = file_get_contents("../Folder_Data/utilisateur.json");
-$users = json_decode($json_users, true);
-
-if (isset($_SESSION['email'])) {
-    foreach ($users as $user) {
-        if ($user['email'] === $_SESSION['email'] && !empty($user['bloque'])) {
-            session_destroy();
-            header("Location: connexion.php?erreur=bloque");
-            exit;
-        }
-    }
 }
 ?>
 
@@ -94,7 +105,14 @@ if (isset($_SESSION['email'])) {
                 <div class="card_deliveries">
                     <div class="card-info">
                         <span class="order-id_deliveries">Commande #<?php echo $commandes[$i]['id']; ?></span>
-                        <p>Livreur : En route vers le client</p>
+                        <p>
+                            Livreur :
+                            <?php if (!empty($commandes[$i]['livreur'])): ?>
+                                <?php echo htmlspecialchars($commandes[$i]['livreur']); ?>
+                            <?php else: ?>
+                                En attente d'un livreur
+                            <?php endif; ?>
+                        </p>
                     </div>
                     <span class="status-label">EN ROUTE...</span>
                 </div>
