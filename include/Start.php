@@ -7,12 +7,12 @@ $plat = $data['plats'];
 
 
 //Gestion du blocage de la personne
-$json_users = file_get_contents("../Folder_Data/dfsqfiqsoifsvquvfipqf.json");
+$json_users = file_get_contents("../Folder_Data/ofdbisqfsqf.json");
 $users = json_decode($json_users, true);
 
 if (isset($_SESSION['email'])) {
     foreach ($users as $user) {
-        if ($user['email'] === $_SESSION['email'] && !empty($user['bloque'])) {
+        if ($user['email'] === $_SESSION['email'] && (!empty($user['bloque']) || !empty($user['bloquee']))) {
             session_destroy();
             header("Location: connexion.php?erreur=bloque");
             exit;
