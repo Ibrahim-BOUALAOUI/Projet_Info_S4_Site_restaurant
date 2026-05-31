@@ -38,7 +38,7 @@ $avisDejaEnvoye = false;
 foreach ($avis as $unAvis) {
     if (
         (string)($unAvis['commande_id'] ?? '') === $idCmd &&
-        ($unAvis['client'] ?? '') === $_SESSION['email']
+        ($unAvis['client'] ?? $unAvis['email'] ?? '') === $_SESSION['email']
     ) {
         $avisDejaEnvoye = true;
         break;
