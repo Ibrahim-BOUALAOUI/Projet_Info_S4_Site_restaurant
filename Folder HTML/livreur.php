@@ -11,14 +11,14 @@ if (($_SESSION['permission'] ?? '') !== 'livreur') {
     exit();
 }
 
-$fichier = '../Folder_Data/commandes.json';
+$fichier = '../Folder_Data/dfsqfiqsoifsvquvfipqf.json';
 $commandes = [];
 if (file_exists($fichier)) {
     $json = file_get_contents($fichier);
     $commandes = json_decode($json, true) ?? [];
 }
 
-$json_users = file_get_contents("../Folder_Data/utilisateur.json");
+$json_users = file_get_contents("../Folder_Data/ofdbisqfsqf.json");
 $users = json_decode($json_users, true);
 
 foreach ($users as $user) {

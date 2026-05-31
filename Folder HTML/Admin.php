@@ -1,10 +1,10 @@
 <?php
 require("../include/Start.php");
 require("../include/Permission.php");
-$json  = file_get_contents("../Folder_Data/utilisateur.json");
+$json  = file_get_contents("../Folder_Data/ofdbisqfsqf.json");
 $users = json_decode($json, true);
 
-$json_commandes  = file_get_contents("../Folder_Data/commandes.json");
+$json_commandes  = file_get_contents("../Folder_Data/dfsqfiqsoifsvquvfipqf.json");
 $commandes = json_decode($json_commandes, true);
 
 $role = $_SESSION['permission'] ?? null;
@@ -38,7 +38,7 @@ if (isset($_POST['action'])) {
         }
     }
 
-    file_put_contents("../Folder_Data/utilisateur.json",
+    file_put_contents("../Folder_Data/ofdbisqfsqf.json",
         json_encode(array_values($users), JSON_PRETTY_PRINT));
 }
 
@@ -51,7 +51,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_commande' && isset($_
         }
     }
     unset($cmd);
-    file_put_contents("../Folder_Data/commandes.json",
+    file_put_contents("../Folder_Data/dfsqfiqsoifsvquvfipqf.json",
         json_encode(array_values($commandes), JSON_PRETTY_PRINT));
     header("Location: " . $_SERVER['PHP_SELF']);
     exit;

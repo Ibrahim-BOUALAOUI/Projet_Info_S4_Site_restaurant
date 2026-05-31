@@ -21,7 +21,7 @@ if (!$userId || $bloquer === null) {
 }
 
 // Modifier le JSON
-$json = file_get_contents("../Folder_Data/utilisateur.json");
+$json = file_get_contents("../Folder_Data/ofdbisqfsqf.json");
 $users = json_decode($json, true);
 $trouve = false;
 
@@ -38,7 +38,7 @@ if (!$trouve) {
     exit;
 }
 
-file_put_contents("../Folder_Data/utilisateur.json",
+file_put_contents("../Folder_Data/ofdbisqfsqf.json",
     json_encode(array_values($users), JSON_PRETTY_PRINT));
 
 echo json_encode(["succes" => true, "message" => $bloquer ? "Utilisateur bloqué" : "Utilisateur débloqué"]);

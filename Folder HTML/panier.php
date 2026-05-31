@@ -43,7 +43,7 @@ $avoir_deduit = 0;
 $montant_apres_avoir = $total_general;
 
 if (isset($_SESSION['email']) && !isset($_SESSION['modifying_cmd_id'])) {
-    $users_data = json_decode(file_get_contents('../Folder_Data/utilisateur.json'), true);
+    $users_data = json_decode(file_get_contents('../Folder_Data/ofdbisqfsqf.json'), true);
     if ($users_data === null) {
         $users_data = [];
     }
@@ -83,7 +83,7 @@ $phrase = $api_key . "#" . $transaction . "#" . $montant_formatte . "#" . $vende
 $control = md5($phrase);
 
 //Gestion du blocage de la personne
-$json_users = file_get_contents("../Folder_Data/utilisateur.json");
+$json_users = file_get_contents("../Folder_Data/ofdbisqfsqf.json");
 $users = json_decode($json_users, true);
 
 if (isset($_SESSION['email'])) {

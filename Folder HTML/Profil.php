@@ -7,7 +7,7 @@ if (!isset($_SESSION['email'])) {
 }
 
 // Récupération de l'utilisateur
-$users = json_decode(file_get_contents('../Folder_Data/utilisateur.json'), true) ?? [];
+$users = json_decode(file_get_contents('../Folder_Data/ofdbisqfsqf.json'), true) ?? [];
 $userActuel = null;
 foreach ($users as $user) {
     if ($user['email'] === $_SESSION['email']) {
@@ -17,7 +17,7 @@ foreach ($users as $user) {
 }
 
 // Récupération des commandes
-$commandesData = json_decode(file_get_contents('../Folder_Data/commandes.json'), true) ?? [];
+$commandesData = json_decode(file_get_contents('../Folder_Data/dfsqfiqsoifsvquvfipqf.json'), true) ?? [];
 $mesCommandes = [];
 foreach ($commandesData as $cmd) {
     if ($cmd['client'] === $_SESSION['email']) {

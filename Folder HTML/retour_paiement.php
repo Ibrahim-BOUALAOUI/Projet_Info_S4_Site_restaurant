@@ -76,7 +76,7 @@ $panier_valide = isset($_SESSION['panier']) && (count($_SESSION['panier']) > 0 |
 
 if ($status === 'accepted' && $panier_valide) {
 
-    $file_path = '../Folder_Data/commandes.json';
+    $file_path = '../Folder_Data/dfsqfiqsoifsvquvfipqf.json';
     if (file_exists($file_path)) {
         $cmds_existantes = json_decode(file_get_contents($file_path), true);
         if ($cmds_existantes === null) {
@@ -97,7 +97,7 @@ if ($status === 'accepted' && $panier_valide) {
             $reduction = $ancien_paye - $total_actuel;
             $ticket_avoir_message = " Un avoir de " . number_format($reduction, 2, ',', ' ') . " € a été ajouté à votre compte !";
 
-            $users_file = '../Folder_Data/utilisateur.json';
+            $users_file = '../Folder_Data/ofdbisqfsqf.json';
             $users_list = json_decode(file_get_contents($users_file), true);
             if ($users_list === null) {
                 $users_list = array();
@@ -116,7 +116,7 @@ if ($status === 'accepted' && $panier_valide) {
             file_put_contents($users_file, json_encode($users_list, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
         }
 
-        // Écrasement et mise à jour dans commandes.json
+        // Écrasement et mise à jour dans dfsqfiqsoifsvquvfipqf.json
         for ($i = 0; $i < count($cmds_existantes); $i++) {
             if ($cmds_existantes[$i]['id'] == $id_target) {
 
@@ -148,7 +148,7 @@ if ($status === 'accepted' && $panier_valide) {
 
         // Si l'utilisateur a consommé tout ou partie de son avoir
         if (isset($_SESSION['avoir_deduit']) && $_SESSION['avoir_deduit'] > 0) {
-            $users_file = '../Folder_Data/utilisateur.json';
+            $users_file = '../Folder_Data/ofdbisqfsqf.json';
             $users_list = json_decode(file_get_contents($users_file), true);
             if ($users_list === null) {
                 $users_list = array();
@@ -168,7 +168,7 @@ if ($status === 'accepted' && $panier_valide) {
 
         // Récupération de l'adresse
         $email_session = $_SESSION['email'];
-        $users_data = json_decode(file_get_contents('../Folder_Data/utilisateur.json'), true);
+        $users_data = json_decode(file_get_contents('../Folder_Data/ofdbisqfsqf.json'), true);
         if ($users_data === null) {
             $users_data = array();
         }

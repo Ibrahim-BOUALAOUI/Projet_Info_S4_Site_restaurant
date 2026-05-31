@@ -6,7 +6,7 @@ if (!isset($_SESSION['email'])) {
     exit();
 }
 
-$commandes = json_decode(file_get_contents('../Folder_Data/commandes.json'), true) ?? [];
+$commandes = json_decode(file_get_contents('../Folder_Data/dfsqfiqsoifsvquvfipqf.json'), true) ?? [];
 $avisData = file_exists('../Folder_Data/avis.json')
     ? json_decode(file_get_contents('../Folder_Data/avis.json'), true)
     : [];

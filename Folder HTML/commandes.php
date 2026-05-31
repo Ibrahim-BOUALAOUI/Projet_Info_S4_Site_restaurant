@@ -11,17 +11,18 @@ if (($_SESSION['permission'] ?? '') !== 'preparateur') {
     exit();
 }
 
-$fichier = '../Folder_Data/commandes.json';
+$fichier = '../Folder_Data/dfsqfiqsoifsvquvfipqf.json';
 $json = file_get_contents($fichier);
 $commandes = json_decode($json, true) ?? array();
 
 // Gestion du blocage de la personne
-$json_users = file_get_contents("../Folder_Data/utilisateur.json");
+$json_users = file_get_contents("../Folder_Data/ofdbisqfsqf.json");
 $users = json_decode($json_users, true);
 
 foreach ($users as $user) {
     if (
-        $user['email'] === $_SESSION['email'] &&
+        $user['email'] === $_SESSION
+        ['email'] &&
         (!empty($user['bloque']) || !empty($user['bloquee']))
     ) {
         session_destroy();

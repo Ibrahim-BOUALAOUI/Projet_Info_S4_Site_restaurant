@@ -13,7 +13,7 @@ if ($idCmd === '') {
     exit();
 }
 
-$json_users = file_get_contents("../Folder_Data/utilisateur.json");
+$json_users = file_get_contents("../Folder_Data/ofdbisqfsqf.json");
 $users = json_decode($json_users, true);
 
 foreach ($users as $user) {
@@ -27,7 +27,7 @@ foreach ($users as $user) {
     }
 }
 
-$commandes = json_decode(file_get_contents('../Folder_Data/commandes.json'), true) ?? [];
+$commandes = json_decode(file_get_contents('../Folder_Data/dfsqfiqsoifsvquvfipqf.json'), true) ?? [];
 $avisData = file_exists('../Folder_Data/avis.json')
     ? json_decode(file_get_contents('../Folder_Data/avis.json'), true)
     : [];

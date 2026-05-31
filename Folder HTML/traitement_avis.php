@@ -22,7 +22,7 @@ if ($idCmd === '' || $notePlat < 1 || $notePlat > 5 || $noteLivraison < 1 || $no
     exit();
 }
 
-$fichierCommandes = '../Folder_Data/commandes.json';
+$fichierCommandes = '../Folder_Data/dfsqfiqsoifsvquvfipqf.json';
 $fichierAvis = '../Folder_Data/avis.json';
 
 $commandes = json_decode(file_get_contents($fichierCommandes), true) ?? [];
