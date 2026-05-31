@@ -7,11 +7,12 @@ $users = json_decode($json, true);
 $json_commandes  = file_get_contents("../Folder_Data/commandes.json");
 $commandes = json_decode($json_commandes, true);
 
-$role = $_SESSION['permission'] ?? null;
+$role = $_SESSION['permission'] ?? '';
 
 
 if(!isAdmin($role)){
-    $accesRefuse = true;
+    header("Location: index.php?erreur=acces_refuse");
+    exit();
 }
 
 if (isset($_COOKIE['last_connection'])) {
@@ -99,11 +100,6 @@ function statut_label(string $s): string {
     <title>Administration — Le 129</title>
 </head>
 <body>
-
-<?php  if (isset($accesRefuse)): 
-    require("../includes/accèsRefusé"); ?>
-
-<?php else: ?>
 <header>
     <a href="index.php">
         <img src="../Folder img/129.png" alt="Logo" width="180">
@@ -192,7 +188,7 @@ function statut_label(string $s): string {
                                     foreach ($roles as $value => $label):
                                     ?>
                                         <option value="<?= $value ?>"
-                                            <?= (($user['type'] ?? $user['permission'] ?? '') == $value) ? 'selected' : '' ?>>
+                                            <?= (($user['permission'] ?? $user['type'] ?? '') == $value) ? 'selected' : '' ?>>
                                             <?= $label ?>
                                         </option>
                                     <?php endforeach; ?>
@@ -303,7 +299,6 @@ function statut_label(string $s): string {
             <?php endforeach; ?>
         </div>
     </section>
-<?php endif; ?>
 </div>
 </body>
 </html>
