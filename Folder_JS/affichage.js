@@ -23,7 +23,11 @@ document.addEventListener("DOMContentLoaded", () => {
     /* ── Lecture du thème (Cookie) ── */
     const lireCookie = () => {
         const c = document.cookie.split("; ").find(r => r.startsWith("theme="));
-        return c ? c.split("=")[1] : "sombre";
+        if (c) {
+            return c.split("=")[1];
+        } else {
+            return "sombre";
+        }
     };
  
     /* ── Sauvegarde ── */
@@ -51,8 +55,13 @@ document.addEventListener("DOMContentLoaded", () => {
  
         /* Mise à jour du texte du bouton */
         document.querySelectorAll(".bouton-theme").forEach(btn => {
-            btn.textContent = mode === "clair" ? "🌙 Mode Sombre" : "☀️ Mode Clair";
-            btn.setAttribute("aria-pressed", mode === "clair" ? "true" : "false");
+            if (mode === "clair") {
+                btn.textContent = "🌙 Mode Sombre";
+                btn.setAttribute("aria-pressed", "true");
+            } else {
+                btn.textContent = "☀️ Mode Clair";
+                btn.setAttribute("aria-pressed", "false");
+            }
         });
     };
  
@@ -78,7 +87,12 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("click", (e) => {
         if (!e.target.classList.contains("bouton-theme")) return;
         const actuel = lireCookie();
-        const nouveau = actuel === "sombre" ? "clair" : "sombre";
+        let nouveau;
+        if (actuel === "sombre") {
+            nouveau = "clair";
+        } else {
+            nouveau = "sombre";
+        }
         appliquerMode(nouveau, true);
         sauvegarder(nouveau);
     });

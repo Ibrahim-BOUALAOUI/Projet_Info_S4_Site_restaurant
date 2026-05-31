@@ -5,13 +5,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $errors = [];
 
     // Utilisation de trim() pour éviter que l'utilisateur mette juste des espaces
-    $birthdate = trim($_POST['birthdate'] ?? '');
-    $name = trim($_POST['name'] ?? '');
-    $last_name = trim($_POST['last_name'] ?? '');
-    $email = trim($_POST['email'] ?? '');
-    $phone = trim($_POST['phone'] ?? '');
-    $adress = trim($_POST['adress'] ?? '');
-    $password = $_POST['password'] ?? '';
+    if (isset($_POST['birthdate'])) {
+        $birthdate = trim($_POST['birthdate']);
+    } else {
+        $birthdate = '';
+    }
+
+    if (isset($_POST['name'])) {
+        $name = trim($_POST['name']);
+    } else {
+        $name = '';
+    }
+
+    if (isset($_POST['last_name'])) {
+        $last_name = trim($_POST['last_name']);
+    } else {
+        $last_name = '';
+    }
+
+    if (isset($_POST['email'])) {
+        $email = trim($_POST['email']);
+    } else {
+        $email = '';
+    }
+
+    if (isset($_POST['phone'])) {
+        $phone = trim($_POST['phone']);
+    } else {
+        $phone = '';
+    }
+
+    if (isset($_POST['adress'])) {
+        $adress = trim($_POST['adress']);
+    } else {
+        $adress = '';
+    }
+
+    if (isset($_POST['password'])) {
+        $password = $_POST['password'];
+    } else {
+        $password = '';
+    }
 
     $id = bin2hex(random_bytes(16));
     $date_actuelle = date("d/m/Y  H:i");
@@ -26,7 +60,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $users = [];
     if (file_exists($file)) {
         $json = file_get_contents($file);
-        $users = json_decode($json, true) ?? [];
+        $users = json_decode($json, true);
+        if ($users === null) {
+            $users = [];
+        }
     }
 
     for ($i = 0; $i < count($users); $i++) {
@@ -145,7 +182,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <label for="password">MOT DE PASSE</label>
                     <input type="password" id="password" name="password" placeholder="Votre mot de passe">
                     <label style="font-size: 11px; cursor: pointer; display: flex; align-items: center; gap: 8px; margin-top: 8px; font-weight: normal; text-transform: none; color: #aaa; width: 100%; max-width: 100%;">
-                        <input type="checkbox" onclick="document.getElementById('password').type = this.checked ? 'text' : 'password'" style="margin: 0; width: auto; height: auto; display: inline-block;"> Afficher le mot de passe
+                        <input type="checkbox" onclick="if (this.checked) { document.getElementById('password').type = 'text'; } else { document.getElementById('password').type = 'password'; }" style="margin: 0; width: auto; height: auto; display: inline-block;"> Afficher le mot de passe
                     </label>
                 </div>
 

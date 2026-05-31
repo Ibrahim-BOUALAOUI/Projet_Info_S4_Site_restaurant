@@ -2,14 +2,47 @@
 session_start();
 require('getapikey.php');
 
-$status       = isset($_GET['status']) ? $_GET['status'] : 'error';
-$id_trans     = isset($_GET['transaction']) ? $_GET['transaction'] : 'Inconnu';
-$montant_paye = isset($_GET['montant']) ? $_GET['montant'] : '0.00';
-$vendeur      = isset($_GET['vendeur']) ? $_GET['vendeur'] : '';
-$control_psp  = isset($_GET['control']) ? $_GET['control'] : '';
-$mode_modif   = isset($_GET['mode_modif']) ? $_GET['mode_modif'] : '';
+if (isset($_GET['status'])) {
+    $status = $_GET['status'];
+} else {
+    $status = 'error';
+}
 
-$heure_retrait = isset($_SESSION['choix_heure']) ? $_SESSION['choix_heure'] : "Immédiat";
+if (isset($_GET['transaction'])) {
+    $id_trans = $_GET['transaction'];
+} else {
+    $id_trans = 'Inconnu';
+}
+
+if (isset($_GET['montant'])) {
+    $montant_paye = $_GET['montant'];
+} else {
+    $montant_paye = '0.00';
+}
+
+if (isset($_GET['vendeur'])) {
+    $vendeur = $_GET['vendeur'];
+} else {
+    $vendeur = '';
+}
+
+if (isset($_GET['control'])) {
+    $control_psp = $_GET['control'];
+} else {
+    $control_psp = '';
+}
+
+if (isset($_GET['mode_modif'])) {
+    $mode_modif = $_GET['mode_modif'];
+} else {
+    $mode_modif = '';
+}
+
+if (isset($_SESSION['choix_heure'])) {
+    $heure_retrait = $_SESSION['choix_heure'];
+} else {
+    $heure_retrait = "Immédiat";
+}
 $message = "";
 $adresse_finale = "Non renseignée";
 $is_modification = isset($_SESSION['modifying_cmd_id']);
@@ -44,7 +77,14 @@ $panier_valide = isset($_SESSION['panier']) && (count($_SESSION['panier']) > 0 |
 if ($status === 'accepted' && $panier_valide) {
 
     $file_path = '../Folder_Data/commandes.json';
-    $cmds_existantes = file_exists($file_path) ? json_decode(file_get_contents($file_path), true) : array();
+    if (file_exists($file_path)) {
+        $cmds_existantes = json_decode(file_get_contents($file_path), true);
+        if ($cmds_existantes === null) {
+            $cmds_existantes = array();
+        }
+    } else {
+        $cmds_existantes = array();
+    }
 
     if ($is_modification) {
         // --- CAS A : MODIFICATION D'UNE COMMANDE EXISTANTE ---
@@ -58,10 +98,17 @@ if ($status === 'accepted' && $panier_valide) {
             $ticket_avoir_message = " Un avoir de " . number_format($reduction, 2, ',', ' ') . " € a été ajouté à votre compte !";
 
             $users_file = '../Folder_Data/utilisateur.json';
-            $users_list = json_decode(file_get_contents($users_file), true) ?? array();
+            $users_list = json_decode(file_get_contents($users_file), true);
+            if ($users_list === null) {
+                $users_list = array();
+            }
             for ($u = 0; $u < count($users_list); $u++) {
                 if ($users_list[$u]['email'] === $_SESSION['email']) {
-                    $avoir_actuel = isset($users_list[$u]['avoir']) ? (float)$users_list[$u]['avoir'] : 0.0;
+                    if (isset($users_list[$u]['avoir'])) {
+                        $avoir_actuel = (float)$users_list[$u]['avoir'];
+                    } else {
+                        $avoir_actuel = 0.0;
+                    }
                     $users_list[$u]['avoir'] = $avoir_actuel + $reduction;
                     break;
                 }
@@ -102,7 +149,10 @@ if ($status === 'accepted' && $panier_valide) {
         // Si l'utilisateur a consommé tout ou partie de son avoir
         if (isset($_SESSION['avoir_deduit']) && $_SESSION['avoir_deduit'] > 0) {
             $users_file = '../Folder_Data/utilisateur.json';
-            $users_list = json_decode(file_get_contents($users_file), true) ?? array();
+            $users_list = json_decode(file_get_contents($users_file), true);
+            if ($users_list === null) {
+                $users_list = array();
+            }
 
             for ($u = 0; $u < count($users_list); $u++) {
                 if ($users_list[$u]['email'] === $_SESSION['email']) {
@@ -118,10 +168,17 @@ if ($status === 'accepted' && $panier_valide) {
 
         // Récupération de l'adresse
         $email_session = $_SESSION['email'];
-        $users_data = json_decode(file_get_contents('../Folder_Data/utilisateur.json'), true) ?? array();
+        $users_data = json_decode(file_get_contents('../Folder_Data/utilisateur.json'), true);
+        if ($users_data === null) {
+            $users_data = array();
+        }
         foreach ($users_data as $user) {
             if ($user['email'] === $email_session) {
-                $adresse_finale = isset($user['adress']) ? $user['adress'] : "Non renseignée";
+                if (isset($user['adress'])) {
+                    $adresse_finale = $user['adress'];
+                } else {
+                    $adresse_finale = "Non renseignée";
+                }
                 break;
             }
         }
