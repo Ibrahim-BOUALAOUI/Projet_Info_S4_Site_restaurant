@@ -103,6 +103,36 @@ header img {
     transform: translateY(-5px);
 }
 
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 15px;
+}
+
+.quantity-btn {
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 8px;
+    background: var(--orange-theme);
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.quantity-btn:hover {
+    filter: brightness(1.15);
+}
+
+.quantity-number {
+    min-width: 24px;
+    text-align: center;
+    font-weight: bold;
+    color: var(--doré);
+}
+
 .item-info h3 {
     margin: 0 0 5px 0;
     color: var(--doré);

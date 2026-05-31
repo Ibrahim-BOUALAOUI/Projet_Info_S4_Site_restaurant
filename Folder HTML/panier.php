@@ -125,14 +125,13 @@ if (isset($_SESSION['email'])) {
                 <a href="Menus.php" style="color: orange;">Retour aux menus</a>
             <?php else : ?>
                 <?php
-                // Grouper les articles identiques pour afficher un compteur
                 $groupes = [];
                 foreach ($panier as $index => $item) {
-                    $cle = $item['nom'];
+                    $cle = ($item['nom'] ?? '') . '|' . ($item['prix'] ?? '');
                     if (!isset($groupes[$cle])) {
                         $groupes[$cle] = [
-                            'nom'       => $item['nom'],
-                            'prix_unit' => $item['prix'],
+                            'nom'       => $item['nom'] ?? '',
+                            'prix_unit' => $item['prix'] ?? 0,
                             'quantite'  => 0,
                             'indices'   => [],
                         ];
@@ -152,9 +151,13 @@ if (isset($_SESSION['email'])) {
                         <?php else : ?>
                             <p><?php echo number_format($groupe['prix_unit'], 2); ?> €</p>
                         <?php endif; ?>
-                        <?php // Supprimer renvoie vers le dernier index en session pour cet article 
-                        ?>
-                        <a href="supprimer_item.php?index=<?php echo end($groupe['indices']); ?>"><?php echo $groupe['quantite'] > 1 ? 'Supprimer un' : 'Supprimer'; ?></a>
+                        <form method="POST" action="modifier_quantite.php" class="quantity-controls">
+                            <input type="hidden" name="nom" value="<?php echo htmlspecialchars($groupe['nom']); ?>">
+                            <input type="hidden" name="prix" value="<?php echo htmlspecialchars((string)$groupe['prix_unit']); ?>">
+                            <button type="submit" name="action_quantite" value="moins" class="quantity-btn">-</button>
+                            <span class="quantity-number"><?php echo $groupe['quantite']; ?></span>
+                            <button type="submit" name="action_quantite" value="plus" class="quantity-btn">+</button>
+                        </form>
                     </div>
                 <?php endforeach; ?>
                 <br>
