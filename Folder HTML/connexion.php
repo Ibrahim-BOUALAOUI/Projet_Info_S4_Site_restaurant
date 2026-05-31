@@ -8,7 +8,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (file_exists($file)) {
             $json = file_get_contents($file);
-            $users = json_decode($json, true) ?? array();
+            $users = json_decode($json, true);
+            if ($users === null) {
+                $users = array();
+            }
             $userFound = false;
 
             for ($i = 0; $i < count($users); $i++) {
@@ -96,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <input type="password" name="password" id="password" placeholder="••••••••" required>
 
                     <label style="font-size: 11px; cursor: pointer; display: flex; align-items: center; gap: 8px; margin-top: 8px; font-weight: normal; text-transform: none; color: #aaa; width: 100%; max-width: 100%;">
-                        <input type="checkbox" onclick="document.getElementById('password').type = this.checked ? 'text' : 'password'" style="margin: 0; width: auto; height: auto; display: inline-block;"> Afficher le mot de passe
+                        <input type="checkbox" onclick="if (this.checked) { document.getElementById('password').type = 'text'; } else { document.getElementById('password').type = 'password'; }" style="margin: 0; width: auto; height: auto; display: inline-block;"> Afficher le mot de passe
                     </label>
                 </div>
 

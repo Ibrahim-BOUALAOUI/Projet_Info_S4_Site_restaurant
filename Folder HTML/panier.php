@@ -4,15 +4,33 @@ require('getapikey.php');
 
 if (isset($_POST['fixer_moment'])) {
     $mode = $_POST['mode_retrait'];
-    $heure = isset($_POST['heure_retrait']) ? $_POST['heure_retrait'] : '';
-    $_SESSION['choix_heure'] = ($mode === "Plus tard" && !empty($heure)) ? $heure : "Immédiat";
+    if (isset($_POST['heure_retrait'])) {
+        $heure = $_POST['heure_retrait'];
+    } else {
+        $heure = '';
+    }
+
+    if ($mode === "Plus tard" && !empty($heure)) {
+        $_SESSION['choix_heure'] = $heure;
+    } else {
+        $_SESSION['choix_heure'] = "Immédiat";
+    }
 }
 
 if (!isset($_SESSION['choix_heure'])) {
     $_SESSION['choix_heure'] = "Immédiat";
 }
 
-$panier = isset($_SESSION['panier']) ? $_SESSION['panier'] : array();
+$valeur_heure_retrait = "";
+if ($_SESSION['choix_heure'] != "Immédiat") {
+    $valeur_heure_retrait = $_SESSION['choix_heure'];
+}
+
+if (isset($_SESSION['panier'])) {
+    $panier = $_SESSION['panier'];
+} else {
+    $panier = array();
+}
 
 $total_general = 0;
 for ($i = 0; $i < count($panier); $i++) {
@@ -25,10 +43,17 @@ $avoir_deduit = 0;
 $montant_apres_avoir = $total_general;
 
 if (isset($_SESSION['email']) && !isset($_SESSION['modifying_cmd_id'])) {
-    $users_data = json_decode(file_get_contents('../Folder_Data/utilisateur.json'), true) ?? [];
+    $users_data = json_decode(file_get_contents('../Folder_Data/utilisateur.json'), true);
+    if ($users_data === null) {
+        $users_data = [];
+    }
     foreach ($users_data as $user) {
         if ($user['email'] === $_SESSION['email']) {
-            $avoir_disponible = isset($user['avoir']) ? (float)$user['avoir'] : 0.0;
+            if (isset($user['avoir'])) {
+                $avoir_disponible = (float)$user['avoir'];
+            } else {
+                $avoir_disponible = 0.0;
+            }
             break;
         }
     }
@@ -123,7 +148,7 @@ if (isset($_SESSION['email'])) {
                         <label for="imm"> Immédiat</label><br>
                         <input type="radio" name="mode_retrait" value="Plus tard" id="tard" <?php if ($_SESSION['choix_heure'] != "Immédiat") echo "checked"; ?>>
                         <label for="tard"> À cette heure :</label>
-                        <input type="time" name="heure_retrait" value="<?php echo ($_SESSION['choix_heure'] != "Immédiat") ? $_SESSION['choix_heure'] : ""; ?>" style="background:#222; color:white; border:1px solid #444;">
+                        <input type="time" name="heure_retrait" value="<?php echo $valeur_heure_retrait; ?>" style="background:#222; color:white; border:1px solid #444;">
                         <button type="submit" name="fixer_moment" style="display:block; margin-top:10px; background:#444; color:white; border:none; padding:5px 10px; cursor:pointer; border-radius:3px;">Valider</button>
                     </form>
                 </div>
