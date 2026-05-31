@@ -108,11 +108,11 @@ if (isset($_SESSION['email'])) {
 </head>
 
 <body>
-    <header class="top_bar" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 40px;"> 
+    <header class="top_bar" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 40px;">
         <a href="index.php">
             <img src="../Folder img/129.png" alt="Logo" width="200">
         </a>
-</header>
+    </header>
     <div class="cart-container">
         <div class="cart-items">
             <h1 class="cart-title">🛒 Votre commande</h1>
@@ -124,13 +124,39 @@ if (isset($_SESSION['email'])) {
                 <?php endif; ?>
                 <a href="Menus.php" style="color: orange;">Retour aux menus</a>
             <?php else : ?>
-                <?php for ($i = 0; $i < count($panier); $i++) : ?>
+                <?php
+                // Grouper les articles identiques pour afficher un compteur
+                $groupes = [];
+                foreach ($panier as $index => $item) {
+                    $cle = $item['nom'];
+                    if (!isset($groupes[$cle])) {
+                        $groupes[$cle] = [
+                            'nom'       => $item['nom'],
+                            'prix_unit' => $item['prix'],
+                            'quantite'  => 0,
+                            'indices'   => [],
+                        ];
+                    }
+                    $groupes[$cle]['quantite']++;
+                    $groupes[$cle]['indices'][] = $index;
+                }
+                ?>
+                <?php foreach ($groupes as $groupe) : ?>
                     <div class="cart-card">
-                        <h3><?php echo htmlspecialchars($panier[$i]['nom']); ?></h3>
-                        <p><?php echo number_format($panier[$i]['prix'], 2); ?> €</p>
-                        <a href="supprimer_item.php?index=<?php echo $i; ?>">Supprimer</a>
+                        <h3><?php echo htmlspecialchars($groupe['nom']); ?></h3>
+                        <?php if ($groupe['quantite'] > 1) : ?>
+                            <p>
+                                <?php echo number_format($groupe['prix_unit'], 2); ?> € × <?php echo $groupe['quantite']; ?>
+                                = <strong><?php echo number_format($groupe['prix_unit'] * $groupe['quantite'], 2); ?> €</strong>
+                            </p>
+                        <?php else : ?>
+                            <p><?php echo number_format($groupe['prix_unit'], 2); ?> €</p>
+                        <?php endif; ?>
+                        <?php // Supprimer renvoie vers le dernier index en session pour cet article 
+                        ?>
+                        <a href="supprimer_item.php?index=<?php echo end($groupe['indices']); ?>"><?php echo $groupe['quantite'] > 1 ? 'Supprimer un' : 'Supprimer'; ?></a>
                     </div>
-                <?php endfor; ?>
+                <?php endforeach; ?>
                 <br>
                 <a href="Menus.php" class="btn-ajouter-plus" style="background: #222; color: #FE9301; padding: 10px; border: 1px solid #FE9301; text-decoration: none; border-radius: 5px; display: inline-block;">+ Ajouter un autre produit</a>
             <?php endif; ?>
