@@ -196,7 +196,7 @@ if (isset($_SESSION['email'])) {
                         <?php if ($difference > 0): ?>
                             <p style="color: #e74c3c; font-weight: bold;">Reste à payer (complément) : <?= $diff_formattee ?> €</p>
                             <?php
-                            $transaction_diff = "TX_DIFF_" . time();
+                            $transaction_diff = "TXDIFF" . time();
                             $phrase_diff = $api_key . "#" . $transaction_diff . "#" . $diff_formattee . "#" . $vendeur . "#" . $url_retour . "#";
                             $control_diff = md5($phrase_diff);
                             ?>

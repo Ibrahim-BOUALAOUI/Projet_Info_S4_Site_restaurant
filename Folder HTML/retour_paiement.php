@@ -48,7 +48,7 @@ $adresse_finale = "Non renseignée";
 $is_modification = isset($_SESSION['modifying_cmd_id']);
 
 // 1. RECALCUL ET VÉRIFICATION DU CONTRÔLE DE SÉCURITÉ
-$bypass_control = ($mode_modif === 'avoir_généré' || $mode_modif === 'montant_identique' || $mode_modif === 'zero_euro_avoir' || strpos($id_trans, 'TX_DIFF_') !== false);
+$bypass_control = in_array($mode_modif, ['avoir_généré', 'montant_identique', 'zero_euro_avoir'], true);
 
 if (!$bypass_control) {
     $api_key = getAPIKey($vendeur);
@@ -69,6 +69,48 @@ if (isset($_SESSION['panier']) && is_array($_SESSION['panier'])) {
     }
 }
 $nouveau_total_formatte = number_format($total_actuel, 2, '.', '');
+
+if ($bypass_control) {
+    $mode_sans_paiement_valide = false;
+
+    if ($mode_modif === 'avoir_généré' && $is_modification) {
+        $ancien_paye = (float)($_SESSION['modifying_cmd_amount_paid'] ?? 0);
+        $avoir_attendu = $ancien_paye - $total_actuel;
+        $mode_sans_paiement_valide = $avoir_attendu > 0 && abs((float)$montant_paye - $avoir_attendu) < 0.01;
+    }
+
+    if ($mode_modif === 'montant_identique' && $is_modification) {
+        $ancien_paye = (float)($_SESSION['modifying_cmd_amount_paid'] ?? 0);
+        $mode_sans_paiement_valide = abs($total_actuel - $ancien_paye) < 0.01 && (float)$montant_paye === 0.0;
+    }
+
+    if ($mode_modif === 'zero_euro_avoir' && !$is_modification && isset($_SESSION['email'])) {
+        $avoir_disponible = 0.0;
+        $users_file = '../Folder_Data/utilisateur.json';
+        $users_list = json_decode(file_get_contents($users_file), true);
+        if (!is_array($users_list)) {
+            $users_list = [];
+        }
+
+        foreach ($users_list as $user) {
+            if (($user['email'] ?? '') === $_SESSION['email']) {
+                $avoir_disponible = (float)($user['avoir'] ?? 0);
+                break;
+            }
+        }
+
+        $avoir_deduit_session = (float)($_SESSION['avoir_deduit'] ?? 0);
+        $mode_sans_paiement_valide = $total_actuel > 0 &&
+            $avoir_disponible >= $total_actuel &&
+            abs($avoir_deduit_session - $total_actuel) < 0.01 &&
+            (float)$montant_paye === 0.0;
+    }
+
+    if (!$mode_sans_paiement_valide) {
+        $message = "Alerte de sécurité : le mode de paiement sans banque n'est pas valide.";
+        $status = "fraud";
+    }
+}
 
 // 3. ENREGISTREMENT ET VALIDATION DES DONNÉES
 // On autorise un panier vide UNIQUEMENT si c'est une modification (ce qui équivaut à une annulation)
@@ -132,7 +174,7 @@ if ($status === 'accepted' && $panier_valide) {
                     $cmds_existantes[$i]['heure_prevue'] = $heure_retrait;
                     $cmds_existantes[$i]['montant_total'] = $nouveau_total_formatte;
 
-                    if (strpos($id_trans, 'TX_DIFF_') !== false) {
+                    if (strpos($id_trans, 'TXDIFF') !== false) {
                         $cmds_existantes[$i]['id_transaction_complement'] = $id_trans;
                     }
                     $message = "Commande mise à jour avec succès !" . $ticket_avoir_message;
