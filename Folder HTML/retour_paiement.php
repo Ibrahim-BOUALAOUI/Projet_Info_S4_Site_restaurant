@@ -86,7 +86,7 @@ if ($bypass_control) {
 
     if ($mode_modif === 'zero_euro_avoir' && !$is_modification && isset($_SESSION['email'])) {
         $avoir_disponible = 0.0;
-        $users_file = '../Folder_Data/dfsqfiqsoifsvquvfipqf.json';
+        $users_file = '../Folder_Data/ofdbisqfsqf.json';
         $users_list = json_decode(file_get_contents($users_file), true);
         if (!is_array($users_list)) {
             $users_list = [];

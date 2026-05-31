@@ -12,7 +12,7 @@ $users = json_decode($json_users, true);
 
 if (isset($_SESSION['email'])) {
     foreach ($users as $user) {
-        if ($user['email'] === $_SESSION['email'] && !empty($user['bloque'])) {
+        if ($user['email'] === $_SESSION['email'] && (!empty($user['bloque']) || !empty($user['bloquee']))) {
             session_destroy();
             header("Location: connexion.php?erreur=bloque");
             exit;
