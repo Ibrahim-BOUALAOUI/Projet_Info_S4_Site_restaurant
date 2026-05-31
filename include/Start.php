@@ -7,7 +7,7 @@ $plat = $data['plats'];
 
 
 //Gestion du blocage de la personne
-$json_users = file_get_contents("../Folder_Data/utilisateur.json");
+$json_users = file_get_contents("../Folder_Data/dfsqfiqsoifsvquvfipqf.json");
 $users = json_decode($json_users, true);
 
 if (isset($_SESSION['email'])) {

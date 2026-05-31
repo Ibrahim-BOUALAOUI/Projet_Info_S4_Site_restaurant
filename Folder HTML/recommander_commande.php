@@ -7,7 +7,7 @@ if (!isset($_SESSION['email']) || !isset($_GET['id_cmd'])) {
 }
 
 $idCmd = $_GET['id_cmd'];
-$fichierCommandes = '../Folder_Data/commandes.json';
+$fichierCommandes = '../Folder_Data/dfsqfiqsoifsvquvfipqf.json';
 
 if (!file_exists($fichierCommandes)) {
     header("Location: Profil.php?msg=Commande introuvable");

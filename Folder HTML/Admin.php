@@ -75,10 +75,10 @@ $en_cours = count(array_filter($commandes, fn($c) => $c['statut'] !== 'livree'))
 /* ── Couleurs statuts ── */
 function statut_class(string $s): string {
     return match($s) {
-        'livree'                 => 'statut-livre',
-        'en cours de livraison'  => 'statut-livraison',
-        'a preparer'             => 'statut-preparer',
-        default                  => 'statut-autre',
+        'livree'=> 'statut-livre',
+        'en cours de livraison'=> 'statut-livraison',
+        'a preparer'=> 'statut-preparer',
+        default => 'statut-autre',
     };
 }
 function statut_label(string $s): string {
