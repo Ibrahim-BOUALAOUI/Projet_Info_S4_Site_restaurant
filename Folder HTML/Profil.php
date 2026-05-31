@@ -92,7 +92,7 @@ $mesCommandes = array_reverse($mesCommandes);
                             </span>
                         </div>
                         <div class="commande-actions" style="display: flex; flex-direction: column; gap: 5px; margin-top: 10px;">
-                            <a href="Menus.php"><button class="btn-recommander" style="width: 100%;">Recommander</button></a>
+                            <a href="recommander_commande.php?id_cmd=<?= urlencode($cmd['id']) ?>"><button class="btn-recommander" style="width: 100%;">Recommander</button></a>
 
                             <?php if ($statut === "a preparer"): ?>
                                 <a href="modifier_commande.php?id_cmd=<?= urlencode($cmd['id']) ?>">
