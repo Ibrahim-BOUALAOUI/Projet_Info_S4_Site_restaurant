@@ -1,15 +1,16 @@
 document.addEventListener("DOMContentLoaded", () => {
  
-    /* ── Injection de la balise <link> si absente ── */
+    // On récupère la balise qui servira à charger le CSS du mode clair.
     let baliseSombre = document.getElementById("style-sombre");
     if (!baliseSombre) {
+        // Si la page n'a pas cette balise, on la crée automatiquement.
         baliseSombre = document.createElement("link");
         baliseSombre.rel = "stylesheet";
         baliseSombre.id = "style-sombre";
         document.head.appendChild(baliseSombre);
     }
  
-    /* ── Chemin vers le CSS (Mode Clair) ── */
+    // On retrouve le chemin du dossier JS pour construire le chemin vers le CSS.
     const BASE = (() => {
         const scripts = document.querySelectorAll("script[src]");
         for (const s of scripts) {
@@ -20,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })();
     const CSS_CLAIR = BASE.replace(/Folder[_ ]?JS\//i, "Folder CSS/") + "mode-sombre.css";
  
-    /* ── Lecture du thème (Cookie) ── */
+    // Lit le thème sauvegardé dans les cookies.
     const lireCookie = () => {
         const c = document.cookie.split("; ").find(r => r.startsWith("theme="));
         if (c) {
@@ -30,30 +31,32 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
  
-    /* ── Sauvegarde ── */
+    // Sauvegarde le thème choisi pendant 30 jours.
     const sauvegarder = (mode) => {
         document.cookie = `theme=${mode}; path=/; max-age=${30 * 24 * 60 * 60}; SameSite=Lax`;
     };
  
-    /* ── Application du thème ── */
+    // Applique réellement le mode clair ou sombre à la page.
     const appliquerMode = (mode, anime = false) => {
         const html = document.documentElement;
  
         if (mode === "clair") {
+            // En mode clair, on active le CSS supplémentaire.
             baliseSombre.setAttribute("href", CSS_CLAIR);
             html.setAttribute("data-theme", "sombre");
         } else {
+            // En mode sombre, on retire le CSS clair.
             baliseSombre.setAttribute("href", "");
             html.removeAttribute("data-theme");
         }
  
-        /* Animation flash uniquement lors d'un clic volontaire */
+        // Animation légère uniquement quand l'utilisateur clique sur le bouton.
         if (anime) {
             document.body.style.transition = "background-color 0.4s ease, color 0.3s ease";
             setTimeout(() => { document.body.style.transition = ""; }, 500);
         }
  
-        /* Mise à jour du texte du bouton */
+        // Met à jour le texte du bouton selon le mode actuel.
         document.querySelectorAll(".bouton-theme").forEach(btn => {
             if (mode === "clair") {
                 btn.textContent = "🌙 Mode Sombre";
@@ -65,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     };
  
-    /* ── Injection du bouton ── */
+    // Vérifie qu'un bouton de thème existe sur la page.
     const injecterBouton = () => {
         const ancien = document.getElementById("bouton-theme");
         if (ancien) {
@@ -74,16 +77,17 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         const btn = document.createElement("button");
         btn.className = "bouton-theme bouton-theme-flottant";
+        // Le bouton créé ici est caché, il sert surtout de secours si une page n'a pas de bouton.
         btn.style.display = "none";
         document.body.appendChild(btn);
     };
  
-    /* ── Initialisation ── */
+    // Au chargement de la page, on applique le thème sauvegardé.
     injecterBouton();
     const modeActuel = lireCookie();
     appliquerMode(modeActuel, false);
  
-    /* ── Écoute des clics ── */
+    // Quand l'utilisateur clique sur le bouton, on inverse le thème et on sauvegarde le choix.
     document.addEventListener("click", (e) => {
         if (!e.target.classList.contains("bouton-theme")) return;
         const actuel = lireCookie();

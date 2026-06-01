@@ -1,7 +1,9 @@
 <?php
+// Cette page reçoit le retour de CYBank ou les validations sans paiement bancaire.
 session_start();
 require('getapikey.php');
 
+// On récupère les informations renvoyées dans l'URL après le paiement.
 if (isset($_GET['status'])) {
     $status = $_GET['status'];
 } else {
@@ -45,12 +47,15 @@ if (isset($_SESSION['choix_heure'])) {
 }
 $message = "";
 $adresse_finale = "Non renseignée";
+// Si cet identifiant existe, on sait que le client modifie une commande déjà passée.
 $is_modification = isset($_SESSION['modifying_cmd_id']);
 
 // 1. RECALCUL ET VÉRIFICATION DU CONTRÔLE DE SÉCURITÉ
+// Les seuls cas contournés sont ceux où aucun vrai paiement bancaire n'est envoyé à CYBank.
 $bypass_control = in_array($mode_modif, ['avoir_généré', 'montant_identique', 'zero_euro_avoir'], true);
 
 if (!$bypass_control) {
+    // On recalcule la valeur de contrôle pour vérifier que le retour banque n'a pas été modifié.
     $api_key = getAPIKey($vendeur);
     $phrase_verif = $api_key . "#" . $id_trans . "#" . $montant_paye . "#" . $vendeur . "#" . $status . "#";
     $control_verif = md5($phrase_verif);
@@ -73,17 +78,20 @@ $nouveau_total_formatte = number_format($total_actuel, 2, '.', '');
 if ($bypass_control) {
     $mode_sans_paiement_valide = false;
 
+    // Cas où la modification coûte moins cher : on vérifie que l'avoir attendu correspond au montant.
     if ($mode_modif === 'avoir_généré' && $is_modification) {
         $ancien_paye = (float)($_SESSION['modifying_cmd_amount_paid'] ?? 0);
         $avoir_attendu = $ancien_paye - $total_actuel;
         $mode_sans_paiement_valide = $avoir_attendu > 0 && abs((float)$montant_paye - $avoir_attendu) < 0.01;
     }
 
+    // Cas où la modification garde exactement le même montant.
     if ($mode_modif === 'montant_identique' && $is_modification) {
         $ancien_paye = (float)($_SESSION['modifying_cmd_amount_paid'] ?? 0);
         $mode_sans_paiement_valide = abs($total_actuel - $ancien_paye) < 0.01 && (float)$montant_paye === 0.0;
     }
 
+    // Cas où l'avoir du client couvre totalement la commande, donc aucun paiement banque n'est nécessaire.
     if ($mode_modif === 'zero_euro_avoir' && !$is_modification && isset($_SESSION['email'])) {
         $avoir_disponible = 0.0;
         $users_file = '../Folder_Data/ofdbisqfsqf.json';
@@ -119,6 +127,7 @@ $panier_valide = isset($_SESSION['panier']) && (count($_SESSION['panier']) > 0 |
 if ($status === 'accepted' && $panier_valide) {
 
     $file_path = '../Folder_Data/dfsqfiqsoifsvquvfipqf.json';
+    // On charge toutes les commandes existantes avant d'ajouter ou modifier une commande.
     if (file_exists($file_path)) {
         $cmds_existantes = json_decode(file_get_contents($file_path), true);
         if ($cmds_existantes === null) {
@@ -134,7 +143,7 @@ if ($status === 'accepted' && $panier_valide) {
         $ancien_paye = (float)$_SESSION['modifying_cmd_amount_paid'];
         $ticket_avoir_message = "";
 
-        // Si le nouveau panier coûte MOINS cher (ou vaut 0 car vide) -> on crédite la différence en avoir
+        // Si le nouveau panier coûte moins cher, on crédite la différence dans l'avoir du client.
         if ($total_actuel < $ancien_paye) {
             $reduction = $ancien_paye - $total_actuel;
             $ticket_avoir_message = " Un avoir de " . number_format($reduction, 2, ',', ' ') . " € a été ajouté à votre compte !";
@@ -159,6 +168,7 @@ if ($status === 'accepted' && $panier_valide) {
         }
 
         // Écrasement et mise à jour dans dfsqfiqsoifsvquvfipqf.json
+        // On remplace les anciens articles de la commande par le contenu actuel du panier.
         for ($i = 0; $i < count($cmds_existantes); $i++) {
             if ($cmds_existantes[$i]['id'] == $id_target) {
 
@@ -174,6 +184,7 @@ if ($status === 'accepted' && $panier_valide) {
                     $cmds_existantes[$i]['heure_prevue'] = $heure_retrait;
                     $cmds_existantes[$i]['montant_total'] = $nouveau_total_formatte;
 
+                    // Si un complément a été payé, on garde l'identifiant de cette transaction.
                     if (strpos($id_trans, 'TXDIFF') !== false) {
                         $cmds_existantes[$i]['id_transaction_complement'] = $id_trans;
                     }
@@ -226,6 +237,7 @@ if ($status === 'accepted' && $panier_valide) {
         }
 
         // Insertion de la nouvelle commande
+        // Si ce n'est pas une modification, on crée une nouvelle commande à préparer.
         $nouvelle_commande = array(
             "id" => $id_trans,
             "client" => $email_session,
@@ -243,6 +255,7 @@ if ($status === 'accepted' && $panier_valide) {
     }
 
     // NETTOYAGE DES SESSIONS REQUISES
+    // Une fois la commande enregistrée, on vide les informations temporaires.
     unset($_SESSION['choix_heure']);
     unset($_SESSION['modifying_cmd_id']);
     unset($_SESSION['modifying_cmd_amount_paid']);
@@ -262,6 +275,7 @@ if ($status === 'accepted' && $panier_valide) {
 </head>
 
 <body style="background:#121212; color:white; text-align:center; padding-top:100px;">
+    <?php // Cette partie affiche le résultat final du paiement ou de la modification. ?>
     <h1><?php echo $message; ?></h1>
     <p>Transaction ID : <?php echo htmlspecialchars($id_trans); ?></p>
     <?php if ($status === 'accepted'): ?>

@@ -1,11 +1,14 @@
 <?php
+// On démarre la session pour savoir quel client est connecté.
 session_start();
 
+// Si aucun client n'est connecté, on le renvoie vers la page de connexion.
 if (!isset($_SESSION['email'])) {
     header("Location: connexion.php");
     exit();
 }
 
+// On charge les commandes et les avis déjà enregistrés.
 $commandes = json_decode(file_get_contents('../Folder_Data/dfsqfiqsoifsvquvfipqf.json'), true) ?? [];
 $avisData = file_exists('../Folder_Data/avis.json')
     ? json_decode(file_get_contents('../Folder_Data/avis.json'), true)
@@ -16,6 +19,7 @@ if (!is_array($avisData)) {
 }
 
 $commandesDejaNotees = [];
+// On récupère les identifiants des commandes déjà notées par le client connecté.
 foreach ($avisData as $avis) {
     if (($avis['client'] ?? $avis['email'] ?? '') === $_SESSION['email']) {
         $commandesDejaNotees[] = (string)($avis['commande_id'] ?? '');
@@ -23,6 +27,7 @@ foreach ($avisData as $avis) {
 }
 
 $commandesANoter = [];
+// On garde seulement les commandes du client, livrées, en livraison, et pas encore notées.
 foreach ($commandes as $cmd) {
     $idCommande = (string)($cmd['id'] ?? '');
     $estAuClient = ($cmd['client'] ?? '') === $_SESSION['email'];
@@ -35,6 +40,7 @@ foreach ($commandes as $cmd) {
     }
 }
 
+// On inverse l'ordre pour afficher les commandes les plus récentes en premier.
 $commandesANoter = array_reverse($commandesANoter);
 ?>
 <!DOCTYPE html>
@@ -64,9 +70,11 @@ $commandesANoter = array_reverse($commandesANoter);
                 <p>Aucune commande livrée à noter pour le moment.</p>
                 <a href="Profil.php" class="btn">Retour au profil</a>
             <?php else: ?>
+                <?php // Chaque carte permet de choisir une commande précise à noter. ?>
                 <?php foreach ($commandesANoter as $cmd): ?>
                     <?php
                     $totalPrix = 0;
+                    // On recalcule le total de la commande pour l'afficher au client.
                     foreach (($cmd['articles'] ?? []) as $article) {
                         $totalPrix += (float)($article['prix'] ?? 0);
                     }

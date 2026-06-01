@@ -1,6 +1,8 @@
 <?php
+// Start.php démarre la session, charge les produits du menu et vérifie si l'utilisateur est connecté.
 require("../include/Start.php");
 
+// On compte les articles déjà présents dans le panier pour afficher la notification en haut de page.
 if (isset($_SESSION['panier'])) {
     $nb_articles = count($_SESSION['panier']);
 } else {
@@ -24,6 +26,7 @@ if (isset($_SESSION['panier'])) {
 
 <body>
 
+    <?php // La notification panier apparaît seulement si le client a déjà ajouté au moins un article. ?>
     <?php if ($nb_articles > 0): ?>
         <div class="panier-notif">
             🛒 Panier : <?php echo $nb_articles; ?> article(s)
@@ -36,6 +39,7 @@ if (isset($_SESSION['panier'])) {
             <img src="../Folder img/129.png" alt="Logo" width="200">
         </a>
         <aside>
+            <?php // Si le client est connecté, on affiche son profil ; sinon, on propose la connexion. ?>
             <?php if ($connecte) : ?>
                 <a href="Profil.php" class="btn-profil">
                     <span class="profil-icon">👤</span>
@@ -54,6 +58,7 @@ if (isset($_SESSION['panier'])) {
             <?php if (empty($plat)): ?>
                 <p class="no-result">Aucun produit trouvé.</p>
             <?php else: ?>
+                <?php // $plat contient tout le catalogue ; cette page n'affiche que les produits de type boisson. ?>
                 <?php foreach ($plat as $p): ?>
                     <?php if($p['type'] == 'boisson') :?>
                     <div class="menu-item">
@@ -66,6 +71,7 @@ if (isset($_SESSION['panier'])) {
                             <img src="<?= htmlspecialchars($p['image']) ?>"
                                  alt="<?= htmlspecialchars($p['nom']) ?>"
                                  class="menu-image">
+                            <?php // Le bouton + transmet le nom et le prix à ajouter_panier.php pour ajouter la boisson au panier. ?>
                             <a href="ajouter_panier.php?nom=<?= urlencode($p['nom']) ?>&prix=<?= $p['prix'] ?>"
                                class="add-button-link"
                                title="Ajouter au panier">+</a>

@@ -1,7 +1,10 @@
 <?php
+// On démarre la session pour accéder au panier et aux informations du client.
 session_start();
+// getapikey.php fournit la clé utilisée pour préparer le paiement CYBank.
 require('getapikey.php');
 
+// Si le client choisit une heure de retrait, on l'enregistre en session.
 if (isset($_POST['fixer_moment'])) {
     $mode = $_POST['mode_retrait'];
     if (isset($_POST['heure_retrait'])) {
@@ -17,21 +20,25 @@ if (isset($_POST['fixer_moment'])) {
     }
 }
 
+// Par défaut, une commande est prévue immédiatement.
 if (!isset($_SESSION['choix_heure'])) {
     $_SESSION['choix_heure'] = "Immédiat";
 }
 
+// Cette variable sert à préremplir le champ heure si le client a choisi "Plus tard".
 $valeur_heure_retrait = "";
 if ($_SESSION['choix_heure'] != "Immédiat") {
     $valeur_heure_retrait = $_SESSION['choix_heure'];
 }
 
+// On récupère le panier stocké en session.
 if (isset($_SESSION['panier'])) {
     $panier = $_SESSION['panier'];
 } else {
     $panier = array();
 }
 
+// On additionne les prix de tous les articles pour obtenir le total.
 $total_general = 0;
 for ($i = 0; $i < count($panier); $i++) {
     $total_general += $panier[$i]['prix'];
@@ -42,6 +49,7 @@ $avoir_disponible = 0;
 $avoir_deduit = 0;
 $montant_apres_avoir = $total_general;
 
+// Pour une nouvelle commande, on récupère l'avoir disponible du client connecté.
 if (isset($_SESSION['email']) && !isset($_SESSION['modifying_cmd_id'])) {
     $users_data = json_decode(file_get_contents('../Folder_Data/ofdbisqfsqf.json'), true);
     if ($users_data === null) {
@@ -59,6 +67,7 @@ if (isset($_SESSION['email']) && !isset($_SESSION['modifying_cmd_id'])) {
     }
 }
 
+// Si le client a un avoir, on le déduit du total de la commande.
 if ($avoir_disponible > 0) {
     if ($avoir_disponible >= $total_general) {
         $avoir_deduit = $total_general;
@@ -74,11 +83,13 @@ if ($avoir_disponible > 0) {
 
 $montant_formatte = number_format($montant_apres_avoir, 2, '.', '');
 
+// Préparation des informations nécessaires à CYBank.
 $vendeur = "MI-1_A";
 $api_key = getAPIKey($vendeur);
 $transaction = "TX" . time();
 $url_retour = "http://localhost:8888/Folder HTML/retour_paiement.php";
 
+// La valeur control permet à CYBank et au site de vérifier que les données n'ont pas été modifiées.
 $phrase = $api_key . "#" . $transaction . "#" . $montant_formatte . "#" . $vendeur . "#" . $url_retour . "#";
 $control = md5($phrase);
 
@@ -125,6 +136,7 @@ if (isset($_SESSION['email'])) {
                 <a href="Menus.php" style="color: orange;">Retour aux menus</a>
             <?php else : ?>
                 <?php
+                // On regroupe les articles identiques pour afficher une quantité au lieu de répéter les lignes.
                 $groupes = [];
                 foreach ($panier as $index => $item) {
                     $cle = ($item['nom'] ?? '') . '|' . ($item['prix'] ?? '');
@@ -151,6 +163,7 @@ if (isset($_SESSION['email'])) {
                         <?php else : ?>
                             <p><?php echo number_format($groupe['prix_unit'], 2); ?> €</p>
                         <?php endif; ?>
+                        <?php // Les boutons - et + modifient la quantité de cet article dans le panier. ?>
                         <form method="POST" action="modifier_quantite.php" class="quantity-controls">
                             <input type="hidden" name="nom" value="<?php echo htmlspecialchars($groupe['nom']); ?>">
                             <input type="hidden" name="prix" value="<?php echo htmlspecialchars((string)$groupe['prix_unit']); ?>">
@@ -165,7 +178,7 @@ if (isset($_SESSION['email'])) {
             <?php endif; ?>
         </div>
 
-        <?php /* CHANGEMENT DE CONDITION ICI : On affiche le résumé si le panier contient des éléments OU si on est en train de modifier une commande */ ?>
+        <?php // On affiche le résumé si le panier contient des articles ou si une commande est en cours de modification. ?>
         <?php if (count($panier) > 0 || isset($_SESSION['modifying_cmd_id'])) : ?>
             <div class="cart-summary">
                 <h2 class="summary-title">Résumé</h2>
@@ -199,6 +212,7 @@ if (isset($_SESSION['email'])) {
                         <?php if ($difference > 0): ?>
                             <p style="color: #e74c3c; font-weight: bold;">Reste à payer (complément) : <?= $diff_formattee ?> €</p>
                             <?php
+                            // Si la modification coûte plus cher, on prépare un paiement complémentaire CYBank.
                             $transaction_diff = "TXDIFF" . time();
                             $phrase_diff = $api_key . "#" . $transaction_diff . "#" . $diff_formattee . "#" . $vendeur . "#" . $url_retour . "#";
                             $control_diff = md5($phrase_diff);
@@ -245,6 +259,7 @@ if (isset($_SESSION['email'])) {
                     <p>Total final à régler : <strong><?php echo $montant_formatte; ?> €</strong></p>
 
                     <?php if ($montant_apres_avoir <= 0): ?>
+                        <?php // Si l'avoir couvre tout, on valide sans envoyer le client vers CYBank. ?>
                         <form action='retour_paiement.php' method='GET' style="margin-top: 20px;">
                             <input type='hidden' name='status' value='accepted'>
                             <input type='hidden' name='transaction' value='<?= $transaction ?>'>
@@ -254,6 +269,7 @@ if (isset($_SESSION['email'])) {
                             <button type="submit" class="btn-confirm" style="width:100%; background-color: #2ecc71;">VALIDER (COMMANDE 100% GRATUITE VIA AVOIR)</button>
                         </form>
                     <?php else: ?>
+                        <?php // Sinon, on envoie les informations de paiement à CYBank. ?>
                         <form action='https://www.plateforme-smc.fr/cybank/index.php' method='POST' style="margin-top: 20px;">
                             <input type='hidden' name='transaction' value='<?php echo $transaction; ?>'>
                             <input type='hidden' name='montant' value='<?php echo $montant_formatte; ?>'>
