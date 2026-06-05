@@ -26,8 +26,8 @@ if (isset($_POST['action'])) {
 
     if ($_POST['action'] == 'delete' && isset($_POST['user_delete'])) {
         $ids_a_supprimer = $_POST['user_delete'];
-        $users = array_filter($users, function($user) use ($ids_a_supprimer) {
-            return !in_array($user['id'], $ids_a_supprimer);
+        $users = array_filter($users, function($user) use ($ids_a_supprimer) { // Fonction Anomyne récuperant les id à  supp
+            return !in_array($user['id'], $ids_a_supprimer); // renvoie 0 si l'id est present
         });
     }
 
@@ -54,14 +54,14 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_commande' && isset($_
     unset($cmd);
     file_put_contents("../Folder_Data/dfsqfiqsoifsvquvfipqf.json",
         json_encode(array_values($commandes), JSON_PRETTY_PRINT));
-    header("Location: " . $_SERVER['PHP_SELF']);
+    header("Location: " . $_SERVER['PHP_SELF']); // Renvoie vers la page elle meme tout en évitant l'envoie de 2 formulaire
     exit;
 }
 
 /* ── Filtre commandes par client ── */
 $filtre_client = $_GET['client'] ?? '';
 $commandes_filtrees = $filtre_client
-    ? array_filter($commandes, fn($c) => $c['client'] === $filtre_client)
+    ? array_filter($commandes, fn($c) => $c['client'] === $filtre_client) // Equivalent de fn($c) function($c)
     : $commandes;
 
 /* ── Stats rapides ── */
@@ -86,7 +86,7 @@ function statut_label(string $s): string {
         'livree'=> '✅ Livrée',
         'en cours de livraison' => '🛵 En livraison',
         'a preparer'=> '👨‍🍳 À préparer',
-        default => ucfirst($s),
+        default => ucfirst($s), // met la premiere lettre en majuscule
     };
 }
 ?>
