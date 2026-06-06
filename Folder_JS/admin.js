@@ -5,20 +5,20 @@ document.querySelectorAll(".btn-bloquer").forEach(btn => {
         const estBloque = this.dataset.bloque === "1";
         const action = estBloque ? "débloquer" : "bloquer";
 
-        if (!confirm(`Voulez-vous vraiment ${action} cet utilisateur ?`)) return;
+        if (!confirm(`Voulez-vous vraiment ${action} cet utilisateur ?`)) return; // Si l'admin clique sur annuler ca s'arrete 
 
         try {
             const response = await fetch("../Folder HTML/blocage.php", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: { "Content-Type": "application/json" }, //indique qu'on lui envoie un JSON
                 body: JSON.stringify({
                     id: userId,
                     bloquer: !estBloque
                 })
             });
 
-            const data = await response.json();
-
+            const data = await response.json(); // Attend la réponse du JSON
+            // Si le JSON renvoie les bonnes valeurs on met à jour notre affichage
             if (data.succes) {
                 // Mettre à jour le bouton sans recharger la page
                 this.dataset.bloque = estBloque ? "0" : "1";

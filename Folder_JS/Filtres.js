@@ -6,7 +6,7 @@ const FiltresActif = {
     regime : [],
     prix : []
 };
-
+// La fonction a pour but détre executé en continue afin d'ecouter les chexboxes en boucles
   // Je récupère les données du fichier JSON
   async function init(){
       const reponse = await fetch("../Folder_Data/Menus.json");
@@ -64,6 +64,7 @@ function setFiltre(type,valeur){
 
 function filtrerPlats(){
   const resultats = TousLesPlats.filter(plat => {
+     // Si l'utilisateur à clické et que le plat ne se trouve pas dans la catégorie ou le retire
     if (FiltresActif.type.length > 0 && !FiltresActif.type.includes(plat.type))
       return false;
 
@@ -84,13 +85,13 @@ function filtrerPlats(){
         if (tranche === "prix-10-plus" && plat.prix > 10){
             prixOk = true;
         }
-          console.log(plat.nom, plat.prix, plat.prix > 10);
+          console.log(plat.nom, plat.prix, plat.prix > 10); //Ligne de debug
         
       });
-
+      // Si le plat n'est pas séléctionner on le retire
       if (!prixOk) return false;
     }
-
+    // Sinon on l'affiche
     return true;
   });
 
