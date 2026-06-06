@@ -1,9 +1,5 @@
 <?php
 require("../include/Start.php");
-
-
-
-
 ?>
 
 <!DOCTYPE html>

@@ -18,7 +18,3 @@ if (isset($_GET['index']) && isset($_SESSION['panier'])) {
 header("Location: panier.php");
 exit();
 ?>
-
-
-
-?>
