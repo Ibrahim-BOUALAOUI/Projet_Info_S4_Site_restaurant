@@ -1,11 +1,7 @@
 <?php
 session_start();
 $connecte = isset($_SESSION['email']);
-if (isset($_SESSION['panier'])) {
-    $nb_articles = count($_SESSION['panier']);
-} else {
-    $nb_articles = 0;
-}
+
 $json = file_get_contents("../Folder_Data/Menus.json");
 $data = json_decode($json, true);
 $plat = $data['plats'];

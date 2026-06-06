@@ -2,10 +2,7 @@
 session_start();
 $nb_articles = 0;
 
-// On vérifie si le panier existe et on compte les articles
-if (isset($_SESSION['panier']) && is_array($_SESSION['panier'])) {
-    $nb_articles = count($_SESSION['panier']);
-}
+
 
 $connecte = isset($_SESSION['email']);
 $json = file_get_contents("../Folder_Data/Menus.json");

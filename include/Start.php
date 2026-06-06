@@ -23,6 +23,14 @@ if (isset($_SESSION['email'])) {
         }
     }
 }
+
+// On compte les articles déjà présents dans le panier pour afficher la notification en haut de page.
+if (isset($_SESSION['panier'])) {
+    $nb_articles = count($_SESSION['panier']);
+} else {
+    $nb_articles = 0;
+}
+
 ?>
 
 <?php  if (isset($accesRefuse)){ ?>

@@ -1,11 +1,6 @@
 <?php
 require("../include/Start.php");
 
-if (isset($_SESSION['panier'])) {
-    $nb_articles = count($_SESSION['panier']);
-} else {
-    $nb_articles = 0;
-}
 
 
 
