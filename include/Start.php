@@ -32,18 +32,31 @@ if (isset($_SESSION['panier'])) {
 }
 
 ?>
+<script>
+// On attend que la page soit bien chargée
+document.addEventListener("DOMContentLoaded", () => {
+    
+    // Fonction qui va interroger le serveur en arrière-plan
+    async function verifierBlocageCompte() {
+        try {
+            // On appelle notre mini-script PHP
+            const response = await fetch("../include/verif_bloque.php");
+            const data = await response.json();
 
-<?php  if (isset($accesRefuse)){ ?>
+            // Si le serveur dit que le compte est bloqué
+            if (data.bloque === true) {
+                // On redirige instantanément l'utilisateur vers la page d'erreur
+                window.location.href = "connexion.php?erreur=bloque";
+            }
+        } catch (erreur) {
+            console.error("Impossible de vérifier le statut du compte:", erreur);
+        }
+    }
 
-    <?php // Bloc visuel réutilisable quand une page veut afficher un accès refusé. ?>
-    <div class="acces-refuse-overlay">
-        <div class="acces-refuse-card">
-            <span class="acces-refuse-icon">🔒</span>
-            <h1 class="acces-refuse-titre">Accès refusé</h1>
-            <p class="acces-refuse-message">
-                Vous n'avez pas les droits nécessaires pour accéder à cette page.
-            </p>
-            <a href="index.php" class="acces-refuse-btn">Retour à l'accueil</a>
-        </div>
-    </div>
-<?php }?>
+    // On lance la vérification immédiatement au chargement de la page
+    verifierBlocageCompte();
+
+    // PUIS, on répète cette vérification toutes les 3000 millisecondes (3 secondes)
+    setInterval(verifierBlocageCompte, 3000);
+});
+</script>

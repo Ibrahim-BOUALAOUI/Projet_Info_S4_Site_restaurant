@@ -26,8 +26,9 @@
         "password": "$2y$12$B1r8hXCsAv1ODe5Kr7cmxeUHyQEuQ341IC4WnT\/GS\/xitrbw7Y6vu",
         "type": "client",
         "connected": true,
-        "permission": "",
-        "bloquee": false
+        "permission": "User",
+        "bloquee": false,
+        "bloque": true
     },
     {
         "id": "e716e7e6c70a29577faf82eb758cafe7",

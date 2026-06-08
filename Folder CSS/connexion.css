@@ -187,6 +187,63 @@ input[type="date"] {
     font-size: 0.9rem;
 }
 
+/* Style du bloc de message de blocage de compte */
+.compte-bloque-box {
+    text-align: center;
+    padding: 20px 10px;
+    background-color: rgba(239, 68, 68, 0.1); /* Fond rouge très léger */
+    border: 1px solid #ef4444; /* Bordure rouge vif */
+    border-radius: 8px;
+    margin: 15px 0;
+}
+
+.bloque-icon {
+    font-size: 45px;
+    display: block;
+    margin-bottom: 10px;
+    animation: pulse 2s infinite; /* Petit effet de pulsation sur l'émoji */
+}
+
+.bloque-titre {
+    color: #ef4444; /* Titre rouge */
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.bloque-message {
+    color: #e5e7eb; /* Texte clair lisible */
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.bloque-btn {
+    display: inline-block;
+    width: 100%;
+    padding: 12px;
+    background-color: #ef4444; /* Bouton rouge */
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 13px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    transition: background-color 0.2s ease;
+}
+
+.bloque-btn:hover {
+    background-color: #dc2626; /* Rouge plus sombre au survol */
+}
+
+/* Animation optionnelle de pulsation pour l'alerte */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;

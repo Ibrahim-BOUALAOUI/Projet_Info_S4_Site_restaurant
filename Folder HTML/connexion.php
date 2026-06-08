@@ -73,7 +73,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body>
 
-
     <div class="login-wrapper">
         <div class="login-card">
 
@@ -81,55 +80,64 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <a href="../Folder HTML/index.php"><img src="../Folder img/129.png" alt="Logo Le 129" class="site-logo"></a>
             </div>
 
-            <?php // Si une erreur a été enregistrée en session, on l'affiche au-dessus du formulaire. ?>
-            <?php if (isset($_SESSION['message_erreur'])): ?>
-                <div id="erreur-client" class="erreur-msg">
-                    <?php foreach ($_SESSION['message_erreur'] as $err): ?>
-                        <p><?php echo htmlspecialchars($err); ?></p>
-                    <?php endforeach; ?>
+            <?php // CONDITION : Si l'utilisateur est bloqué, on remplace tout par le message rouge ?>
+            <?php if (isset($_GET['erreur']) && $_GET['erreur'] === 'bloque'): ?>
+                
+                <div class="compte-bloque-box">
+                    <span class="bloque-icon">🚨</span>
+                    <h2 class="bloque-titre">ACCÈS VERROUILLÉ</h2>
+                    <p class="bloque-message">
+                        Votre compte a été suspendu par un administrateur pour non-respect des conditions d'utilisation. Vous avez été déconnecté de l'application.
+                    </p>
+                    <a href="index.php" class="bloque-btn">Retour à l'accueil</a>
                 </div>
-                <?php unset($_SESSION['message_erreur']); ?>
+
             <?php else: ?>
-                <div id="erreur-client" class="erreur-msg" style="display:none;"></div>
-            <?php endif; ?>
+                <?php // SINON : On affiche le formulaire normal de connexion ?>
 
-            <form method="POST" id="login-form" onsubmit="return validerFormulaire()" novalidate>
-                <h2 id="form-title">SE CONNECTER</h2>
+                <?php if (isset($_SESSION['message_erreur'])): ?>
+                    <div id="erreur-client" class="erreur-msg">
+                        <?php foreach ($_SESSION['message_erreur'] as $err): ?>
+                            <p><?php echo htmlspecialchars($err); ?></p>
+                        <?php endforeach; ?>
+                    </div>
+                    <?php unset($_SESSION['message_erreur']); ?>
+                <?php else: ?>
+                    <div id="erreur-client" class="erreur-msg" style="display:none;"></div>
+                <?php endif; ?>
 
-                <div class="input-group">
-                    <?php // Champ email. ?>
-                    <label for="email">ADRESSE E-MAIL</label>
-                    <input type="email" name="email" id="email" placeholder="nom@exemple.com" required>
-                </div>
+                <form method="POST" id="login-form" onsubmit="return validerFormulaire()" novalidate>
+                    <h2 id="form-title">SE CONNECTER</h2>
 
-                <div class="input-group">
-                    <?php // Champ mot de passe. ?>
-                    <label for="password">MOT DE PASSE</label>
-                    <input type="password" name="password" id="password" placeholder="••••••••" required>
+                    <div class="input-group">
+                        <label for="email">ADRESSE E-MAIL</label>
+                        <input type="email" name="email" id="email" placeholder="nom@exemple.com" required>
+                    </div>
 
-                    <label style="font-size: 11px; cursor: pointer; display: flex; align-items: center; gap: 8px; margin-top: 8px; font-weight: normal; text-transform: none; color: #aaa; width: 100%; max-width: 100%;">
-                        <?php // Cette case permet d'afficher ou masquer le mot de passe. ?>
-                        <input type="checkbox" onclick="if (this.checked) { document.getElementById('password').type = 'text'; } else { document.getElementById('password').type = 'password'; }" style="margin: 0; width: auto; height: auto; display: inline-block;"> Afficher le mot de passe
-                    </label>
-                </div>
+                    <div class="input-group">
+                        <label for="password">MOT DE PASSE</label>
+                        <input type="password" name="password" id="password" placeholder="••••••••" required>
 
-                <div class="form-helper">
-                    <label class="checkbox-label">
-                        <input type="checkbox"> Se souvenir de moi
-                    </label>
-                    <a href="#">Mot de passe oublié ?</a>
-                </div>
+                        <label style="font-size: 11px; cursor: pointer; display: flex; align-items: center; gap: 8px; margin-top: 8px; font-weight: normal; text-transform: none; color: #aaa; width: 100%; max-width: 100%;">
+                            <input type="checkbox" onclick="if (this.checked) { document.getElementById('password').type = 'text'; } else { document.getElementById('password').type = 'password'; }" style="margin: 0; width: auto; height: auto; display: inline-block;"> Afficher le mot de passe
+                        </label>
+                    </div>
 
-                <div id="erreur-client" class="erreur-msg" style="display:none;"></div>
+                    <div class="form-helper">
+                        <label class="checkbox-label">
+                            <input type="checkbox"> Se souvenir de moi
+                        </label>
+                        <a href="#">Mot de passe oublié ?</a>
+                    </div>
 
-                <button type="submit" class="main-btn">SE CONNECTER MAINTENANT</button>
-            </form>
-            <p class="toggle-text">Vous n'avez pas de compte ? <a href="inscription.php">S'inscrire</a></p>
+                    <button type="submit" class="main-btn">SE CONNECTER MAINTENANT</button>
+                </form>
+                <p class="toggle-text">Vous n'avez pas de compte ? <a href="inscription.php">S'inscrire</a></p>
+            
+            <?php endif; // Fin de la condition de blocage ?>
+            
         </div>
     </div>
+
 </body>
-
-
-
-
 </html>
