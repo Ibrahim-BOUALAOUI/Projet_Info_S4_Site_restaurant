@@ -1,5 +1,4 @@
     <?php
-    // On démarre la session pour identifier le client qui veut laisser un avis.
     session_start();
 
     // Un client non connecté ne peut pas accéder au formulaire d'avis.
@@ -16,20 +15,7 @@
         exit();
     }
 
-    $json_users = file_get_contents("../Folder_Data/ofdbisqfsqf.json");
-    $users = json_decode($json_users, true);
-
-    // Si le compte est bloqué, on détruit la session et on renvoie vers la connexion.
-    foreach ($users as $user) {
-        if (
-            $user['email'] === $_SESSION['email'] &&
-            (!empty($user['bloque']) || !empty($user['bloquee']))
-        ) {
-            session_destroy();
-            header("Location: connexion.php?erreur=bloque");
-            exit;
-        }
-    }
+    require("../include/Start.php");
 
     $commandes = json_decode(file_get_contents('../Folder_Data/dfsqfiqsoifsvquvfipqf.json'), true) ?? [];
     $avisData = file_exists('../Folder_Data/avis.json')
@@ -42,14 +28,16 @@
     }
 
     $dejaNotee = false;
-    // On vérifie si ce client a déjà noté cette commande dans avis.json.
+
     foreach ($avisData as $avis) {
-        if (
-            (string)($avis['commande_id'] ?? '') === $idCmd &&
-            (($avis['client'] ?? $avis['email'] ?? '') === $_SESSION['email'])
-        ) {
+        // 1. On récupère proprement l'ID et l'email avec des valeurs par défaut simples
+        $idAvis = $avis['commande_id'] ?? ''; // si la premiere action n'existe pas on fait la 2eme
+        $emailAvis = $avis['client'] ?? $avis['email'] ?? '';
+
+        
+        if ($idAvis == $idCmd && $emailAvis === $_SESSION['email']) {
             $dejaNotee = true;
-            break;
+            break; // On s'arrête dès qu'on a trouvé
         }
     }
 
