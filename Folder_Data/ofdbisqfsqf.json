@@ -28,7 +28,7 @@
         "connected": true,
         "permission": "User",
         "bloquee": false,
-        "bloque": true
+        "bloque": false
     },
     {
         "id": "e716e7e6c70a29577faf82eb758cafe7",
