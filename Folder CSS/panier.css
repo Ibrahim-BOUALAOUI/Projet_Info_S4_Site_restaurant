@@ -45,6 +45,37 @@ header img {
 .top_bar img:hover {
     transform: scale(1.05);
 }
+
+
+.btn-suivi {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px; 
+    background-color: #2563eb; 
+    color: #ffffff;
+    padding: 14px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none; 
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2), 0 2px 4px -1px rgba(37, 99, 235, 0.1);
+    transition: all 0.3s ease;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.btn-suivi:hover {
+    background-color: #1d4ed8; 
+    transform: translateY(-2px); 
+    box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+}
+
+/* Effet au clic (Active) */
+.btn-suivi:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+}
+
 /* ========================================
    Bloquée
 ======================================== */

@@ -123,6 +123,13 @@ if (isset($_SESSION['email'])) {
         <a href="index.php">
             <img src="../Folder img/129.png" alt="Logo" width="200">
         </a>
+        <a href="suivi.php" class="btn-suivi">
+        <span>Suivre ma commande</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+    </a>
     </header>
     <div class="cart-container">
         <div class="cart-items">
